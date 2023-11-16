@@ -839,7 +839,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "( ) Mostra la NAND o stringa utente nelle impostazioni di sistema",
                                                "( ) Mostra lo schermo di avvio del GBA negli AGB_FIRM patchati",
                                                "( ) Abilita filtri personalizzati di upscaling per DSi",
-                                               "( ) Ammetti le combo Left+Right / Up+Down per DSi",
+                                               "( ) Ammetti le combo Sinistra+Destra / Su+Giù per DSi",
                                                "( ) Taglia il 3DS Wifi in modalità riposo",
                                                "( ) Imposta UNITINFO come sviluppatore",
                                                "( ) Disabilita gli Arm11 exception handlers",                                               
@@ -852,16 +852,16 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "\nSalva ed esci"
                                              };
 
-    static const char *optionsDescription[]  = { "Select the default EmuNAND.\n\n"
-                                                 "It will be booted when no directional\n"
-                                                 "pad buttons are pressed (Up/Right/Down\n"
-                                                 "/Left equal EmuNANDs 1/2/3/4).",
+    static const char *optionsDescription[]  = { "Seleziona l'EmuNAND predefinita.\n\n"
+                                                 "Verràò avviata quando nesssun tasto \n"
+                                                 "del DPAD è premuto (Su/Destra/Giù\n"
+                                                 "/Sinistra corrispondono alle EmuNAND 1/2/3/4).",
 
-                                                 "Select the screen brightness.",
+                                                 "Seleziona la luminosità dello schermo.",
 
-                                                 "Enable splash screen support.\n\n"
-                                                 "\t* 'Before payloads' displays it\n"
-                                                 "before booting payloads\n"
+                                                 "Abilita il supporto delle schermate splash.\n\n"
+                                                 "\t* 'Prima payloads' lo mostra\n"
+                                                 "prima di avviare le payloads\n"
                                                  "(intended for splashes that display\n"
                                                  "button hints).\n\n"
                                                  "\t* 'After payloads' displays it\n"
