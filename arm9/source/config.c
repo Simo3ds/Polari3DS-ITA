@@ -818,38 +818,38 @@ void writeConfig(bool isConfigOptions)
         writeConfigMcu();
 
     if(updateIni && !writeLumaIniConfig())
-        error("Error writing the configuration file");
+        error("Errore durante la scrittura del file di configurazione");
 }
 
 void configMenu(bool oldPinStatus, u32 oldPinMode)
 {
-    static const char *multiOptionsText[]  = { "Default EmuNAND: 1( ) 2( ) 3( ) 4( )",
-                                               "Screen brightness: 4( ) 3( ) 2( ) 1( )",
-                                               "Splash: Off( ) Before( ) After( ) payloads",
-                                               "PIN lock: Off( ) 4( ) 6( ) 8( ) digits",
-                                               "New 3DS CPU: Off( ) Clock( ) L2( ) Clock+L2( )",
-                                               "Hbmenu autoboot: Off( ) 3DS( ) DSi( )",
-                                               "Force audio: Off( ) Headphones( ) Speakers( )"
+    static const char *multiOptionsText[]  = { "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
+                                               "Luminosità schermo: 4( ) 3( ) 2( ) 1( )",
+                                               "Splash: Spento( ) Prima( ) Dopo( ) payloads",
+                                               "Blocco PIN: Spento( ) 4( ) 6( ) 8( ) cifre",
+                                               "New 3DS CPU: Spento( ) Clock( ) L2( ) Clock+L2( )",
+                                               "Avvio automatico hbmenu: Spento( ) 3DS( ) DSi( )",
+                                               "Forza l'audio: Spento( ) Cuffie( ) Casse( )"
                                              };
 
-    static const char *singleOptionsText[] = { "( ) Autoboot EmuNAND",
-                                               "( ) Enable loading external FIRMs and modules",
-                                               "( ) Enable game patching",
-                                               "( ) Redirect app. syscore threads to core2",
-                                               "( ) Show NAND or user string in System Settings",
-                                               "( ) Show GBA boot screen in patched AGB_FIRM",
-                                               "( ) Enable custom upscaling filters for DSi",
-                                               "( ) Allow Left+Right / Up+Down combos for DSi",
-                                               "( ) Cut 3DS Wifi in sleep mode",
-                                               "( ) Set developer UNITINFO",
-                                               "( ) Disable Arm11 exception handlers",                                               
-                                               "( ) Enable Rosalina on SAFE_FIRM",
-                                               "( ) Enable instant reboot + disable Errdisp",
-                                               "( ) Show Advanced Settings",
-                                               "( ) Enable Nand Cid and Otp hardware patching",
+    static const char *singleOptionsText[] = { "( ) Avvia automaticamente l'EmuNAND",
+                                               "( ) Abilita il caricamento di FIRM e moduli esterni",
+                                               "( ) Abilita patch dei giochi",
+                                               "( ) Reindirizza threads app. syscore al core2",
+                                               "( ) Mostra la NAND o stringa utente nelle impostazioni di sistema",
+                                               "( ) Mostra lo schermo di avvio del GBA negli AGB_FIRM patchati",
+                                               "( ) Abilita filtri personalizzati di upscaling per DSi",
+                                               "( ) Ammetti le combo Left+Right / Up+Down per DSi",
+                                               "( ) Taglia il 3DS Wifi in modalità riposo",
+                                               "( ) Imposta UNITINFO come sviluppatore",
+                                               "( ) Disabilita gli Arm11 exception handlers",                                               
+                                               "( ) Abilita Rosalina nel SAFE_FIRM",
+                                               "( ) Abilita il riavvio istantaneo + disabilita Errdisp",
+                                               "( ) Mostra le impostazioni avanzate",
+                                               "( ) Abilita il patching di Nand Cid e Otp hardware",
                                                                                               
                                                // Should always be the last entry
-                                               "\nSave and exit"
+                                               "\nSalva ed esci"
                                              };
 
     static const char *optionsDescription[]  = { "Select the default EmuNAND.\n\n"
