@@ -58,10 +58,10 @@ Menu rosalinaMenu = {
     "Menu Rosalina",
     {
         { "Screenshot NFTs", METHOD, .method = &RosalinaMenu_TakeScreenshot },
-        { "Cambia luminosità schermo", METHOD, .method = &RosalinaMenu_ChangeScreenBrightness },
+        { "Cambia luminosita schermo", METHOD, .method = &RosalinaMenu_ChangeScreenBrightness },
         { "Trucchi", METHOD, .method = &RosalinaMenu_Cheats },
         { "", METHOD, .method = PluginLoader__MenuCallback },
-        { "Processo hakcer", METHOD, .method = &RosalinaMenu_ProcessList },
+        { "Lista Processi", METHOD, .method = &RosalinaMenu_ProcessList },
         { "Opzioni di debug...", MENU, .menu = &debuggerMenu },
         { "Configurazione di sistema...", MENU, .menu = &sysconfigMenu },
         { "Filtri schermo", MENU, .menu = &screenFiltersMenu },
