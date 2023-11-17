@@ -27,6 +27,8 @@
 #pragma once
 
 #include "types.h"
+#include "config_template_ini.h"
+#include "configExtra_ini.h"
 
 #define AUTOBOOT_DEFAULT_TWL_TID    0x0003000453524C41ull
 
@@ -34,7 +36,7 @@
 #define MULTICONFIG(a)   ((configData.multiConfig >> (2 * (a))) & 3)
 #define BOOTCONFIG(a, b) ((configData.bootConfig >> (a)) & (b))
 
-#define CONFIG_FILE         "config.ini"
+#define CONFIG_FILE         "lumae.ini"
 #define CONFIG_VERSIONMAJOR 4
 #define CONFIG_VERSIONMINOR 3
 
