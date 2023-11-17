@@ -835,16 +835,16 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
     static const char *singleOptionsText[] = { "( ) Avvia automaticamente l'EmuNAND",
                                                "( ) Abilita il caricamento di FIRM e moduli esterni",
                                                "( ) Abilita patch dei giochi",
-                                               "( ) Reindirizza threads app. syscore al core2",
-                                               "( ) Mostra NAND o stringa utente in impostazioni di sistema",
+                                               "( ) Reindir. threads app. syscore al core2",
+                                               "( ) Mostra NAND o stringa utente in imp. di sistema",
                                                "( ) Mostra schermo avvio GBA negli AGB_FIRM patchati",
-                                               "( ) Abilita filtri personalizzati di upscaling per DSi",
-                                               "( ) Ammetti combo Sinistra+Destra/Su+Giu per DSi",
+                                               "( ) Abilita filtri pers. di upscaling per DSi",
+                                               "( ) Ammetti combo Sin+D/Su+Giu per DSi",
                                                "( ) Togli il wifi 3DS in modalita riposo",
-                                               "( ) Imposta UNITINFO come sviluppatore",
+                                               "( ) Imposta UNITINFO come svilup.",
                                                "( ) Disabilita gli Arm11 exception handlers",                                               
                                                "( ) Abilita Rosalina nel SAFE_FIRM",
-                                               "( ) Abilita il riavvio istantaneo + disabilita Errdisp",
+                                               "( ) Abilita il riavvio ist. + disabilita Errdisp",
                                                "( ) Mostra le impostazioni avanzate",
                                                "( ) Abilita il patching di Nand Cid e Otp hardware",
                                                                                               
@@ -853,11 +853,11 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                              };
 
     static const char *optionsDescription[]  = { "Seleziona l'EmuNAND predefinita.\n\n"
-                                                 "Verràò avviata quando nesssun tasto \n"
-                                                 "del DPAD è premuto (Su/Destra/Giù\n"
+                                                 "Verra' avviata quando nesssun tasto \n"
+                                                 "del DPAD e' premuto (Su/Destra/Giù\n"
                                                  "/Sinistra corrispondono alle EmuNAND 1/2/3/4).",
 
-                                                 "Seleziona la luminosità dello schermo.",
+                                                 "Seleziona la luminosita' dello schermo.",
 
                                                  "Abilita il supporto delle schermate splash.\n\n"
                                                  "\t* 'Prima payloads' lo mostra\n"
@@ -870,22 +870,22 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "predefinita).",
 
                                                  "Abilita un blocco PIN.\n\n"
-                                                 "Il PIN verrà chiesto ogni volta che\n"
+                                                 "Il PIN verra' chiesto ogni volta che\n"
                                                  "CustomLuma3DS si avvia.\n\n"
-                                                 "Può essere impostato a 4, 6 o 8 cifre.\n\n"
+                                                 "Puo' essere impostato a 4, 6 o 8 cifre.\n\n"
                                                  "I tasti ABXY e i tasti del DPAD\n"
                                                  "possono essere usati come chiavi del blocco.\n\n"
-                                                 "Può essere mostrato anche un messaggio\n"
+                                                 "Puo' essere mostrato anche un messaggio\n"
                                                  "(Consulta la wiki per istruzioni).",
 
-                                                 "Seleziona la modalita del New 3DS CPU.\n\n"
-                                                 "Questo non verrà applicato per i\n"
+                                                 "Seleziona la modalita' del New 3DS CPU.\n\n"
+                                                 "Questo non verra' applicato per i\n"
                                                  "giochi esclusivi/potenziati per New3DS.\n\n"
-                                                 "'Clock+L2' può creare problemi con alcuni\n"
+                                                 "'Clock+L2' puo' creare problemi con alcuni\n"
                                                  "giochi.",
 
                                                  "Abilita l'avvio automatico nell'homebrew menu,\n"
-                                                 "sia in modalità 3DS che DSi.\n\n"
+                                                 "sia in modalita' 3DS che DSi.\n\n"
                                                  "L'avvio automatico in una scheda di gioco\n"
                                                  "non è supportato.\n\n"
                                                  "Riferisciti alla sezione \"autoboot\"\n"
@@ -897,7 +897,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Per via di limitazioni software, questo smettte di\n"
                                                  "funzionare se inserisci e poi\n"
                                                  "rimuovi le cuffie (se questo succede, entra ed esci dalla\n"
-                                                 "modalità riposo).\n\n"
+                                                 "modalita' riposo).\n\n"
                                                  "Viene anche bypassato dai suoni\n"
                                                  "di scatto della fotocamera.",
 
