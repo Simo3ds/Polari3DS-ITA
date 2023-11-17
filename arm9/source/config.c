@@ -824,7 +824,7 @@ void writeConfig(bool isConfigOptions)
 void configMenu(bool oldPinStatus, u32 oldPinMode)
 {
     static const char *multiOptionsText[]  = { "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
-                                               "Luminosità schermo: 4( ) 3( ) 2( ) 1( )",
+                                               "Luminosita schermo: 4( ) 3( ) 2( ) 1( )",
                                                "Splash: Spento( ) Prima( ) Dopo( ) payloads",
                                                "Blocco PIN: Spento( ) 4( ) 6( ) 8( ) cifre",
                                                "New 3DS CPU: Spento( ) Clock( ) L2( ) Clock+L2( )",
@@ -836,11 +836,11 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "( ) Abilita il caricamento di FIRM e moduli esterni",
                                                "( ) Abilita patch dei giochi",
                                                "( ) Reindirizza threads app. syscore al core2",
-                                               "( ) Mostra la NAND o stringa utente nelle impostazioni di sistema",
-                                               "( ) Mostra lo schermo di avvio del GBA negli AGB_FIRM patchati",
+                                               "( ) Mostra NAND o stringa utente in impostazioni di sistema",
+                                               "( ) Mostra schermo di avvio GBA negli AGB_FIRM patchati",
                                                "( ) Abilita filtri personalizzati di upscaling per DSi",
-                                               "( ) Ammetti le combo Sinistra+Destra / Su+Giù per DSi",
-                                               "( ) Taglia il 3DS Wifi in modalità riposo",
+                                               "( ) Ammetti combo Sinistra+Destra / Su+Giù per DSi",
+                                               "( ) Togli il wifi 3DS in modalità riposo",
                                                "( ) Imposta UNITINFO come sviluppatore",
                                                "( ) Disabilita gli Arm11 exception handlers",                                               
                                                "( ) Abilita Rosalina nel SAFE_FIRM",
@@ -878,7 +878,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Può essere mostrato anche un messaggio\n"
                                                  "(Consulta la wiki per istruzioni).",
 
-                                                 "Seleziona la modalità del New 3DS CPU.\n\n"
+                                                 "Seleziona la modalita del New 3DS CPU.\n\n"
                                                  "Questo non verrà applicato per i\n"
                                                  "giochi esclusivi/potenziati per New3DS.\n\n"
                                                  "'Clock+L2' può creare problemi con alcuni\n"
@@ -956,17 +956,17 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "(usando il DPAD e il CPAD\n"
                                                  "simultaneamente) nei software DS(i).\n\n"
                                                  "I software commerciali filtrano\n"
-                                                 "da soli queste combinazioni però.",
+                                                 "da soli queste combinazioni pero.",
                                                  
                                                  "Togli il wifi al 3DS in modalità riposo.\n\n"
-                                                 "Utile per risparmiare batteria ma impedirà ad\n"
+                                                 "Utile per risparmiare batteria ma impedira ad\n"
                                                  "alcune funzioni come streetpass o\n"
-                                                 "spotpass di funzionare in modalirà riposo.\n\n"
+                                                 "spotpass di funzionare in modalira riposo.\n\n"
                                                  "Usa questo se non vuoi usarle e\n"
-                                                 "vuoi risparmiare batteria in modalità riposo.",
+                                                 "vuoi risparmiare batteria in modalita riposo.",
                                                  
-                                                 "Fa sì che la console sia sempre riconosciuta\n"
-                                                 "come unità di sviluppo, e convertirla.\n"
+                                                 "Fa si che la console sia sempre riconosciuta\n"
+                                                 "come unita di sviluppo, e convertirla.\n"
                                                  "(la quale rompe le funzioni online, amiibo\n"
                                                  "e i retail CIA, ma consente l'installazione\n"
                                                  "di alcuni software di sviluppo).\n\n"
@@ -976,7 +976,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Disabilita gli improvvisi errori fatali handlers \n"
                                                  "per la CPU Arm11.\n\n"
                                                  "Nota: Disabilitare gli improvvisi handlers\n"
-                                                 "ti rimuoverà dal creare\n"
+                                                 "ti rimuovera dal creare\n"
                                                  "issue o bug report nella repository Luma3DS\n"
                                                  "di GitHub!",
                                                 
@@ -1001,15 +1001,15 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "aggiuntive del menuu di configurazione di luma\n"
                                                  "vengano nascoste.",
                                                  
-                                                 "Abilitare questo sarà la causa del completo\n"
+                                                 "Abilitare questo sara la causa del completo\n"
                                                  "di otp e della nand cid, quindi puoi\n"
                                                  "usare un backup nand di un'altra console\n"
                                                  "su un altro hardware, quindi usa questo stando attento\n"
                                                  "a cosa stai e bla bla sai già.\n\n"
                                                  "Ricorda di mettere i file nand_cid.bin e otp.bin\n"
-                                                 "nel percorso luma nella sd luma directory perchè è dove\n"
+                                                 "nel percorso luma nella sd luma directory perche e dove\n"
                                                  "vengono letti e funziona solo con una scheda sd,\n"
-                                                 "perchè la nand è sempre criptata.",
+                                                 "perche la nand è sempre criptata.",
                                                  
                                                  // Should always be the last entry
                                                  "Salva i cambiamenti ed esci. Per annullare\n"
