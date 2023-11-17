@@ -854,7 +854,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 
     static const char *optionsDescription[]  = { "Seleziona l'EmuNAND predefinita.\n\n"
                                                  "Verra' avviata quando nesssun tasto \n"
-                                                 "del DPAD e' premuto (Su/Destra/Giù\n"
+                                                 "del DPAD e' premuto (Su/Destra/Giu'\n"
                                                  "/Sinistra corrispondono alle EmuNAND 1/2/3/4).",
 
                                                  "Seleziona la luminosita' dello schermo.",
@@ -904,17 +904,17 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 
 
                                                  "Se abilitato, un EmuNAND\n"
-                                                 "verrà lanciata all'avvio.\n\n"
-                                                 "Altrimenti, la SysNAND lo farà\n\n"
+                                                 "verra' lanciata all'avvio.\n\n"
+                                                 "Altrimenti, la SysNAND lo fara'\n\n"
                                                  "Mantieni L all'avvio per cambiare NAND.\n\n"
                                                  "Per usare un EmuNAND differente dalla\n"
                                                  "predefinita, mantieni un tasto del DPAD\n"
-                                                 "(Su/Destra/Giù/Sinistra corrispondono alle EmuNANDs\n"
+                                                 "(Su/Destra/Giu'/Sinistra corrispondono alle EmuNANDs\n"
                                                  "1/2/3/4).",
 
                                                  "Abilita il caricamento di FIRM e moduli di\n"
                                                  "sistema esterni.\n\n"
-                                                 "Questo non è necessario nella maggior parte dei casi.\n\n"
+                                                 "Questo non e' necessario nella maggior parte dei casi.\n\n"
                                                  "Consulta la wiki per maggiori istruzioni.",
 
                                                  "Abilita l'oltrepassaggio della regione e\n"
@@ -922,17 +922,17 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "di codici binari patchati, exHeaders,\n"
                                                  "IPS codici patchati e LayeredFS\n"
                                                  "Per giochi specifici.\n\n"
-                                                 "Fa anche sì che certi DLC per giochi fuori\n"
+                                                 "Fa anche si' che certi DLC per giochi fuori\n"
                                                  "dalla regione funzionino.\n\n"
                                                  "Consulta la Wiki per istruzioni.",
 
                                                  "Reindirizza i threads app. threads che si generano\n"
-                                                 "sul core1, al core2 (che è un core della\n"
+                                                 "sul core1, al core2 (che e' un core della\n"
                                                  "CPU aggiuntivo per applicazioni che solitamente\n"
                                                  "restano inutilizzate).\n\n"
                                                  "Questo migliora le prestazioni di giochi\n"
                                                  "veramente pesanti (come Pok\x82mon US/UM)\n" // CP437
-                                                 "di circa il 10%. Può rompere alcuni giochi\n"
+                                                 "di circa il 10%. Puo' rompere alcuni giochi\n"
                                                  "e altre applicazioni.\n",
 
                                                  "Abilita la visualizzazione della NAND attuale:\n\n"
@@ -958,14 +958,14 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "I software commerciali filtrano\n"
                                                  "da soli queste combinazioni pero.",
                                                  
-                                                 "Togli il wifi al 3DS in modalità riposo.\n\n"
-                                                 "Utile per risparmiare batteria ma impedira ad\n"
+                                                 "Togli il wifi al 3DS in modalita' riposo.\n\n"
+                                                 "Utile per risparmiare batteria ma impedira' ad\n"
                                                  "alcune funzioni come streetpass o\n"
                                                  "spotpass di funzionare in modalira riposo.\n\n"
                                                  "Usa questo se non vuoi usarle e\n"
                                                  "vuoi risparmiare batteria in modalita riposo.",
                                                  
-                                                 "Fa si che la console sia sempre riconosciuta\n"
+                                                 "Fa si' che la console sia sempre riconosciuta\n"
                                                  "come unita di sviluppo, e convertirla.\n"
                                                  "(la quale rompe le funzioni online, amiibo\n"
                                                  "e i retail CIA, ma consente l'installazione\n"
@@ -991,25 +991,25 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  
                                                  "Disabilita il riavvio dopo che sono capitati\n"
                                                  "errori ErrDisp. Abilita anche istantaneamente una\n"
-                                                 "combo di riavvio, questo può corrompere la\n"
+                                                 "combo di riavvio, questo puo' corrompere la\n"
                                                  "tua scheda SD quindi stai attento con questo.\n"
-                                                 "La combo è A + B + X + Y + Start.\n\n"
+                                                 "La combo e' A + B + X + Y + Start.\n\n"
                                                  "Seleziona questo solamente se sai cosa\n"
                                                  "stai facendo!",
                                                  
-                                                 "Disablitare questo farà si che le impostazioni\n"
+                                                 "Disablitare questo fara' si che le impostazioni\n"
                                                  "aggiuntive del menuu di configurazione di luma\n"
                                                  "vengano nascoste.",
                                                  
-                                                 "Abilitare questo sara la causa del completo\n"
+                                                 "Abilitare questo sara' la causa completa\n"
                                                  "di otp e della nand cid, quindi puoi\n"
                                                  "usare un backup nand di un'altra console\n"
                                                  "su un altro hardware, quindi usa questo stando attento\n"
-                                                 "a cosa stai e bla bla sai già.\n\n"
+                                                 "a cosa stai e bla bla sai gia'.\n\n"
                                                  "Ricorda di mettere i file nand_cid.bin e otp.bin\n"
-                                                 "nel percorso luma nella sd luma directory perche e dove\n"
+                                                 "nel percorso luma nella sd luma directory perche' e' dove\n"
                                                  "vengono letti e funziona solo con una scheda sd,\n"
-                                                 "perche la nand è sempre criptata.",
+                                                 "perche' la nand e' sempre criptata.",
                                                  
                                                  // Should always be the last entry
                                                  "Salva i cambiamenti ed esci. Per annullare\n"
