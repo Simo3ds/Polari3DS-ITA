@@ -55,25 +55,25 @@
 #include "configExtra_ini.h"
 
 Menu rosalinaMenu = {
-    "Rosalina menu",
+    "Menu Rosalina",
     {
         { "Screenshot NFTs", METHOD, .method = &RosalinaMenu_TakeScreenshot },
-        { "Change screen brightness", METHOD, .method = &RosalinaMenu_ChangeScreenBrightness },
-        { "Cheater", METHOD, .method = &RosalinaMenu_Cheats },
+        { "Cambia luminosità schermo", METHOD, .method = &RosalinaMenu_ChangeScreenBrightness },
+        { "Trucchi", METHOD, .method = &RosalinaMenu_Cheats },
         { "", METHOD, .method = PluginLoader__MenuCallback },
-        { "Process hacker", METHOD, .method = &RosalinaMenu_ProcessList },
-        { "Debugger options...", MENU, .menu = &debuggerMenu },
-        { "System configuration...", MENU, .menu = &sysconfigMenu },
-        { "Screen filters...", MENU, .menu = &screenFiltersMenu },
-        { "New 3DS settings...", MENU, .menu = &N3DSMenu, .visibility = &menuCheckN3ds },
-        { "Streaming", MENU, .menu = &streamingMenu },
-        { "Quick-Switchers...", MENU, .menu = &quickSwitchersMenu },
-        { "Miscellaneous options...", MENU, .menu = &miscellaneousMenu },
-        { "Save settings", METHOD, .method = &RosalinaMenu_SaveSettings },
-        { "Go to Home", METHOD, .method = &RosalinaMenu_HomeMenu },
-        { "Power options...", METHOD, .method = &RosalinaMenu_PowerOptions },
-        { "Credits", METHOD, .method = &RosalinaMenu_ShowCredits },
-        { "Debug info", METHOD, .method = &RosalinaMenu_ShowDebugInfo, .visibility = &rosalinaMenuShouldShowDebugInfo },
+        { "Processo hakcer", METHOD, .method = &RosalinaMenu_ProcessList },
+        { "Opzioni di debug...", MENU, .menu = &debuggerMenu },
+        { "Configurazione di sistema...", MENU, .menu = &sysconfigMenu },
+        { "Filtri schermo", MENU, .menu = &screenFiltersMenu },
+        { "Impostazioni New3DS", MENU, .menu = &N3DSMenu, .visibility = &menuCheckN3ds },
+        { "Trasmetti", MENU, .menu = &streamingMenu },
+        { "Scambio rapido...", MENU, .menu = &quickSwitchersMenu },
+        { "Opzioni varie...", MENU, .menu = &miscellaneousMenu },
+        { "Salva le impostazioni", METHOD, .method = &RosalinaMenu_SaveSettings },
+        { "Vai alla Home", METHOD, .method = &RosalinaMenu_HomeMenu },
+        { "Opzioni Power...", METHOD, .method = &RosalinaMenu_PowerOptions },
+        { "Crediti", METHOD, .method = &RosalinaMenu_ShowCredits },
+        { "Informazioni di debug", METHOD, .method = &RosalinaMenu_ShowDebugInfo, .visibility = &rosalinaMenuShouldShowDebugInfo },
         {},
     }
 };
@@ -98,11 +98,11 @@ void RosalinaMenu_SaveSettings(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Save settings");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Salva le impostazioni");
         if (R_SUCCEEDED(res))
-            Draw_DrawString(10, 30, COLOR_WHITE, "Operation succeeded.");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Operazione compiuta.");
         else
-            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Operation failed (0x%08lx).", res);
+            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Operazione fallita (0x%08lx).", res);
         Draw_FlushFramebuffer();
         Draw_Unlock();
     }
@@ -130,18 +130,18 @@ void RosalinaMenu_ShowDebugInfo(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Rosalina -- Debug info");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Rosalina -- informazioni di Debug");
 
         u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, memoryMap);
-        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Kernel ext PA: %08lx - %08lx\n\n", kextPa, kextPa + kextSize);
+        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Kernel esterno PA: %08lx - %08lx\n\n", kextPa, kextPa + kextSize);
         posY = Draw_DrawFormattedString(
-            10, posY, COLOR_WHITE, "Kernel version: %lu.%lu-%lu\n",
+            10, posY, COLOR_WHITE, "Versione Kernel: %lu.%lu-%lu\n",
             GET_VERSION_MAJOR(kernelVer), GET_VERSION_MINOR(kernelVer), GET_VERSION_REVISION(kernelVer)
         );
         if (mcuFwVersion != 0)
         {
             posY = Draw_DrawFormattedString(
-                10, posY, COLOR_WHITE, "MCU FW version: %lu.%lu\n",
+                10, posY, COLOR_WHITE, "Versione MCU FW: %lu.%lu\n",
                 GET_VERSION_MAJOR(mcuFwVersion), GET_VERSION_MINOR(mcuFwVersion)
             );
         }
@@ -150,7 +150,7 @@ void RosalinaMenu_ShowDebugInfo(void)
         {
             u32 clkDiv = 1 << (1 + (speedInfo.sdClkCtrl & 0xFF));
             posY = Draw_DrawFormattedString(
-                10, posY, COLOR_WHITE, "SDMC speed: HS=%d %lukHz\n",
+                10, posY, COLOR_WHITE, "Velocità SDMC: HS=%d %lukHz\n",
                 (int)speedInfo.highSpeedModeEnabled, SYSCLOCK_SDMMC / (1000 * clkDiv)
             );
         }
@@ -158,7 +158,7 @@ void RosalinaMenu_ShowDebugInfo(void)
         {
             u32 clkDiv = 1 << (1 + (speedInfo.sdClkCtrl & 0xFF));
             posY = Draw_DrawFormattedString(
-                10, posY, COLOR_WHITE, "NAND speed: HS=%d %lukHz\n",
+                10, posY, COLOR_WHITE, "Velocità NAND: HS=%d %lukHz\n",
                 (int)speedInfo.highSpeedModeEnabled, SYSCLOCK_SDMMC / (1000 * clkDiv)
             );
         }
@@ -184,11 +184,11 @@ void RosalinaMenu_ShowCredits(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Rosalina -- Luma3DS credits");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Rosalina -- Crediti CustomLuma3DS");
 
-        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Luma3DS (c) 2016-2023 AuroraWright, TuxSH") + SPACING_Y;
+        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "CustomLuma3DS (c) 2021-2023 Alexyo21, coolgamer, Originale: Luma3DS (c) 2016-2023 AuroraWright, TuxSH") + SPACING_Y;
 
-        posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "3DSX loading code by fincs");
+        posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "3DSX codice di caricamento di fincs");
         posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "Networking code & basic GDB functionality by Stary");
         posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "InputRedirection by Stary (PoC by ShinyQuagsire)");
 
