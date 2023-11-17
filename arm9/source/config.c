@@ -1270,7 +1270,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
     else if(oldPinStatus)
     {
         if(!fileDelete(PIN_FILE))
-            error("Unable to delete PIN file");
+            error("Impossibile eliminare il file del PIN");
     }
 
     while(HID_PAD & PIN_BUTTONS);
