@@ -862,39 +862,39 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Abilita il supporto delle schermate splash.\n\n"
                                                  "\t* 'Prima payloads' lo mostra\n"
                                                  "prima di avviare le payloads\n"
-                                                 "(intended for splashes that display\n"
-                                                 "button hints).\n\n"
-                                                 "\t* 'After payloads' displays it\n"
-                                                 "afterwards.\n\n"
-                                                 "Edit the duration in lumae.ini (3s\n"
-                                                 "default).",
+                                                 "(inteso per splash che mostrano\n"
+                                                 "indicazioni di tasti).\n\n"
+                                                 "\t* 'Dopo payloads' lo mostra\n"
+                                                 "dopo.\n\n"
+                                                 "Modifica la durata nel file lumae.ini (3s\n"
+                                                 "predefinita).",
 
-                                                 "Activate a PIN lock.\n\n"
-                                                 "The PIN will be asked each time\n"
-                                                 "Luma3DS boots.\n\n"
-                                                 "4, 6 or 8 digits can be selected.\n\n"
-                                                 "The ABXY buttons and the directional\n"
-                                                 "pad buttons can be used as keys.\n\n"
-                                                 "A message can also be displayed\n"
-                                                 "(refer to the wiki for instructions).",
+                                                 "Abilita un blocco PIN.\n\n"
+                                                 "Il PIN verrà chiesto ogni volta che\n"
+                                                 "CustomLuma3DS si avvia.\n\n"
+                                                 "Può essere impostato a 4, 6 o 8 cifre.\n\n"
+                                                 "I tasti ABXY e i tasti del DPAD\n"
+                                                 "possono essere usati come chiavi del blocco.\n\n"
+                                                 "Può essere mostrato anche un messaggio\n"
+                                                 "(riferisciti alla wiki per istruzioni).",
 
-                                                 "Select the New 3DS CPU mode.\n\n"
-                                                 "This won't apply to\n"
-                                                 "New 3DS exclusive/enhanced games.\n\n"
-                                                 "'Clock+L2' can cause issues with some\n"
-                                                 "games.",
+                                                 "Seleziona la modalità del New 3DS CPU.\n\n"
+                                                 "Questo non verrà applicato per i\n"
+                                                 "giochi esclusivi/potenziati per New3DS.\n\n"
+                                                 "'Clock+L2' può creare problemi con alcuni\n"
+                                                 "giochi.",
 
-                                                 "Enable autobooting into homebrew menu,\n"
-                                                 "either into 3DS or DSi mode.\n\n"
-                                                 "Autobooting into a gamecard title is\n"
-                                                 "not supported.\n\n"
-                                                 "Refer to the \"autoboot\" section in the\n"
-                                                 "configuration file to configure\n"
-                                                 "this feature.",
+                                                 "Abilita l'avvio automatico nell'homebrew menu,\n"
+                                                 "sia in modalità 3DS che DSi.\n\n"
+                                                 "L'avvio automatico in una scheda di gioco\n"
+                                                 "non è supportato.\n\n"
+                                                 "Riferisciti alla sezione \"autoboot\"\n"
+                                                 "nel file di configurazione per impostare\n"
+                                                 "questa funzione.",
                                                  
-                                                 "Force audio output to HPs or speakers.\n\n"
-                                                 "Currently only for NATIVE_FIRM.\n\n"
-                                                 "Due to software limitations, this gets\n"
+                                                 "Forza l'output audio alle cuffie o alle casse.\n\n"
+                                                 "Attualmente solo per NATIVE_FIRM.\n\n"
+                                                 "Per via di limitazioni software, questo viene\n"
                                                  "undone if you actually insert then\n"
                                                  "remove HPs (just enter then exit sleep\n"
                                                  "mode if this happens).\n\n"
@@ -1095,7 +1095,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 
     drawString(true, 10, 10, COLOR_TITLE, CONFIG_TITLE);
     drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Usa il DPAD e A per cambiare le impostazioni");
-    drawFormattedString(false, 10, SCREEN_HEIGHT - 2 * SPACING_Y, COLOR_YELLOW, "Booted from %s via %s", isSdMode ? "SD" : "CTRNAND", bootTypes[(u32)bootType]);
+    drawFormattedString(false, 10, SCREEN_HEIGHT - 2 * SPACING_Y, COLOR_YELLOW, "Avviato da %s via %s", isSdMode ? "SD" : "CTRNAND", bootTypes[(u32)bootType]);
 
     //Character to display a selected option
     char selected = 'x';
