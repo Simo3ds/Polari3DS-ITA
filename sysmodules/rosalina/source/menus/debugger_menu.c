@@ -93,7 +93,7 @@ void DebuggerMenu_DisableDebugger(void)
     char buf[65];
 
     if (res != 0)
-        sprintf(buf, "Mona il debugger se ga sminchia');
+        sprintf(buf, "porco dio debugger di merda" (u32)res);
 
     do
     {
