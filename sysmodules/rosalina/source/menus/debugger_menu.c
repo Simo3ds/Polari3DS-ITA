@@ -24,7 +24,7 @@
 *         reasonable ways as different from the original version.
 */
 
-#include "menus/debugger.h"
+#include "menus/debugger_menu.h"
 #include "memory.h"
 #include "draw.h"
 #include "minisoc.h"
