@@ -19,7 +19,7 @@
 config_extra configExtra = { .suppressLeds = true, .cutSlotPower = false, .cutSleepWifi = false, .homeToRosalina = false, .toggleBottomLcd = false, .turnLedsOffStandby = false };
 bool configExtraSaved = false;
 
-static const char menuText[7][32] = {
+static const char menuText[7][70] = {
     "Sopprimi automaticamente i LED",
     "Togli lo spegnimento dalle TWL Flashcards",
     "Tolgi il wifi al 3DS in modalita' riposo",
