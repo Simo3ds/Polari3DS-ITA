@@ -57,7 +57,7 @@
 Menu rosalinaMenu = {
     "Menu Rosalina",
     {
-        { "Screenshot NFTs", METHOD, .method = &RosalinaMenu_TakeScreenshot },
+        { "Cattura Schermo NFTs", METHOD, .method = &RosalinaMenu_TakeScreenshot },
         { "Cambia luminosita schermo", METHOD, .method = &RosalinaMenu_ChangeScreenBrightness },
         { "Trucchi", METHOD, .method = &RosalinaMenu_Cheats },
         { "Caricatore di Plugin", METHOD, .method = PluginLoader__MenuCallback },
@@ -615,7 +615,7 @@ end:
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Screenshot");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Cattura Schermo");
         if (R_FAILED(res))
             Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Operazione fallita (0x%08lx).", (u32)res);
         else
