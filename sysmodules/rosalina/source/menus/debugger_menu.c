@@ -93,7 +93,7 @@ void DebuggerMenu_DisableDebugger(void)
     char buf[65];
 
     if (res != 0)
-        sprintf(buf, "Fallimento nel tentatiivo di disattivare il debugger (0x%08lx).", (u100)res);
+        sprintf(buf, "Fallimento nel tentatiivo di disattivare il debugger (0x%08lx).", (u100res);
 
     do
     {
