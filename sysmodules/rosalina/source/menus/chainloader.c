@@ -20,7 +20,7 @@ void chainloader(void)
 	const FS_Path PathFirm = fsMakePath(PATH_ASCII, "/luma/payloads");
 	
 	if (FSUSER_OpenArchive(&sdmcArchive, ARCHIVE_SDMC, fsMakePath(PATH_EMPTY, NULL)) != 0) {
-		Draw_DrawString(10, 60, COLOR_RED, "Could not access SD Card !!!");
+		Draw_DrawString(10, 60, COLOR_RED, "Impossibile accedere alla scheda SD!!!");
 		Draw_FlushFramebuffer();
 		Draw_Unlock();
 		waitInputWithTimeout(0);
@@ -28,7 +28,7 @@ void chainloader(void)
 	}
 	
 	if (FSUSER_OpenDirectory(&handle, sdmcArchive, PathFirm) != 0) {
-		Draw_DrawString(10, 60, COLOR_RED, "No directory");
+		Draw_DrawString(10, 60, COLOR_RED, "Nessun percorso file");
 		Draw_FlushFramebuffer();
 		Draw_Unlock();
 		waitInputWithTimeout(0);
@@ -74,8 +74,8 @@ void chainloader(void)
 		}
 		
 		Draw_Lock();
-		Draw_DrawString(10, 10, COLOR_TITLE, "Menu ChainLoader");
-		Draw_DrawString(10, 30, COLOR_WHITE, "Press A to Loader Firm, press B to return");
+		Draw_DrawString(10, 10, COLOR_TITLE, "Menu Chainloader");
+		Draw_DrawString(10, 30, COLOR_WHITE, "Premi A per caricare Firm, premi B per ritornare");
 		for(int i = 0; i < count; i++)
 		{
 			Draw_DrawString(30, 60+(i*10), COLOR_BLACK, "                                                ");
@@ -131,7 +131,7 @@ u32 copy_bootonce(FS_ArchiveID sdmcArchive, const char *Path)
 	
 	if (FSUSER_OpenFile(&fileHandle, sdmcArchive, fsMakePath(PATH_ASCII, Path), FS_OPEN_READ, 0) != 0)
         {
-		Draw_DrawString(10, 60, COLOR_RED, "error open file !");
+		Draw_DrawString(10, 60, COLOR_RED, "errore nell'apertura del file !");
 		Draw_FlushFramebuffer();
 		Draw_Unlock();
 		waitInputWithTimeout(0);
@@ -140,7 +140,7 @@ u32 copy_bootonce(FS_ArchiveID sdmcArchive, const char *Path)
 	
 	if (FSUSER_OpenFile(&fileHandle2, sdmcArchive, fsMakePath(PATH_ASCII, "bootonce.firm"), FS_OPEN_CREATE | FS_OPEN_WRITE, 0) != 0)
         {
-		Draw_DrawString(10, 60, COLOR_RED, "error open/write file !");
+		Draw_DrawString(10, 60, COLOR_RED, "errore nell'apertura/scrittura del file !");
 		Draw_FlushFramebuffer();
 		Draw_Unlock();
 		FSFILE_Close(fileHandle);
