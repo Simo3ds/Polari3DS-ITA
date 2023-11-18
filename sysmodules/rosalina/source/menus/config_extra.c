@@ -20,19 +20,19 @@ config_extra configExtra = { .suppressLeds = true, .cutSlotPower = false, .cutSl
 bool configExtraSaved = false;
 
 static const char menuText[7][32] = {
-    "Automatically suppress LEDs",
-    "Cut power to TWL Flashcards",
-    "Cut 3DS WiFi in sleep mode",
-    "Home button opens Rosalina",
-    "St+Se toggle bottom LCD in menu",
-    "Disable led during standby",
-    "Save config. Changes saved"
+    "Sopprimi automaticamente i LED",
+    "Togli lo spegnimento dalle TWL Flashcards",
+    "Tolgi il wifi al 3DS in modalita' riposo",
+    "Tasto Home apre Rosalina",
+    "Tasti St+Se toggle LCD nel menu",
+    "Disabilita i led mentre la console e' in standby",
+    "Salva le config. Cambiamenti salvati"
 };
 
 static char menuDisplay[7][64];
 
 Menu configExtraMenu = {
-    "Extra config menu",
+    "Menu di configurazione extra",
     {
         { menuText[0], METHOD, .method = &ConfigExtra_SetSuppressLeds},
         { menuText[1], METHOD, .method = &ConfigExtra_SetCutSlotPower},
