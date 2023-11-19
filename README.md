@@ -20,7 +20,7 @@ https://github.com/Simo3ds/CustomLuma3DS-ITA
 * bug on old/og version console
 * custom cid patch for process9(new testing)
 * still looking for cfg:nor so you can also boot 3ds without nvram, wifi also will not work
-
+* File debugger_menu.c can not be translate
 * and also screenshot improving... 
 and
 Next time again...
