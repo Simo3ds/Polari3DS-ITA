@@ -55,7 +55,7 @@ static bool switchToMainDir(bool isSd)
         {
             if (f_mkdir(mainDir) != FR_OK)
             {
-                error("Failed to create luma directory.");
+                error("Errore nel tentativo di creare un percorso di luma.");
                 return false;
             }
             return switchToMainDir(isSd);
@@ -323,7 +323,7 @@ bool payloadMenu(char *path, bool *hasDisplayedMenu)
         *hasDisplayedMenu = true;
 
         drawString(true, 10, 10, COLOR_TITLE, "CustomLuma3DS chainloader");
-        drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Press A to select, START to quit");
+        drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Premi A per selezionare, START per uscire");
 
         for(u32 i = 0, posY = 10 + 3 * SPACING_Y, color = COLOR_GREEN; i < payloadNum; i++, posY += SPACING_Y)
         {
@@ -548,7 +548,7 @@ bool doLumaUpgradeProcess(void)
         ctrNandLocation = oldCtrNandLocation;
         ok3 = remountCtrNandPartition(false);
         if (!ok3)
-            error("failed to unmount");
+            error("lo smontaggio è fallito");
     }
 #else
     (void)ok3;
