@@ -52,7 +52,7 @@ ConfigurationStatus needConfig;
 static CfgData oldConfig;
 
 static CfgDataMcu configDataMcu;
-static_assert(sizeof(CfgDataMcu) > 0, "wrong data size");
+static_assert(sizeof(CfgDataMcu) > 0, "Dimensione dati sbagliata");
 
 // INI parsing
 // ===========================================================
@@ -829,7 +829,7 @@ void writeConfig(bool isConfigOptions)
         writeConfigMcu();
 
     if(updateIni && !writeLumaIniConfig())
-        error("Error writing the configuration file");
+        error("Errore durantee la scrittura del file di configurazione");
 }
 
 void configMenu(bool oldPinStatus, u32 oldPinMode)
