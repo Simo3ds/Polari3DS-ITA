@@ -55,7 +55,7 @@ static bool switchToMainDir(bool isSd)
         {
             if (f_mkdir(mainDir) != FR_OK)
             {
-                error("Failed to create luma directory.");
+                error("Creazione del percorso luma fallito.");
                 return false;
             }
             return switchToMainDir(isSd);
@@ -91,7 +91,7 @@ bool remountCtrNandPartition(bool switchMainDir)
         res = f_unmount("nand:");
         if (res != FR_OK)
         {
-            error("f_unmount returned %d", res);
+            error("f_unmount ritornato a %d", res);
             return false;
         }
         nandInitialized = false;
@@ -104,7 +104,7 @@ bool remountCtrNandPartition(bool switchMainDir)
         nandInitialized = res == FR_OK;
         if (res != FR_OK)
         {
-            error("f_mount returned %d", res);
+            error("f_mount ritornato a %d", res);
         }
     }
 
@@ -323,7 +323,7 @@ bool payloadMenu(char *path, bool *hasDisplayedMenu)
         *hasDisplayedMenu = true;
 
         drawString(true, 10, 10, COLOR_TITLE, "CustomLuma3DS chainloader");
-        drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Press A to select, START to quit");
+        drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Premi A per selezionare, START per uscire");
 
         for(u32 i = 0, posY = 10 + 3 * SPACING_Y, color = COLOR_GREEN; i < payloadNum; i++, posY += SPACING_Y)
         {
@@ -511,7 +511,7 @@ bool doLumaUpgradeProcess(void)
         ctrNandLocation = FIRMWARE_SYSNAND;
         if (!remountCtrNandPartition(false))
         {
-            error("failed to mount");
+            error("Il montaggio e' fallito");
             ctrNandLocation = oldCtrNandLocation;
             return false;
         }
@@ -548,7 +548,7 @@ bool doLumaUpgradeProcess(void)
         ctrNandLocation = oldCtrNandLocation;
         ok3 = remountCtrNandPartition(false);
         if (!ok3)
-            error("failed to unmount");
+            error("lo smontaggio e' fallito");
     }
 #else
     (void)ok3;
