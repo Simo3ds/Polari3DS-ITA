@@ -69,7 +69,7 @@ Menu rosalinaMenu = {
         { "Opzioni varie...", MENU, .menu = &miscellaneousMenu },
         { "Salva le impostazioni", METHOD, .method = &RosalinaMenu_SaveSettings },
         { "Vai alla Home", METHOD, .method = &RosalinaMenu_HomeMenu },
-        { "Opzioni di spegnimento...", METHOD, .method = &RosalinaMenu_PowerOptions },
+        { "Opzioni di spegnimento...", METHOD, .method = &RosalinaMenu_PowerPerformanceOptions },
         { "Crediti", METHOD, .method = &RosalinaMenu_ShowCredits },
         { "Informazioni di debug", METHOD, .method = &RosalinaMenu_ShowDebugInfo, .visibility = &rosalinaMenuShouldShowDebugInfo },
     }
