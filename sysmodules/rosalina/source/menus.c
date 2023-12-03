@@ -54,24 +54,24 @@
 #include "configExtra_ini.h"
 
 Menu rosalinaMenu = {
-    "Rosalina menu",
+    "Menu Rosalina",
     {
-        { "Screenshot NFTs", METHOD, .method = &RosalinaMenu_TakeScreenshot },
-        { "Change screen brightness", METHOD, .method = &RosalinaMenu_ChangeScreenBrightness },
-        { "Cheater", METHOD, .method = &RosalinaMenu_Cheats },
+        { "Cattura Schermo NFTs", METHOD, .method = &RosalinaMenu_TakeScreenshot },
+        { "Cambia luminosita schermo", METHOD, .method = &RosalinaMenu_ChangeScreenBrightness },
+        { "Trucchi", METHOD, .method = &RosalinaMenu_Cheats },
         { "", METHOD, .method = PluginLoader__MenuCallback },
-        { "Process hacker", METHOD, .method = &RosalinaMenu_ProcessList },
-        { "Debugger options...", MENU, .menu = &debuggerMenu },
-        { "System configuration...", MENU, .menu = &sysconfigMenu },
-        { "Screen filters...", MENU, .menu = &screenFiltersMenu },
-        { "New 3DS settings...", MENU, .menu = &N3DSMenu, .visibility = &menuCheckN3ds },
-        { "Quick-Switchers...", MENU, .menu = &quickSwitchersMenu },
-        { "Miscellaneous options...", MENU, .menu = &miscellaneousMenu },
-        { "Save settings", METHOD, .method = &RosalinaMenu_SaveSettings },
-        { "Go to Home", METHOD, .method = &RosalinaMenu_HomeMenu },
-        { "Power & performance options", METHOD, .method = &RosalinaMenu_PowerPerformanceOptions },
-        { "Credits", METHOD, .method = &RosalinaMenu_ShowCredits },
-        { "Debug info", METHOD, .method = &RosalinaMenu_ShowDebugInfo, .visibility = &rosalinaMenuShouldShowDebugInfo },
+        { "Lista Processi", METHOD, .method = &RosalinaMenu_ProcessList },
+        { "Opzioni di debug...", MENU, .menu = &debuggerMenu },
+        { "Configurazione di sistema...", MENU, .menu = &sysconfigMenu },
+        { "Filtri schermo", MENU, .menu = &screenFiltersMenu },
+        { "Impostazioni New3DS", MENU, .menu = &N3DSMenu, .visibility = &menuCheckN3ds },
+        { "Scambio rapido...", MENU, .menu = &quickSwitchersMenu },
+        { "Opzioni varie...", MENU, .menu = &miscellaneousMenu },
+        { "Salva le impostazioni", METHOD, .method = &RosalinaMenu_SaveSettings },
+        { "Vai alla Home", METHOD, .method = &RosalinaMenu_HomeMenu },
+        { "Opzioni di spegnimento...", METHOD, .method = &RosalinaMenu_PowerOptions },
+        { "Crediti", METHOD, .method = &RosalinaMenu_ShowCredits },
+        { "Informazioni di debug", METHOD, .method = &RosalinaMenu_ShowDebugInfo, .visibility = &rosalinaMenuShouldShowDebugInfo },
         {},
     }
 };
@@ -96,16 +96,17 @@ void RosalinaMenu_SaveSettings(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Save settings");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Salva le impostazioni");
         if (R_SUCCEEDED(res))
-            Draw_DrawString(10, 30, COLOR_WHITE, "Operation succeeded.");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Operazione compiuta.");
         else
-            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Operation failed (0x%08lx).", res);
+            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Operazione fallita (0x%08lx).", res);
         Draw_FlushFramebuffer();
         Draw_Unlock();
     }
     while (!(waitInput() & KEY_B) && !menuShouldExit);
 }
+
 
 void RosalinaMenu_ShowDebugInfo(void)
 {
@@ -128,18 +129,18 @@ void RosalinaMenu_ShowDebugInfo(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Rosalina -- Debug info");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Rosalina -- informazioni di Debug");
 
         u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, memoryMap);
-        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Kernel ext PA: %08lx - %08lx\n\n", kextPa, kextPa + kextSize);
+        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Kernel esterno PA: %08lx - %08lx\n\n", kextPa, kextPa + kextSize);
         posY = Draw_DrawFormattedString(
-            10, posY, COLOR_WHITE, "Kernel version: %lu.%lu-%lu\n",
+            10, posY, COLOR_WHITE, "Versione Kernel: %lu.%lu-%lu\n",
             GET_VERSION_MAJOR(kernelVer), GET_VERSION_MINOR(kernelVer), GET_VERSION_REVISION(kernelVer)
         );
         if (mcuFwVersion != 0)
         {
             posY = Draw_DrawFormattedString(
-                10, posY, COLOR_WHITE, "MCU FW version: %lu.%lu\n",
+                10, posY, COLOR_WHITE, "Versione MCU FW: %lu.%lu\n",
                 GET_VERSION_MAJOR(mcuFwVersion), GET_VERSION_MINOR(mcuFwVersion)
             );
         }
@@ -148,7 +149,7 @@ void RosalinaMenu_ShowDebugInfo(void)
         {
             u32 clkDiv = 1 << (1 + (speedInfo.sdClkCtrl & 0xFF));
             posY = Draw_DrawFormattedString(
-                10, posY, COLOR_WHITE, "SDMC speed: HS=%d %lukHz\n",
+                10, posY, COLOR_WHITE, "Velocità SDMC: HS=%d %lukHz\n",
                 (int)speedInfo.highSpeedModeEnabled, SYSCLOCK_SDMMC / (1000 * clkDiv)
             );
         }
@@ -156,7 +157,7 @@ void RosalinaMenu_ShowDebugInfo(void)
         {
             u32 clkDiv = 1 << (1 + (speedInfo.sdClkCtrl & 0xFF));
             posY = Draw_DrawFormattedString(
-                10, posY, COLOR_WHITE, "NAND speed: HS=%d %lukHz\n",
+                10, posY, COLOR_WHITE, "Velocità NAND: HS=%d %lukHz\n",
                 (int)speedInfo.highSpeedModeEnabled, SYSCLOCK_SDMMC / (1000 * clkDiv)
             );
         }
@@ -182,7 +183,7 @@ void RosalinaMenu_ShowCredits(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Rosalina -- Luma3DS credits");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Rosalina -- crediti Luma3DS");
 
         u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Luma3DS (c) 2016-2023 AuroraWright, TuxSH") + SPACING_Y;
 
@@ -235,13 +236,13 @@ void RosalinaMenu_ChangeScreenBrightness(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Screen brightness");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Luminosita' schermo");
         u32 posY = 30;
         posY = Draw_DrawFormattedString(
             10,
             posY,
             COLOR_WHITE,
-            "Preset: %lu to %lu, Extended: 0 to 172.\n",
+            "Predefinita: da %lu a %lu, Estesa: da 0 a 172.\n",
             minLum,
             maxLum
         );
@@ -249,29 +250,29 @@ void RosalinaMenu_ChangeScreenBrightness(void)
             10,
             posY,
             luminanceTop > trueMax ? COLOR_RED : COLOR_WHITE,
-            "Top screen luminance: %lu\n",
+            "Luminosita' schermo superiore: %lu\n",
             luminanceTop
         );
         posY = Draw_DrawFormattedString(
             10,
             posY,
             luminanceBot > trueMax ? COLOR_RED : COLOR_WHITE,
-            "Bottom screen luminance: %lu \n\n",
+            "Luminosita' schermo inferiore: %lu \n\n",
             luminanceBot
         );
-        posY = Draw_DrawString(10, posY, COLOR_GREEN, "Controls:\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Up/Down for +/-1, Right/Left for +/-10.\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Hold X/A for Top/Bottom screen only. \n");
-        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Hold L/R for extended limits (<%lu may glitch). \n", minLum);
-        if (hasTopScreen) { posY = Draw_DrawString(10, posY, COLOR_WHITE, "Press Y to toggle screen backlights.\n\n"); }
+        posY = Draw_DrawString(10, posY, COLOR_GREEN, "Comandi:\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Su/Giu' per +/-1, Destra/Sinistra per +/-10.\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Mantieni X/A per fare solo schermo Superiore/Inferiore. \n");
+        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Mantieni L/R per estendere i limiti (<%lu puo' glitcharsi). \n", minLum);
+        if (hasTopScreen) { posY = Draw_DrawString(10, posY, COLOR_WHITE, "Premi Y per impostare le luci di fondo dello schermo.\n\n"); }
         
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Press START to begin, B to exit.\n\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Premi START per iniziare, B per uscire.\n\n");
 
-        posY = Draw_DrawString(10, posY, COLOR_RED, "WARNING: \n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * values rarely glitch >172, do not use these!\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * all changes revert on shell reopening.\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * bottom framebuffer will be visible until exit.\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * bottom screen functions as normal with\nbacklight turned off.\n");
+        posY = Draw_DrawString(10, posY, COLOR_RED, "ATTENZIONE: \n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * I valori glitchano raramente >172, Non usare questi!\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * Tuti i cambiamenti vengono ripristinati alla riapertura degli schermi daslla M.S.\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * il framebuffer superiore sarà visibile finche' non uscirai.\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * le funzioni dello schermo superiore torneranno normali quando\nla luce di fondo viene spenta.\n");
         Draw_FlushFramebuffer();
         Draw_Unlock();
 
@@ -429,17 +430,17 @@ void RosalinaMenu_PowerPerformanceOptions(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Power & performance options");
-        Draw_DrawString(10, 30, COLOR_WHITE, "Press X to power off, press A to reboot.");
-        Draw_DrawString(10, 40, COLOR_RED, "Press Y to force reboot");
-        Draw_DrawString(10, 50, COLOR_WHITE, "Press Up: boot Homebrew with max app memory*.");
-        Draw_DrawString(10, 60, COLOR_RED, "*pressing home or power button will cause crash!");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Opzioni di spegnimento");
+        Draw_DrawString(10, 30, COLOR_WHITE, "Premi X per spegnere, premi A per riavviare,");
+        Draw_DrawString(10, 40, COLOR_RED, "Premi Y per forzare il riavvio");
+        Draw_DrawString(10, 50, COLOR_WHITE, "Premi Su: Avvia Homebrew con la massima memoriaa app");
+        Draw_DrawString(10, 60, COLOR_WHITE, "*premendo i tasti home o power causerai un crash!");
         if (isN3DS) {
-            Draw_DrawString(10, 70, COLOR_WHITE, "Press Left: reboot with core2 redirect.");
-            Draw_DrawString(10, 80, COLOR_WHITE, "Press Right: boot Homebrew with max mem* & core2.");
+            Draw_DrawString(10, 70, COLOR_WHITE, "Premi L: riavvia con il core2 reindirizzato.");
+            Draw_DrawString(10, 80, COLOR_WHITE, "Premi R: avvia homebrew con la massima mem* & core2.");
         }
-        Draw_DrawString(10, 90, COLOR_WHITE, "Press Down: clear performance settings and reboot.");
-        Draw_DrawString(10, 110, COLOR_WHITE, "Press B to go back.");
+        Draw_DrawString(10, 90, COLOR_WHITE, "Premi Giu': pulisci le impostazioni delle prestazioni e riavvia.");
+        Draw_DrawString(10, 110, COLOR_WHITE, "Premi B to go back.");
         Draw_FlushFramebuffer();
         Draw_Unlock();
 
@@ -515,8 +516,8 @@ void RosalinaMenu_HomeMenu(void)  // Trigger Home Button press
 
         Draw_Lock();
         Draw_ClearFramebuffer();
-        Draw_DrawString(10, 30, COLOR_WHITE, "Exit Rosalina to get back to the Home Menu.");
-        Draw_DrawString(10, 40, COLOR_WHITE, "Press A to confirm");
+        Draw_DrawString(10, 30, COLOR_WHITE, "Esci da Rosalina per ritornare al menu Homne");
+        Draw_DrawString(10, 40, COLOR_WHITE, "Premi A per confermare");
         Draw_FlushFramebuffer();
         Draw_Unlock();
 
