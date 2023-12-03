@@ -433,7 +433,7 @@ void RosalinaMenu_PowerPerformanceOptions(void)
         Draw_DrawString(10, 30, COLOR_WHITE, "Premi X per spegnere, premi A per riavviare,");
         Draw_DrawString(10, 40, COLOR_RED, "Premi Y per forzare il riavvio");
         Draw_DrawString(10, 50, COLOR_WHITE, "Premi Su: Avvia Homebrew con la massima memoriaa app");
-        Draw_DrawString(10, 60, COLOR_WHITE, "*premendo i tasti home o power causerai un crash!");
+        Draw_DrawString(10, 60, COLOR_RED, "*premendo i tasti home o power causerai un crash!");
         if (isN3DS) {
             Draw_DrawString(10, 70, COLOR_WHITE, "Premi L: riavvia con il core2 reindirizzato.");
             Draw_DrawString(10, 80, COLOR_WHITE, "Premi R: avvia homebrew con la massima mem* & core2.");
