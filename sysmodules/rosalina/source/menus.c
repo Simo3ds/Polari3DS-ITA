@@ -73,7 +73,7 @@ Menu rosalinaMenu = {
         { "Crediti", METHOD, .method = &RosalinaMenu_ShowCredits },
         { "Informazioni di debug", METHOD, .method = &RosalinaMenu_ShowDebugInfo, .visibility = &rosalinaMenuShouldShowDebugInfo },
     }
-};
+}
     
 bool rosalinaMenuShouldShowDebugInfo(void)
 {
