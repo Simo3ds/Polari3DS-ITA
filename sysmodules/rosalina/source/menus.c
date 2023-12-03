@@ -439,7 +439,7 @@ void RosalinaMenu_PowerPerformanceOptions(void)
             Draw_DrawString(10, 80, COLOR_WHITE, "Premi R: avvia homebrew con la massima mem* & core2.");
         }
         Draw_DrawString(10, 90, COLOR_WHITE, "Premi Giu': pulisci le impostazioni delle prestazioni e riavvia.");
-        Draw_DrawString(10, 110, COLOR_WHITE, "Premi B to go back.");
+        Draw_DrawString(10, 110, COLOR_WHITE, "Premi B per tornare indietro.");
         Draw_FlushFramebuffer();
         Draw_Unlock();
 
