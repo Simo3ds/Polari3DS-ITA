@@ -72,7 +72,6 @@ Menu rosalinaMenu = {
         { "Opzioni di spegnimento...", METHOD, .method = &RosalinaMenu_PowerOptions },
         { "Crediti", METHOD, .method = &RosalinaMenu_ShowCredits },
         { "Informazioni di debug", METHOD, .method = &RosalinaMenu_ShowDebugInfo, .visibility = &rosalinaMenuShouldShowDebugInfo },
-        {},
     }
 };
     
