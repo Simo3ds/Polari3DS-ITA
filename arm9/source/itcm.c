@@ -15,7 +15,7 @@ void patchITCM(void)
     // Error checking
     if (otpSize != sizeof(Otp))
       {
-         error("OTP is not the correct size.");
+         error("L'OTP non è della dimensione corretta.");
       }
     
       else
@@ -24,7 +24,7 @@ void patchITCM(void)
     
       if (otp.magic != OTP_MAGIC)
          {
-            error("Unable to parse OTP. Is it decrypted properly?");
+            error("Impossibile scansionare OTP. E' scriptato correttamente?");
          }
          
          else
@@ -80,7 +80,7 @@ void PatchITCMCid(void)
     // Error checking
     if (cidSize != sizeof(nandinfo.nandCid))
     {
-        error("NandCid is not the correct size.");
+        error("La dimensione della NandCid non e' corretta");
     }
     
     else
