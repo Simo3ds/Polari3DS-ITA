@@ -15,7 +15,7 @@
 
 #define THREADVARS_MAGIC  0x21545624 // !TV$
 
-static const char *g_title = "Plugin loader";
+static const char *g_title = "Caricatore di plugin";
 PluginLoaderContext PluginLoaderCtx;
 extern u32 g_blockMenuOpen;
 
@@ -67,8 +67,8 @@ void        PluginLoader__UpdateMenu(void)
 {
     static const char *status[2] =
     {
-        "Plugin Loader: [Disabled]",
-        "Plugin Loader: [Enabled]"
+        "Caricatore di plugin: [Disabilitato]",
+        "Caricatore di plugin: [Abilitato]"
     };
 
     rosalinaMenu.items[3].title = status[PluginLoaderCtx.isEnabled];
@@ -78,7 +78,7 @@ static ControlApplicationMemoryModeOverrideConfig g_memorymodeoverridebackup = {
 Result  PluginLoader__SetMode3AppMode(bool enable)
 {
 	Handle loaderHandle;
-    Result res = srvGetServiceHandle(&loaderHandle, "Loader");
+    Result res = srvGetServiceHandle(&loaderHandle, "Caricatore");
 
     if (R_FAILED(res)) return res;
 

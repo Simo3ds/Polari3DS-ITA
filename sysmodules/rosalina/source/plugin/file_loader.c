@@ -134,8 +134,8 @@ static Result   CheckPluginCompatibility(_3gx_Header *header, u32 processTitle)
             return 0;
     }
 
-    sprintf(errorBuf, "The plugin - %s -\nis not compatible with this game.\n" \
-                      "Contact \"%s\" for more infos.", header->infos.titleMsg, header->infos.authorMsg);
+    sprintf(errorBuf, "Il plugin - %s -\nnon e' compatibile con questo gioco.\n" \
+                      "Contatta \"%s\" per maggiori informazioni.", header->infos.titleMsg, header->infos.authorMsg);
     
     PluginLoaderCtx.error.message = errorBuf;
 
@@ -186,16 +186,16 @@ bool     TryToLoadPlugin(Handle process)
     }
 
     if (R_FAILED((res = IFile_GetSize(&plugin, &fileSize))))
-        ctx->error.message = "Couldn't get file size";
+        ctx->error.message = "Impossibile ottenere le dimensioni del file";
 
     if (!res && R_FAILED(res = Check_3gx_Magic(&plugin)))
     {
         const char * errors[] = 
         {
-            "Couldn't read file.",
-            "Invalid plugin file\nNot a valid 3GX plugin format!",
-            "Outdated plugin file\nCheck for an updated plugin.",
-            "Outdated plugin loader\nCheck for Luma3DS updates."   
+            "Impossibile leggere il file.",
+            "Plugin non valido\nFormato 3GX non valido!",
+            "File plugin obsoleto\nControlla per un plugin aggiornato.",
+            "Caricatore di plugin obsoleto\nControlla per gli aggiornmenti di Luma3DS."   
         };
 
         ctx->error.message = errors[R_MODULE(res) == RM_LDR ? R_DESCRIPTION(res) : 0];
@@ -203,16 +203,16 @@ bool     TryToLoadPlugin(Handle process)
 
     // Read header
     if (!res && R_FAILED((res = Read_3gx_Header(&plugin, &fileHeader))))
-        ctx->error.message = "Couldn't read file";
+        ctx->error.message = "Impossibile leggere il file";
 
     // Set memory region size according to header
     if (!res && R_FAILED((res = MemoryBlock__SetSize(memRegionSizes[fileHeader.infos.memoryRegionSize])))) {
-        ctx->error.message = "Couldn't set memblock size.";
+        ctx->error.message = "Impossibile impostsare le dimensioni in blocchi.";
     }
     
     // Ensure memory block is mounted
     if (!res && R_FAILED((res = MemoryBlock__IsReady())))
-        ctx->error.message = "Failed to allocate memory.";
+        ctx->error.message = "Fallimento nel tentativo di allocarlo alla memoria.";
 
     // Plugins will not exceed 5MB so this is fine
     if (!res) {
@@ -222,11 +222,11 @@ bool     TryToLoadPlugin(Handle process)
 
     // Parse rest of header
     if (!res && R_FAILED((res = Read_3gx_ParseHeader(&plugin, header))))
-        ctx->error.message = "Couldn't read file";
-
+        ctx->error.message = "Impossibile leggere il file.";
+            
     // Read embedded save/load functions
     if (!res && R_FAILED((res = Read_3gx_EmbeddedPayloads(&plugin, header))))
-        ctx->error.message = "Invalid save/load payloads.";
+        ctx->error.message = "Payloads di caricamento/salvataggio non valide.";
     
     // Save exe checksum
     if (!res)
@@ -237,9 +237,9 @@ bool     TryToLoadPlugin(Handle process)
 
     // Read code
     if (!res && R_FAILED(res = Read_3gx_LoadSegments(&plugin, header, ctx->memblock.memblock + sizeof(PluginHeader)))) {
-        if (res == MAKERESULT(RL_PERMANENT, RS_INVALIDARG, RM_LDR, RD_NO_DATA)) ctx->error.message = "This plugin requires a loading function.";
-        else if (res == MAKERESULT(RL_PERMANENT, RS_INVALIDARG, RM_LDR, RD_INVALID_ADDRESS)) ctx->error.message = "This plugin file is corrupted.";
-        else ctx->error.message = "Couldn't read plugin's code";
+        if (res == MAKERESULT(RL_PERMANENT, RS_INVALIDARG, RM_LDR, RD_NO_DATA)) ctx->error.message = "Questo plugin richeide una funzione di caricamento.";
+        else if (res == MAKERESULT(RL_PERMANENT, RS_INVALIDARG, RM_LDR, RD_INVALID_ADDRESS)) ctx->error.message = "Questo plugin e' corrotto.";
+        else ctx->error.message = "Impossibile leggere il codice del plugin";
     }
 
     if (R_FAILED(res))
@@ -281,7 +281,7 @@ bool     TryToLoadPlugin(Handle process)
 
         if (R_FAILED((res = svcMapProcessMemoryEx(CUR_PROCESS_HANDLE, procStart, process, procStart, 0x1000))))
         {
-            ctx->error.message = "Couldn't map process";
+            ctx->error.message = "Impossibile mappare il processo";
             ctx->error.code = res;
             goto exitFail;
         }
