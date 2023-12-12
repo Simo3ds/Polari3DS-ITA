@@ -55,9 +55,9 @@ emunandPatch:
 .global emunandPatchNcsdHeaderOffset
 .balign 4
 
-emunandPatchSdmmcStructPtr:     .word   0 @ Pointer to sdmmc struct
-emunandPatchNandOffset:         .word   0 @ For rednand this should be 1
-emunandPatchNcsdHeaderOffset:   .word   0 @ Depends on nand manufacturer + emunand type (GW/RED)
+emunandPatchSdmmcStructPtr:     .word   0 @ Indirizza alla struttura sdmmc
+emunandPatchNandOffset:         .word   0 @ Per la rednand, questa dovrebbe essere 1
+emunandPatchNcsdHeaderOffset:   .word   0 @ Dipende dal creatore della nand + tipo di emunand (GW/RED)
 
 .pool
 .balign 4
