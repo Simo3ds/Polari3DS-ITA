@@ -171,7 +171,7 @@ void detectAndProcessExceptionDumps(void)
             drawFormattedString(false, 10 + 10 * SPACING_X + 3 * i * SPACING_X, posYBottom, COLOR_WHITE, "%02X", *stackDump);
     }
 
-    static const char *choiceMessage[] =("Premi A per salvare una copia del crash", "Premi qualsiasi altro tasto per spegnere"};
+    static const char *choiceMessage[] =("Premi A per salvare una copia del crash", "Premi qualsiasi altro tasto per spegnere");
 
     drawString(true, 10, posY + SPACING_Y, COLOR_WHITE, choiceMessage[0]);
     drawString(true, 10, posY + SPACING_Y + SPACING_Y , COLOR_WHITE, choiceMessage[1]);
