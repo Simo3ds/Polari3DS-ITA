@@ -156,9 +156,9 @@ arm9ExceptionHandlerAddressTable:
     .word   0                               @ IRQ
     .word   FIQHandler                      @ FIQ
     .word   0                               @ SVC
-    .word   undefinedInstructionHandler     @ Istruzioni non definite
-    .word   prefetchAbortHandler            @ Aborto Prefetch
-    .word   dataAbortHandler                @ Aborto dati
+    .word   undefinedInstructionHandler     @ Undefined instruction
+    .word   prefetchAbortHandler            @ Prefetch abort
+    .word   dataAbortHandler                @ Data abort
 
 .section .arm9_exception_handlers.bss, "aw", %nobits
 .align 4
