@@ -19,7 +19,7 @@
 config_extra configExtra = { .suppressLeds = true, .cutSlotPower = false, .cutSleepWifi = false, .homeToRosalina = false, .toggleBottomLcd = false, .turnLedsOffStandby = false };
 bool configExtraSaved = false;
 
-static const char menuText[7][32] = {
+static const char menuText[7][100] = {
     "Sopprimi automaticamente i led",
     "Interrompi power nelle flashcards TWL",
     "Interrompi il wifi del 3DS in modalita' riposo",
@@ -29,7 +29,7 @@ static const char menuText[7][32] = {
     "Salva le config. Config. salvate."
 };
 
-static char menuDisplay[7][64];
+static char menuDisplay[7][200];
 
 Menu configExtraMenu = {
     "Menu configurazione extra",
