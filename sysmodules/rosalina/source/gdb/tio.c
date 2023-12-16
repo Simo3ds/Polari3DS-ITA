@@ -493,8 +493,8 @@ static const struct
     GDBCommandHandler handler;
 } gdbTioCommandHandlers[] =
 {
-    { "open",       GDB_TIO_HANDLER(Open)       },
-    { "close",      GDB_TIO_HANDLER(Close)      },
+    { "apri",       GDB_TIO_HANDLER(Open)       },
+    { "chiudi",      GDB_TIO_HANDLER(Close)      },
     { "pread",      GDB_TIO_HANDLER(Read)       },
     { "pwrite",     GDB_TIO_HANDLER(Write)      },
     { "fstat",      GDB_TIO_HANDLER(Stat)       },
