@@ -306,7 +306,7 @@ GDB_DECLARE_QUERY_HANDLER(SearchMemory)
     bool found;
     u32 foundAddr;
 
-    if(strncmp(ctx->commandData, "memory:", 7) != 0)
+    if(strncmp(ctx->commandData, "memoria:", 7) != 0)
         return GDB_ReplyErrno(ctx, EILSEQ);
 
     ctx->commandData += 7;
