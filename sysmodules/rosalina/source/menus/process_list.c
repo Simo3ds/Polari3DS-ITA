@@ -91,7 +91,7 @@ static inline int ProcessListMenu_FormatInfoLine(char *out, const ProcessInfo *i
         else if ((ctx->flags & GDB_FLAG_SELECTED) && (ctx->localPort >= GDB_PORT_BASE && ctx->localPort < GDB_PORT_BASE + MAX_DEBUG))
         {
             checkbox = "(W) ";
-            sprintf(commentBuf, "Porta: %hu             ", ctx->localPort);
+            sprintf(commentBuf, "Port: %hu             ", ctx->localPort);
         }
     }
 
