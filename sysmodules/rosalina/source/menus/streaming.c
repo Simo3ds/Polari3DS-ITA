@@ -35,15 +35,15 @@ void closeRPHandle(void);
 void toggleCPUCopy(void);
 
 Menu streamingMenu = {
-    "Streaming",
+    "Trasmetti",
     {
-        { "Start Stream!", METHOD, .method = &startMainThread },
-        { "End Stream!", METHOD, .method = &endThread},
-        { "Toggle Grayscale", METHOD, .method = &toggleGrayscale},
-        { "Toggle Compression", METHOD, .method = &toggleCompression},
-        { "Increase Blocksize", METHOD, .method = &increaseBlockSize},
-        { "Decrease Blocksize", METHOD, .method = &decreaseBlockSize},
-        { "Toggle CPU copy", METHOD, .method = &toggleCPUCopy},
+        { "Inizia trasmissione!", METHOD, .method = &startMainThread },
+        { "Finisci trasmissione!", METHOD, .method = &endThread},
+        { "Passa alla scala di grigi", METHOD, .method = &toggleGrayscale},
+        { "Passa alla compressione", METHOD, .method = &toggleCompression},
+        { "Aumenta la dimensione dei blocchi", METHOD, .method = &increaseBlockSize},
+        { "Diminuisci la dimensione dei blocchi", METHOD, .method = &decreaseBlockSize},
+        { "Passa alla copia della CPU", METHOD, .method = &toggleCPUCopy},
         {},
     }
 };
@@ -123,7 +123,7 @@ void showNotN3DSMessage(void)
     Draw_Unlock();
     do {
         char buf[50];
-        sprintf(buf, "Old 3DS is not supported!");
+        sprintf(buf, "Le Old 3DS non sono supportate!");
         Draw_Lock();
         Draw_DrawString(10,10, COLOR_RED, buf);
         Draw_FlushFramebuffer();
@@ -149,7 +149,7 @@ void startMainThread(void)
         Draw_Unlock();
         do {
             char buf[50];
-            sprintf(buf, "Waiting for Wifi... (Press B)");
+            sprintf(buf, "Attendendo per il Wifi... (Premi B)");
             Draw_Lock();
             Draw_DrawString(10,10, COLOR_RED, buf);
             Draw_FlushFramebuffer();
@@ -162,7 +162,7 @@ void startMainThread(void)
         Draw_Unlock();
         do {
             Draw_Lock();
-            Draw_DrawString(10,10, COLOR_RED, "Thread already running!");
+            Draw_DrawString(10,10, COLOR_RED, "Thread gia' in esecuzione!");
             Draw_FlushFramebuffer();
             Draw_Unlock();
         } while(!(waitInput() & KEY_B) && !menuShouldExit);
@@ -180,7 +180,7 @@ void endThread(void)
         server_finalize(&serv);
     }
     res = MyThread_Join(&testThread, 5 * 1000 * 1000 * 1000LL);
-    sprintf(buf, "Thread1 (%li) couldn't be stopped.", (u32)res);
+    sprintf(buf, "Thread1 (%li) non puo' venir interrotto.", (u32)res);
 
     Draw_Lock();
     Draw_ClearFramebuffer();
@@ -192,7 +192,7 @@ void endThread(void)
         isStarted = false;
     } do {
         Draw_Lock();
-        Draw_DrawString(10,10, COLOR_RED, res == 0 ? "Thread successfully ended." : buf);
+        Draw_DrawString(10,10, COLOR_RED, res == 0 ? "Thread interrotto con successo." : buf);
         Draw_FlushFramebuffer();
         Draw_Unlock();
     } while(!(waitInput() & KEY_B) && !menuShouldExit);
@@ -495,7 +495,7 @@ void remotePlay(struct sock_ctx *ctx, bool isTop)
 //Networking functions
 int acceptClient(struct sock_ctx *ctx)
 {
-    char welcome[] = "Connection was accepted!";
+    char welcome[] = "La connessione e' stata accettata!";
     socSend(ctx->sockfd, welcome, sizeof(welcome), 0);
     return 0;
 }
@@ -645,7 +645,7 @@ void testSendThreadMain(void) {
     socClose(sock);
     miniSocExit();
 
-    sprintf(buf, "UDP Thread ended.");
+    sprintf(buf, "UDP Thread interrotto.");
     Draw_Lock();
     do
     {
