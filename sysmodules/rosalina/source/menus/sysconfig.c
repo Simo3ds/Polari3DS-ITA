@@ -57,7 +57,7 @@ Menu sysconfigMenu = {
         { "Ricalibrazione luminosita' schermo permanente", METHOD, .method = &Luminance_RecalibrateBrightnessDefaults },
         { "Controllo volume software", METHOD, .method = &AdjustVolume },
         { "Config. extra...", MENU, .menu = &configExtraMenu },
-        { "Comnsigli", METHOD, .method = &SysConfigMenu_Tip },
+        { "Consigli", METHOD, .method = &SysConfigMenu_Tip },
         {},
     }
 };
