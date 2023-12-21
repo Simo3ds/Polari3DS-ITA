@@ -200,14 +200,14 @@ void Luminance_RecalibrateBrightnessDefaults(void)
 
         Draw_Lock();
         Draw_ClearFramebuffer();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Permanent brightness recalibration - by Nutez");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Ricalibrazione permanente luminosita' - di Nutez");
         u32 posY = 30;
         
-        posY = Draw_DrawString(10, posY, COLOR_RED, "WARNING: ") + SPACING_Y;
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * brightness preview not possible here\n    due to glitch risk.") + SPACING_Y;
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * test values via 'Change screen brightness'.") + SPACING_Y;
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * avoid frequent use to minimise NAND(!) wear.") + SPACING_Y;
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * 172 is only presumed(!) safe for prolonged use.") + (SPACING_Y*2);
+        posY = Draw_DrawString(10, posY, COLOR_RED, "ATTENZIONE: ") + SPACING_Y;
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * L'anteprima della lum. non e' possibile qui\n    per rischio glitch.") + SPACING_Y;
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * testa i valori via 'Cambia luminosita' schermi'.") + SPACING_Y;
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * e' frequente per minimizzare la pressione(?) della NAND(!).") + SPACING_Y;//note that (?) mean that is a possible uncorrect translation
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * 172 e' solamente presunto(!) sicuro per uso prolungato.") + (SPACING_Y*2);
 
         sprintf(fmtbuf, "%c Level 1 value: %i", (sel == 0 ? '>' : ' '), s_blPwmData.luminanceLevels[0]);
         posY = Draw_DrawString(10, posY, COLOR_WHITE, fmtbuf) + SPACING_Y;
