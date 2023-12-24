@@ -1106,7 +1106,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 
     drawString(true, 10, 10, COLOR_TITLE, CONFIG_TITLE);
     drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Usa il DPAD e A per cambiare impostazioni");
-    drawFormattedString(false, 10, SCREEN_HEIGHT - 2 * SPACING_Y, COLOR_YELLOW, "Avviato da %s con %s", isSdMode ? "SD" : "CTRNAND", bootTypes[(u32)bootType]);
+    drawFormattedString(false, 10, SCREEN_HEIGHT - 2 * SPACING_Y, COLOR_GREEN, "Avviato da %s con %s", isSdMode ? "SD" : "CTRNAND", bootTypes[(u32)bootType]);
 
     //Character to display a selected option
     char selected = 'x';
@@ -1119,8 +1119,8 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
         if(!multiOptions[i].visible) continue;
 
         multiOptions[i].posY = endPos + SPACING_Y;
-        endPos = drawString(true, 10, multiOptions[i].posY, COLOR_WHITE, multiOptionsText[i]);
-        drawCharacter(true, 10 + multiOptions[i].posXs[multiOptions[i].enabled] * SPACING_X, multiOptions[i].posY, COLOR_WHITE, selected);
+        endPos = drawString(true, 10, multiOptions[i].posY, COLOR_BLUE, multiOptionsText[i]);
+        drawCharacter(true, 10 + multiOptions[i].posXs[multiOptions[i].enabled] * SPACING_X, multiOptions[i].posY, COLOR_YELLOW, selected);
     }
 
     endPos += SPACING_Y / 2;
@@ -1138,11 +1138,11 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
         {
             singleSelected = i;
             selectedOption = i + multiOptionsAmount;
-            color = COLOR_WHITE;
+            color = COLOR_YELLOW;
         }
     }
 
-    drawString(false, 10, 10, COLOR_WHITE, optionsDescription[selectedOption]);
+    drawString(false, 10, 10, COLOR_YELLOW, optionsDescription[selectedOption]);
     
     bool startPressed = false;
     //Boring configuration menu
