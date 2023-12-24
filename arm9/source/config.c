@@ -1119,7 +1119,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
         if(!multiOptions[i].visible) continue;
 
         multiOptions[i].posY = endPos + SPACING_Y;
-        endPos = drawString(true, 10, multiOptions[i].posY, COLOR_BLUE, multiOptionsText[i]);
+        endPos = drawString(true, 10, multiOptions[i].posY, COLOR_WHITE, multiOptionsText[i]);
         drawCharacter(true, 10 + multiOptions[i].posXs[multiOptions[i].enabled] * SPACING_X, multiOptions[i].posY, COLOR_YELLOW, selected);
     }
 
