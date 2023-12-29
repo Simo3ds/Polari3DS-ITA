@@ -844,20 +844,20 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                              };
 
     static const char *singleOptionsText[] = { "( ) Avvia automaticamente l'EmuNAND",
-                                               "( ) Abilita il caricamento di FIRM e moduli esterni",
+                                               "( ) Abilita caricamento di FIRM e moduli esterni",
                                                "( ) Abilita patch dei giochi",
                                                "( ) Reindir. threads app. syscore al core2",
                                                "( ) Mostra NAND o stringa utente in imp. di sistema",
                                                "( ) Mostra schermo avvio GBA negli AGB_FIRM patchati",
                                                "( ) Abilita filtri pers. di upscaling per DSi",
                                                "( ) Ammetti combo Sin+D/Su+Giu per DSi",
-                                               "( ) Interrompi il wifi del 3DS in modalita riposo",
+                                               "( ) Interrompi il wifi del 3DS in mod. riposo",
                                                "( ) Imposta UNITINFO come svilup.",
-                                               "( ) Disabilita gli Arm11 exception handlers",                                               
+                                               "( ) Disabilita Arm11 exception handlers",                                               
                                                "( ) Abilita Rosalina nel SAFE_FIRM",
-                                               "( ) Abilita il riavvio ist. + disabilita Errdisp",
-                                               "( ) Mostra le impostazioni avanzate",
-                                               "( ) Abilita il patching di Nand Cid e Otp hardware",
+                                               "( ) Abilita riavvio ist. + disabilita Errdisp",
+                                               "( ) Mostra impostazioni avanzate",
+                                               "( ) Abilita patching di Nand Cid e Otp hardware",
                                                                                               
                                                // Should always be the last 2 entries
                                                "\nAvvia il Chainloader",
