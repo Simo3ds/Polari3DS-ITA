@@ -1024,7 +1024,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "perche' la nand e' sempre criptata.",
                                                  
                                                  // Should always be the last 2 entries
-                                                 "Avvia il menu chainloader di Luma3DS"
+                                                 "Avvia il menu chainloader di Luma3DS",
 
                                                  "Salva i cambiamenti ed esci. Per annullare\n"
                                                  "un qualsiasi cambiamento premere il tasto POWER.\n"
