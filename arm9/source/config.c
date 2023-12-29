@@ -859,7 +859,8 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "( ) Mostra le impostazioni avanzate",
                                                "( ) Abilita il patching di Nand Cid e Otp hardware",
                                                                                               
-                                               // Should always be the last entry
+                                               // Should always be the last 2 entries
+                                               "\nAvvia il Chainloader",
                                                "\nSalva ed esci"
                                              };
 
@@ -1022,7 +1023,9 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "vengono letti e funziona solo con una scheda sd,\n"
                                                  "perche' la nand e' sempre criptata.",
                                                  
-                                                 // Should always be the last entry
+                                                 // Should always be the last 2 entries
+                                                 "Avvia il menu chainloader di Luma3DS"
+
                                                  "Salva i cambiamenti ed esci. Per annullare\n"
                                                  "un qualsiasi cambiamento premere il tasto POWER.\n"
                                                  "Premi Start come shortcout per questa entrata."
@@ -1049,7 +1052,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
         { .visible = true },
         { .visible = ISN3DS },
         { .visible = true },
-        { .visible = true }, // audio rerouting, hidden
+        { .visible = true }, // audio rerouting, hidden not anymore
     };
 
     struct singleOption {
@@ -1072,6 +1075,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
         { .visible = CONFIG(SHOWADVANCEDSETTINGS) },
         { .visible = false },
         { .visible = false },
+        { .visible = true },
         { .visible = true },
     };
 
@@ -1248,6 +1252,10 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                 {
                     drawString(true, 10, singleOptions[singleSelected].posY, COLOR_YELLOW, singleOptionsText[singleSelected]);
                     startPressed = false;
+                    break;
+                }
+                else if (singleSelected == singleOptionsAmount - 2) {
+                    loadHomebrewFirm(0);
                     break;
                 }
                 else
