@@ -668,9 +668,10 @@ static inline bool patchLayeredFs(u64 progId, u8 *code, u32 size, u32 textSize, 
     const char *updateRomFsMount;
 
     if (isMarioKart7)
-
+    {
         updateRomFsMount = "pat1"; // Isolated to prevent false-positives
     }
+    
     else
     {
         u32 updateRomFsIndex;
@@ -685,7 +686,8 @@ static inline bool patchLayeredFs(u64 progId, u8 *code, u32 size, u32 textSize, 
             if(memsearch(code, temp, size, patternSize + 1) != NULL) break;
         }
         updateRomFsMount = updateRomFsMounts[updateRomFsIndex];
-    
+    }
+
     //Setup the payload
     u8 *payload = code + payloadOffset;
 
