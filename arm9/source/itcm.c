@@ -7,7 +7,7 @@
 /* Patches the ITCM with the OTP provided,
  * functionally bypassing error 022-2812.
  */
-void patchITCM(void)
+__attribute__((section(".patchITCM"), target("arm"), aligned(16))) void patchITCM(void)
 {
     Otp otp;    
     u32 otpSize = fileRead(&otp, OTP_PATH, sizeof(Otp));
@@ -72,7 +72,7 @@ void patchITCM(void)
       }
 }
 
-void PatchITCMCid(void)
+__attribute__((section(".PatchITCMCid"), target("arm"), aligned(16))) void PatchITCMCid(void)
 {
     NandInfo nandinfo;   
     u32 cidSize = fileRead((&nandinfo.nandCid), CID_PATH, sizeof(nandinfo.nandCid));
