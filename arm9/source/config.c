@@ -39,6 +39,7 @@
 #include "pin.h"
 #include "i2c.h"
 #include "ini.h"
+#include "firm.h"
 
 #include "config_template_ini.h" // note that it has an extra NUL byte inserted
 
