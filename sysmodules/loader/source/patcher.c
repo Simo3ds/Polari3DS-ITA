@@ -671,7 +671,6 @@ static inline bool patchLayeredFs(u64 progId, u8 *code, u32 size, u32 textSize, 
 
         updateRomFsMount = "pat1"; // Isolated to prevent false-positives
     }
-
     else
     {
         u32 updateRomFsIndex;
