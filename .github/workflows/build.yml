@@ -29,5 +29,5 @@ jobs:
       run: make -j$(nproc --all)
     - uses: actions/upload-artifact@v3
       with:
-        name: CustomLuma3DS-ITA-beta-1.1.0
+        name: CustomLuma3DS-ITA-beta
         path: boot.firm
