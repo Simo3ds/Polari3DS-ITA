@@ -78,7 +78,6 @@ Menu miscellaneousMenu = {
     {
         { "Scambia il titolo hb. alla seguente app.", METHOD, .method = &MiscellaneousMenu_SwitchBoot3dsxTargetTitle },
         { "Cambia la combo di rosalina", METHOD, .method = &MiscellaneousMenu_ChangeMenuCombo },
-        { "Avvia InputRedirection", METHOD, .method = &MiscellaneousMenu_InputRedirection },
         { "Aggiorna data e ora via NTP", METHOD, .method = &MiscellaneousMenu_UpdateTimeDateNtp },
         { "Nullify user time offset", METHOD, .method = &MiscellaneousMenu_NullifyUserTimeOffset },
         { "Dumpa il DSP firmware", METHOD, .method = &MiscellaneousMenu_DumpDspFirm },
