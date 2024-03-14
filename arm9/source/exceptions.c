@@ -61,10 +61,10 @@ void detectAndProcessExceptionDumps(void)
     const vu8 *additionalData = stackDump + dumpHeader->stackDumpSize;
 
     static const char *handledExceptionNames[] = {
-        "FIQ", "Istruzioni indefinite", "aborto prefetch", "aborto dati"
+        "FIQ", "Istruzioni indefinite", "Aborto Prefetch", "Aborto Dati"
     },
                       *specialExceptions[] = {
-        "panico del kernel", "svcBreak"
+        "panico kernel", "svcBreak"
     },
                       *registerNames[] = {
         "R0", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10", "R11", "R12",
@@ -85,10 +85,10 @@ void detectAndProcessExceptionDumps(void)
 
     initScreens();
 
-    drawString(true, 10, 10, COLOR_RED, "E' accaduta un' eccezione inaspettata");
+    drawString(true, 10, 10, COLOR_RED, "Si è verificato un errore");
     u32 posY;
     if(dumpHeader->processor == 11) posY = drawFormattedString(true, 10, 30, COLOR_WHITE, "Processore:       Arm11 (core %u)", dumpHeader->core);
-    else posY = drawString(true, 10, 30, COLOR_WHITE, "Processore:       Arm9");
+    else posY = drawString(true, 10, 30, COLOR_WHITE, "Processore:     Arm9");
 
     if(dumpHeader->type == 2)
     {
