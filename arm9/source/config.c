@@ -1125,7 +1125,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 
         multiOptions[i].posY = endPos + SPACING_Y;
         endPos = drawString(true, 10, multiOptions[i].posY, COLOR_WHITE, multiOptionsText[i]);
-        drawCharacter(true, 10 + multiOptions[i].posXs[multiOptions[i].enabled] * SPACING_X, multiOptions[i].posY, COLOR_YELLOW, selected);
+        drawCharacter(true, 10 + multiOptions[i].posXs[multiOptions[i].enabled] * SPACING_X, multiOptions[i].posY, COLOR_WHITE, selected);
     }
 
     endPos += SPACING_Y / 2;
@@ -1143,11 +1143,11 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
         {
             singleSelected = i;
             selectedOption = i + multiOptionsAmount;
-            color = COLOR_YELLOW;
+            color = COLOR_WHITE;
         }
     }
 
-    drawString(false, 10, 10, COLOR_YELLOW, optionsDescription[selectedOption]);
+    drawString(false, 10, 10, COLOR_WHITE, optionsDescription[selectedOption]);
     
     bool startPressed = false;
     //Boring configuration menu
