@@ -80,8 +80,8 @@ Menu miscellaneousMenu = {
         { "Cambia la combo di rosalina", METHOD, .method = &MiscellaneousMenu_ChangeMenuCombo },
         { "Aggiorna data e ora via NTP", METHOD, .method = &MiscellaneousMenu_UpdateTimeDateNtp },
         { "Nullify user time offset", METHOD, .method = &MiscellaneousMenu_NullifyUserTimeOffset },
+        { "Avvia l'InputRedirection", METHOD, .method = &MiscellaneousMenu_InputRedirection },
         { "Dumpa il DSP firmware", METHOD, .method = &MiscellaneousMenu_DumpDspFirm },
-        { "Chainloader", METHOD, .method = &chainloader },
         { "Imposta le monete di gioco a 300", METHOD, .method = &MiscellaneousMenu_MaxPlayCoins },
         {},
     }
