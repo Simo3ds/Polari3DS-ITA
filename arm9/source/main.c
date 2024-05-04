@@ -48,7 +48,7 @@ extern CfgData configData;
 extern ConfigurationStatus needConfig;
 
 bool isSdMode;
-bool nandcid = false
+bool nandcid = false;
 char launchedPathForFatfs[256];
 u16 launchedPath[80+1];
 BootType bootType;
@@ -191,7 +191,7 @@ void main(int argc, char **argv, u32 magicWord)
     
     if (getFileSize(CID_PATH) > 0)
     {
-     nandcid = true   
+     nandcid = true;   
      PatchITCMCid();
     }
 
