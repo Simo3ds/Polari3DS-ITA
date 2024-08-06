@@ -633,9 +633,9 @@ static size_t saveLumaIniConfigToStr(char *out)
     }
 
     if (VERSION_BUILD != 0) {
-        sprintf(lumaVerStr, "Polari3DS v%d.%d.%d", (int)VERSION_MAJOR, (int)VERSION_MINOR, (int)VERSION_BUILD);
+        sprintf(lumaVerStr, "Polari3DS-ITA v%d.%d.%d", (int)VERSION_MAJOR, (int)VERSION_MINOR, (int)VERSION_BUILD);
     } else {
-        sprintf(lumaVerStr, "Polari3DS v%d.%d", (int)VERSION_MAJOR, (int)VERSION_MINOR);
+        sprintf(lumaVerStr, "Polari3DS-ITA v%d.%d", (int)VERSION_MAJOR, (int)VERSION_MINOR);
     }
 
     if (ISRELEASE) {
@@ -841,57 +841,48 @@ void writeConfig(bool isConfigOptions)
         writeConfigMcu();
 
     if(updateIni && !writeLumaIniConfig())
-        error("Error writing the configuration file");
+        error("Errore durante la scrit. del file di config.");
 }
 
 void configMenu(bool oldPinStatus, u32 oldPinMode)
 {
-    static const char *multiOptionsText[]  = { "Default EmuNAND: 1( ) 2( ) 3( ) 4( )",
-                                               "Screen brightness: 4( ) 3( ) 2( ) 1( )",
-                                               "Splash: Off( ) Before( ) After( ) payloads",
-                                               "PIN lock: Off( ) 4( ) 6( ) 8( ) digits",
+    static const char *multiOptionsText[]  = { "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
+                                               "Luminosita' schermi: 4( ) 3( ) 2( ) 1( )",
+                                               "Splash: Off( ) Prima( ) Dopo( ) le payload",
+                                               "Blocco PIN: Off( ) 4( ) 6( ) 8( ) cifre",
                                                "New 3DS CPU: Off( ) Clock( ) L2( ) Clock+L2( )",
-                                               "Hbmenu autoboot: Off( ) 3DS( ) DSi( )",
-                                               "Force audio: Off( ) Headphones( ) Speakers( )"
+                                               "Hbmenu avvio auto: Off( ) 3DS( ) DSi( )",
+                                               "Forza l'audio su: Off( ) Cuffie( ) Casse( )"
                                              };
 
-    static const char *singleOptionsText[] = { "( ) Autoboot EmuNAND",
-                                               "( ) Enable loading external FIRMs and modules",
-                                               "( ) Enable game patching",
-                                               "( ) Redirect app. syscore threads to core2",
-                                               "( ) Show NAND or user string in System Settings",
-                                               "( ) Show GBA boot screen in patched AGB_FIRM",
-                                               "( ) Patch scheduler cpu to perf mode",
-                                               "( ) Allow Left+Right / Up+Down combos for DSi",
-                                               "( ) Cut 3DS Wifi in sleep mode",
-                                               "( ) Set developer UNITINFO",
-                                               "( ) Disable Arm11 exception handlers",                                               
-                                               "( ) Enable Rosalina on SAFE_FIRM",
-                                               "( ) Enable instant reboot + disable Errdisp",
-                                               "( ) Show Advanced Settings",
-                                               "( ) Enable Nand Cid and Otp hardware patching",
+    static const char *singleOptionsText[] = { "( ) Avvio automatico EmuNAND",
+                                               "( ) At. il caric. di FIRMs e moduli di sis. esterni",//at sta per attiva(abilita ma più intuitiva l'abbreviazione)
+                                               "( ) Abilita il patching di giochi",
+                                               "( ) Reindir. app. syscore threads al core2",
+                                               "( ) Mostra NAND o stringa utente nelle imp. di sis.",
+                                               "( ) Mostra lo sch. di av. del GBA nel AGB_FIRM patch.",
+                                               "( ) Patch schedular cpu in perf mode", //Non so per cosa sta shcedular e cosa intenda con perf in questo caso
+                                               "( ) Cons. combo Sinistra+Destra / Su+Giu' per DSi",
+                                               "( ) Interr. il WiFi del 3DS in mod. riposo",
+                                               "( ) Imp. UNITINFO da sviluppatore",
+                                               "( ) Disabilita i crash Arm11",                                               
+                                               "( ) Abilita Rosalina nel SAFE_FIRM",
+                                               "( ) Abilita riavvio istant. + disabilita Errdisp",
+                                               "( ) Mostra impostazioni avanzate",
+                                               "( ) Abilita l'hardware patching di Nand Cid e Otp",
                                                                                               
                                                // Should always be the last 2 entries
-                                               "\nBoot chainloader",
-                                               "\nSave and exit"
+                                               "\nAvvia il chainloader",
+                                               "\nSalva ed esci"
                                              };
 
-    static const char *optionsDescription[]  = { "Select the default EmuNAND.\n\n"
-                                                 "It will be booted when no directional\n"
-                                                 "pad buttons are pressed (Up/Right/Down\n"
-                                                 "/Left equal EmuNANDs 1/2/3/4).",
+    static const char *optionsDescription[]  = { "Seleziona l'EmuNAND predef.\n\n"
+                                                 “Verra' avviato quando nessun pulsante del pad\n" 
+                                                 "direz. e' premuto (Su/Destra/Giu'/Sinistra\n" 
+                                                 "corrisp. alle EmuNAND 1/2/3/4).\n”
 
-                                                 "Select the screen brightness.",
-
-                                                 "Enable splash screen support.\n\n"
-                                                 "\t* 'Before payloads' displays it\n"
-                                                 "before booting payloads\n"
-                                                 "(intended for splashes that display\n"
-                                                 "button hints).\n\n"
-                                                 "\t* 'After payloads' displays it\n"
-                                                 "afterwards.\n\n"
-                                                 "Edit the duration in lumae.ini (3s\n"
-                                                 "default).",
+                                                 "Seleziona la luminosita' dello schermo.",
+                                                 //riagguingi le informazioni dello splash screen e poi finisci la traduzione (reminder per me stesso)
 
                                                  "Activate a PIN lock.\n\n"
                                                  "The PIN will be asked each time\n"
@@ -1131,8 +1122,8 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                        "FIRM1" };
 
     drawString(true, 10, 10, COLOR_TITLE, CONFIG_TITLE);
-    drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Use the DPAD and A to change settings");
-    drawFormattedString(false, 10, SCREEN_HEIGHT - 2 * SPACING_Y, COLOR_YELLOW, "Booted from %s via %s", isSdMode ? "SD" : "CTRNAND", bootTypes[(u32)bootType]);
+    drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Usa il DPAD e A per cambiare le imp.");
+    drawFormattedString(false, 10, SCREEN_HEIGHT - 2 * SPACING_Y, COLOR_YELLOW, "Avviato da %s via %s", isSdMode ? "SD" : "CTRNAND", bootTypes[(u32)bootType]);
 
     //Character to display a selected option
     char selected = 'x';
@@ -1311,7 +1302,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
     else if(oldPinStatus)
     {
         if(!fileDelete(PIN_FILE))
-            error("Unable to delete PIN file");
+            error("Impos. eliminare il file del PIN");
     }
 
     while(HID_PAD & PIN_BUTTONS);
