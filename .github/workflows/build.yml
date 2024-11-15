@@ -1,4 +1,4 @@
-name: CI
+name: P3
 
 on:
   push:
