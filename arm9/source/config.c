@@ -856,14 +856,14 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                              };
 
     static const char *singleOptionsText[] = { "( ) Avvio automatico EmuNAND",
-                                               "( ) At. il caric. di FIRMs e moduli di sis. esterni",//at sta per attiva(abilita ma più intuitiva l'abbreviazione)
+                                               "( ) Ativ. il caric. di FIRMs e moduli di sis. esterni",//ativ sta per attiva(abilita ma più intuitiva l'abbreviazione)
                                                "( ) Abilita il patching di giochi",
                                                "( ) Reindir. app. syscore threads al core2",
                                                "( ) Mostra NAND o stringa utente nelle imp. di sis.",
                                                "( ) Mostra lo sch. di av. del GBA nel AGB_FIRM patch.",
-                                               "( ) Patch schedular cpu in perf mode", //Non so per cosa sta shcedular e cosa intenda con perf in questo caso
                                                "( ) Cons. combo Sinistra+Destra / Su+Giu' per DSi",
                                                "( ) Interr. il WiFi del 3DS in mod. riposo",
+                                               "( ) Patch schedular cpu in perf mode", //Non so per cosa sta shcedular e cosa intenda con perf in questo caso
                                                "( ) Imp. UNITINFO da sviluppatore",
                                                "( ) Disabilita i crash Arm11",                                               
                                                "( ) Abilita Rosalina nel SAFE_FIRM",
@@ -877,171 +877,162 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                              };
 
     static const char *optionsDescription[]  = { "Seleziona l'EmuNAND predef.\n\n"
-                                                 “Verra' avviato quando nessun pulsante del pad\n" 
+                                                 "Verra' avviato quando nessun pulsante del pad\n" 
                                                  "direz. e' premuto (Su/Destra/Giu'/Sinistra\n" 
-                                                 "corrisp. alle EmuNAND 1/2/3/4).\n”
+                                                 "corrisp. alle EmuNAND 1/2/3/4).\n"
 
-                                                 "Seleziona la luminosita' dello schermo.",
-                                                 //riagguingi le informazioni dello splash screen e poi finisci la traduzione (reminder per me stesso)
+                                                 "Seleziona la luminosita' dello schermo.\n", //riagguingi le informazioni dello splash screen e poi finisci la traduzione (reminder per me stesso)
+                                                
 
-                                                 "Activate a PIN lock.\n\n"
-                                                 "The PIN will be asked each time\n"
-                                                 "Luma3DS boots.\n\n"
-                                                 "4, 6 or 8 digits can be selected.\n\n"
-                                                 "The ABXY buttons and the directional\n"
-                                                 "pad buttons can be used as keys.\n\n"
-                                                 "A message can also be displayed\n"
-                                                 "(refer to the wiki for instructions).",
+                                                
+                                                 "Abilita un blocco PIN.\n\n"
+                                                 "Il PIN verra' chiesto ogni volta che\n"
+                                                 "CustomLuma3DS si avvia.\n\n"
+                                                 "Puo' essere impostato a 4, 6 o 8 cifre.\n\n"
+                                                 "I tasti ABXY e i tasti del DPAD\n"
+                                                 "possono essere usati come chiavi del blocco.\n\n"
+                                                 "Puo' essere mostrato anche un messaggio\n"
+                                                 "(Consulta la wiki per istruzioni).",
 
-                                                 "Select the New 3DS CPU mode.\n\n"
-                                                 "This won't apply to\n"
-                                                 "New 3DS exclusive/enhanced games.\n\n"
-                                                 "'Clock+L2' can cause issues with some\n"
-                                                 "games.",
+                                                 "Seleziona la modalita' del New 3DS CPU.\n\n"
+                                                 "Questo non verra' applicato per i\n"
+                                                 "giochi esclusivi/potenziati per New3DS.\n\n"
+                                                 "'Clock+L2' puo' creare problemi con alcuni\n"
+                                                 "giochi.",
 
-                                                 "Enable autobooting into homebrew menu,\n"
-                                                 "either into 3DS or DSi mode.\n\n"
-                                                 "Autobooting into a gamecard title is\n"
-                                                 "not supported.\n\n"
-                                                 "Refer to the \"autoboot\" section in the\n"
-                                                 "configuration file to configure\n"
-                                                 "this feature.",
+                                                 "Abilita l'avvio automatico nell'homebrew menu,\n"
+                                                 "sia in modalita' 3DS che DSi.\n\n"
+                                                 "L'avvio automatico in una scheda di gioco\n"
+                                                 "non e' supportato.\n\n"
+                                                 "Riferisciti alla sezione \"autoboot\"\n"
+                                                 "nel file di configurazione per impostare\n"
+                                                 "questa funzione.",
                                                  
-                                                 "Force audio output to HPs or speakers.\n\n"
-                                                 "Currently only for NATIVE_FIRM.\n\n"
-                                                 "Due to software limitations, this gets\n"
-                                                 "undone if you actually insert then\n"
-                                                 "remove HPs (just enter then exit sleep\n"
-                                                 "mode if this happens).\n\n"
-                                                 "Also gets bypassed for camera shutter\n"
-                                                 "sound.",
+                                                 "Forza l'output audio alle cuffie o alle casse.\n\n"
+                                                 "Attualmente solo per NATIVE_FIRM.\n\n"
+                                                 "Per via di limitazioni software, questo smettte di\n"
+                                                 "funzionare se inserisci e poi\n"
+                                                 "rimuovi le cuffie (se questo succede, entra ed esci dalla\n"
+                                                 "modalita' riposo).\n\n"
+                                                 "Viene anche bypassato dai suoni\n"
+                                                 "di scatto della fotocamera.",
 
 
 
-                                                 "If enabled, an EmuNAND\n"
-                                                 "will be launched on boot.\n\n"
-                                                 "Otherwise, SysNAND will.\n\n"
-                                                 "Hold L on boot to switch NAND.\n\n"
-                                                 "To use a different EmuNAND from the\n"
-                                                 "default, hold a directional pad button\n"
-                                                 "(Up/Right/Down/Left equal EmuNANDs\n"
+                                                 "Se abilitato, un EmuNAND\n"
+                                                 "verra' lanciata all'avvio.\n\n"
+                                                 "Altrimenti, la SysNAND lo fara'\n\n"
+                                                 "Mantieni L all'avvio per cambiare NAND.\n\n"
+                                                 "Per usare un EmuNAND differente dalla\n"
+                                                 "predefinita, mantieni un tasto del DPAD\n"
+                                                 "(Su/Destra/Giu'/Sinistra corrispondono alle EmuNANDs\n"
                                                  "1/2/3/4).",
 
-                                                 "Enable loading external FIRMs and\n"
-                                                 "system modules.\n\n"
-                                                 "This isn't needed in most cases.\n\n"
-                                                 "Refer to the wiki for instructions.",
+                                                 "Abilita il caricamento di FIRM e moduli di\n"
+                                                 "sistema esterni.\n\n"
+                                                 "Questo non e' necessario nella maggior parte dei casi.\n\n"
+                                                 "Consulta la wiki per maggiori istruzioni.",
 
-                                                 "Enable overriding the region and\n"
-                                                 "language configuration and the usage\n"
-                                                 "of patched code binaries, exHeaders,\n"
-                                                 "IPS code patches and LayeredFS\n"
-                                                 "for specific games.\n\n"
-                                                 "Also makes certain DLCs for out-of-\n"
-                                                 "region games work.\n\n"
-                                                 "Refer to the wiki for instructions.",
+                                                 "Abilita l'oltrepassaggio del blocco regionale e\n"
+                                                 "della configurazione di lingua\n"
+                                                 "di codici binari patchati, exHeaders,\n"
+                                                 "IPS codici patchati e LayeredFS\n"
+                                                 "Per giochi specifici.\n\n"
+                                                 "Fa anche si' che certi DLC per giochi fuori\n"
+                                                 "dalla regione funzionino.\n\n"
+                                                 "Consulta la Wiki per istruzioni.",
 
-                                                 "Redirect app. threads that would spawn\n"
-                                                 "on core1, to core2 (which is an extra\n"
-                                                 "CPU core for applications that usually\n"
-                                                 "remains unused).\n\n"
-                                                 "This improves the performance of very\n"
-                                                 "demanding games (like Pok\x82mon US/UM)\n" // CP437
-                                                 "by about 10%. Can break some games\n"
-                                                 "and other applications.\n",
+                                                 "Reindirizza i threads app. threads che si generano\n"
+                                                 "sul core1, al core2 (che e' un core della\n"
+                                                 "CPU aggiuntivo per applicazioni che solitamente\n"
+                                                 "restano inutilizzate).\n\n"
+                                                 "Questo migliora le prestazioni di giochi\n"
+                                                 "veramente pesanti (come Pok\x82mon US/UM)\n" // CP437
+                                                 "di circa il 10%. Puo' rompere alcuni giochi\n"
+                                                 "e altre applicazioni.\n",
 
-                                                 "Enable showing the current NAND:\n\n"
+                                                 "Abilita la visualizzazione della NAND attuale:\n\n"
                                                  "\t* Sys  = SysNAND\n"
                                                  "\t* Emu  = EmuNAND 1\n"
                                                  "\t* EmuX = EmuNAND X\n\n"
-                                                 "or a user-defined custom string in\n"
-                                                 "System Settings.\n\n"
-                                                 "Refer to the wiki for instructions.",
+                                                 "o una stringa personalizzata e definita\n"
+                                                 "dall'utente nelle Impostazioni di sistema.\n\n"
+                                                 "Consulta la wiki per maggiori istruzioni.",
 
-                                                 "Enable showing the GBA boot screen\n"
-                                                 "when booting GBA games.",
+                                                 "Abilita la visualizzazione dello schermo di avvio del GBA\n"
+                                                 "quando si avviano giochi GBA.",
 
-                                                 "Enable patching the default scheduler\n"
-                                                 "for cpu arm11 used in 3DS software by\n"
-                                                 "its contents, like games, apps, ecc.\n\n"
-                                                 "It may happen deadlock if some apps,\n"
-                                                 "take to many resources, so use this\n"
-                                                 "when needed not all times, like:\n"
-                                                 "in games where latency is essential,\n"
-                                                 "or apps that perform heavy tasks.",
-
-                                                 "Allow Left+Right and Up+Down button\n"
-                                                 "combos (using DPAD and CPAD\n"
-                                                 "simultaneously) in DS(i) software.\n\n"
-                                                 "Commercial software filter these\n"
-                                                 "combos on their own too, though.\n\n"
-                                                 "Enable replacing the default upscaling\n"
-                                                 "filter used for DS(i) software by the\n"
-                                                 "contents of:\n\n"
+                                                 "Abilita il rimpiazzo dei filtri di\n"
+                                                 "upscaling usati per i software DS(i) con i\n"
+                                                 "contenuti di:\n\n"
                                                  "/luma/twl_upscaling_filter.bin\n\n"
-                                                 "Refer to the wiki for further details.",
-                                                 
-                                                 "Cut the 3DS wifi in sleep mode.\n\n"
-                                                 "Useful to save battery but prevent\n"
-                                                 "some features like streetpass or\n"
-                                                 "spotpass to work on sleep mode.\n\n"
-                                                 "Use this if you don't use them\n"
-                                                 "want to save battery in sleep mode.",
-                                                 
-                                                 "Make the console be always detected\n"
-                                                 "as a development unit, and conversely.\n"
-                                                 "(which breaks online features, amiibo\n"
-                                                 "and retail CIAs, but allows installing\n"
-                                                 "and booting some developer software).\n\n"
-                                                 "Only select this if you know what you\n"
-                                                 "are doing!",
-                                                 
-                                                 "Disables the fatal error exception\n"
-                                                 "handlers for the Arm11 CPU.\n\n"
-                                                 "Note: Disabling the exception handlers\n"
-                                                 "will disqualify you from submitting\n"
-                                                 "issues or bug reports to the Luma3DS\n"
-                                                 "GitHub repository!",
+                                                 "Consulta la wiki per maggiori dettagli su questa funzione.",
 
-                                                 "Enables Rosalina, the kernel ext.\n"
-                                                 "and sysmodule reimplementations on\n"
-                                                 "SAFE_FIRM (New 3DS only).\n\n"
-                                                 "Also suppresses QTM error 0xF96183FE,\n"
-                                                 "allowing to use 8.1-11.3 N3DS on\n"
-                                                 "New 2DS XL consoles.\n\n"
-                                                 "Only select this if you know what you\n"
-                                                 "are doing!",
+                                                 "Ammetti le combinazioni Sinistra+Destra/Su+Giù\n"
+                                                 "(usando il DPAD e il CPAD\n"
+                                                 "simultaneamente) nei software DS(i).\n\n"
+                                                 "I software commerciali filtrano\n"
+                                                 "da soli queste combinazioni pero.",
                                                  
-                                                 "Disable rebooting after an Errdisp\n"
-                                                 "error occurs. It also enable instant\n"
-                                                 "reboot combo, this can corrupt your\n"
-                                                 "SDcard so be careful with this.\n"
-                                                 "The combo is A + B + X + Y + Start.\n\n"
-                                                 "Only select this if you know what you\n"
-                                                 "are doing!\n\n"
-                                                 "Also added hardware error bypass and\n"
-                                                 "bypass broken nvram.",
+                                                 "Togli il wifi al 3DS in modalita' riposo.\n\n"
+                                                 "Utile per risparmiare batteria ma impedira' ad\n"
+                                                 "alcune funzioni come streetpass o\n"
+                                                 "spotpass di funzionare in modalira riposo.\n\n"
+                                                 "Usa questo se non vuoi usarle e\n"
+                                                 "vuoi risparmiare batteria in modalita riposo.",
                                                  
-                                                 "Disabling this will hide extra\n"
-                                                 "settings from the luma configuration\n"
-                                                 "menu.",
+                                                 "Fa si' che la console sia sempre riconosciuta\n"
+                                                 "come unita di sviluppo, e convertirla.\n"
+                                                 "(la quale rompe le funzioni online, amiibo\n"
+                                                 "e i retail CIA, ma consente l'installazione\n"
+                                                 "di alcuni software di sviluppo).\n\n"
+                                                 "Seleziona questo solamente se sai cosa\n"
+                                                 "stai facendo!",
                                                  
-                                                 "Enabling this will cause the complete\n"
-                                                 "of the otp and nand cid, so that you\n"
-                                                 "can use another console nand backup\n"
-                                                 "on another hardware, so use this carefuly\n"
-                                                 "are doing and bla bla you already know.\n\n"
-                                                 "Remember to put nand_cid.bin and otp.bin\n"
-                                                 "to sd luma directory cause well is where\n"
-                                                 "it reads them and works only on sd card,\n"
-                                                 "cause the nand is still encrypted.",
+                                                 "Disabilita gli improvvisi errori fatali handlers \n"
+                                                 "per la CPU Arm11.\n\n"
+                                                 "Nota: Disabilitare gli improvvisi handlers\n"
+                                                 "ti rimuovera dal creare\n"
+                                                 "issue o bug report nella repository Luma3DS\n"
+                                                 "di GitHub!",
+                                                
+                                                 "Abilita Rosalina, il kernel esterno.\n"
+                                                 "e la reimplementazione dei moduli di sistema\n"
+                                                 "SAFE_FIRM (Solo per New3DS).\n\n"
+                                                 "Permette anche di sorpassare l'errore QTM 0xF96183FE,\n"
+                                                 "permettendo così di usare la versione 8.1-11.3 N3DS su\n"
+                                                 "New 2DSXL console.\n\n"
+                                                 "Seleziona questo solamente se sai cosa\n"
+                                                 "stai facendo!",
+                                                 
+                                                 "Disabilita il riavvio dopo che sono capitati\n"
+                                                 "errori ErrDisp. Abilita anche istantaneamente una\n"
+                                                 "combo di riavvio, questo puo' corrompere la\n"
+                                                 "tua scheda SD quindi stai attento con questo.\n"
+                                                 "La combo e' A + B + X + Y + Start.\n\n"
+                                                 "Seleziona questo solamente se sai cosa\n"
+                                                 "stai facendo!",
+                                                 
+                                                 "Disablitare questo fara' si che le impostazioni\n"
+                                                 "aggiuntive del menuu di configurazione di luma\n"
+                                                 "vengano nascoste.",
+                                                 
+                                                 "Abilitare questo sara' la causa completa di\n"
+                                                 "di otp e della nand cid, quindi puoi\n"
+                                                 "usare un backup nand di un'altra console\n"
+                                                 "su un altro hardware, quindi usa questo stando attento\n"
+                                                 "a cosa stai e bla bla sai gia'.\n\n"
+                                                 "Ricorda di mettere i file nand_cid.bin e otp.bin\n"
+                                                 "nel percorso luma nella sd luma directory perche' e' dove\n"
+                                                 "vengono letti e funziona solo con una scheda sd,\n"
+                                                 "perche' la nand e' sempre criptata.",
                                                  
                                                  // Should always be the last 2 entries
-                                                 "Boot to the Luma3DS chainloader menu.",
-                                                 
-                                                 "Save the changes and exit. To discard\n"
-                                                 "any changes press the POWER button.\n"
-                                                 "Use START as a shortcut to this entry."
+                                                 "Avvia il menu chainloader di Luma3DS",
+
+                                                 "Salva i cambiamenti ed esci. Per annullare\n"
+                                                 "un qualsiasi cambiamento premere il tasto POWER.\n"
+                                                 "Premi Start come shortcout per questa entrata."
                                                };
 
     FirmwareSource nandType = FIRMWARE_SYSNAND;
