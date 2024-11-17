@@ -75,7 +75,7 @@ void chainloader(void)
 		
 		Draw_Lock();
 		Draw_DrawString(10, 10, COLOR_TITLE, "Menu ChainLoader");
-		Draw_DrawString(10, 30, COLOR_WHITE, "Premi A per caricare un Firm, Premi B per tornare indietro")
+		Draw_DrawString(10, 30, COLOR_WHITE, "Premi A per caricare un Firm, Premi B per tornare indietro");
 		for(int i = 0; i < count; i++)
 		{
 			Draw_DrawString(30, 60+(i*10), COLOR_BLACK, "                                                ");
