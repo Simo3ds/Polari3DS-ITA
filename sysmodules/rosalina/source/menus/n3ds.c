@@ -42,7 +42,7 @@ static char clkRateBuf[128 + 1], new3dsMenuBuf[128 + 1], new3dsMenuConfigBuf[128
 Menu N3DSMenu = {
     "New 3DS menu",
     {
-        { "Enable L2 cache", METHOD, .method = &N3DSMenu_EnableDisableL2Cache },
+        { "Abilita la L2 cache", METHOD, .method = &N3DSMenu_EnableDisableL2Cache },
         { clkRateBuf, METHOD, .method = &N3DSMenu_ChangeClockRate },
         { new3dsMenuConfigBuf, METHOD, .method = &N3DSMenu_UpdateConfig, .visibility = &currentTitleAvailable },
         {},
@@ -64,10 +64,10 @@ void N3DSMenu_UpdateStatus(void)
     svcGetSystemInfo(&higherClkRate, 0x10001, 1);
     svcGetSystemInfo(&L2CacheEnabled, 0x10001, 2);
 
-    N3DSMenu.items[0].title = L2CacheEnabled ? "Disable L2 cache" : "Enable L2 cache";
-    sprintf(clkRateBuf, "Set clock rate to %luMHz", clkRate != 268 ? 268 : (u32)higherClkRate);
+    N3DSMenu.items[0].title = L2CacheEnabled ? "Disabilita la L2 cache" : "Abilita la L2 cache";
+    sprintf(clkRateBuf, "Imposta la clock rate a %luMHz", clkRate != 268 ? 268 : (u32)higherClkRate);
     
-    sprintf(new3dsMenuBuf, "New 3DS settings: [%luMHz%s", clkRate == 268 ? 268 : (u32)higherClkRate, L2CacheEnabled ? " & L2]" : "]");
+    sprintf(new3dsMenuBuf, "Impostazioni New3DS: [%luMHz%s", clkRate == 268 ? 268 : (u32)higherClkRate, L2CacheEnabled ? " & L2]" : "]");
     
     rosalinaMenu.items[8].title = new3dsMenuBuf;
 }
@@ -183,5 +183,5 @@ void N3DSMenu_UpdateConfig(void)
 
 void N3DSMenu_UpdateConfigStatus(void)
 {
-    sprintf(new3dsMenuConfigBuf, "Auto run current title as N3DS: %s", currentTitleUseN3DS ? "[true]" : "[false]");
+    sprintf(new3dsMenuConfigBuf, "Esecuzione automatica titolo corrente come N3DS: %s", currentTitleUseN3DS ? "[true]" : "[false]");
 }
