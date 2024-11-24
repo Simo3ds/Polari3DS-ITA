@@ -62,7 +62,7 @@ Menu rosalinaMenu = {
         { "", METHOD, .method = PluginLoader__MenuOption},
         { "Lista Processi", METHOD, .method = &RosalinaMenu_ProcessList },
         { "Opzioni di debug...", MENU, .menu = &debuggerMenu },
-        { "Configurazione di sistema...", MENU, .menu = &sysconfigMenu }
+        { "Configurazione di sistema...", MENU, .menu = &sysconfigMenu },
         { "Filtri schermo", MENU, .menu = &screenFiltersMenu },
         { "Impostazioni New3DS", MENU, .menu = &N3DSMenu, .visibility = &menuCheckN3ds },
         { "Scambio rapido...", MENU, .menu = &quickSwitchersMenu },
