@@ -301,7 +301,7 @@ static const char *menuGetScreenTypeStr(u8 vendorId)
     {
         case 1:  return "IPS"; // SHARP
         case 12: return "TN";  // JDN
-        default: return "unknown";
+        default: return "sconosciuto";
     }
 }
 
