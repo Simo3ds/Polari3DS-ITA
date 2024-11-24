@@ -202,7 +202,7 @@ static int ERRF_FormatError(char *out, const ERRF_FatalErrInfo *info, bool isLog
     switch (info->type)
     {
         case ERRF_ERRTYPE_NAND_DAMAGED:
-            out += sprintf(out, "Il chip della NAND e' danneggiato.\n")
+            out += sprintf(out, "Il chip della NAND e' danneggiato.\n");
             break;
         case ERRF_ERRTYPE_CARD_REMOVED:
         {
