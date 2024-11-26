@@ -858,18 +858,18 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
     static const char *singleOptionsText[] = { "( ) Avvio automatico EmuNAND",
                                                "( ) Ativ. il caric. di FIRMs e moduli di sis. est.",//ativ sta per attiva(abilita ma più intuitiva l'abbreviazione)
                                                "( ) Abilita il patching di giochi",
-                                               "( ) Reindir. app. syscore threads al core2",
+                                               //"( ) Reindir. app. syscore threads al core2",
                                                "( ) Mostra NAND o str. utente nelle imp. di sis.",
                                                "( ) Mostra lo sch. di av. del GBA nel AGB_FIRM patch.",
                                                "( ) Cons. combo Sx+Dx / Su+Giu' per DSi", //Sx e Dx indicano destra e sinistra nel vecchi metodo a mo' di wii
                                                "( ) Interr. il WiFi del 3DS in mod. riposo",
                                                "( ) Patch schedular cpu in perf mode", //Non so per cosa sta shcedular e cosa intenda con perf in questo caso
-                                               "( ) Imp. UNITINFO da sviluppatore",
+                                              /*"( ) Imp. UNITINFO da sviluppatore",
                                                "( ) Disabilita i crash Arm11",                                               
                                                "( ) Abilita Rosalina nel SAFE_FIRM",
                                                "( ) Abilita riavvio istant. + disabilita Errdisp",
                                                "( ) Mostra impostazioni avanzate",
-                                               "( ) Abilita l'hardware patching di Nand Cid e Otp",
+                                               "( ) Abilita l'hardware patching di Nand Cid e Otp",*/
                                                                                               
                                                // Should always be the last 2 entries
                                                "\nAvvia il chainloader",
