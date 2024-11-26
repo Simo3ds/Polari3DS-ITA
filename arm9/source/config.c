@@ -846,7 +846,7 @@ void writeConfig(bool isConfigOptions)
 
 void configMenu(bool oldPinStatus, u32 oldPinMode)
 {
-    static const char *multiOptionsText[]  = { "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
+    static const char *multiOptionsText[]  = { "\nEmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
                                                "Luminosita' schermi: 4( ) 3( ) 2( ) 1( )",
                                                "Splash: Off( ) Prima( ) Dopo( ) le payload",
                                                "Blocco PIN: Off( ) 4( ) 6( ) 8( ) cifre",
@@ -855,7 +855,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "Forza l'audio su: Off( ) Cuffie( ) Casse( )"
                                              };
 
-    static const char *singleOptionsText[] = { "( ) Avvio automatico EmuNAND",
+    static const char *singleOptionsText[] = { "\n( ) Avvio automatico EmuNAND",
                                                "( ) Ativ. il caric. di FIRMs e moduli di sis. es.",//ativ sta per attiva(abilita ma più intuitiva l'abbreviazione)
                                                "( ) Abilita il patching di giochi",
                                                "( ) Reindir. app. syscore threads al core2",
