@@ -862,7 +862,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "( ) Mostra NAND o str. utente in imp. di sis.",
                                                "( ) Mostra sch. avv. GBA negli AGB_FIRM patch.",
                                                "( ) Abilita filtri pers. di upscaling per DSi",
-                                               "( ) Ammetti combo Sin+D/Su+Giu per DSi",
+                                               "( ) Ammetti combo Sin+D/Su+Giu' per DSi",
                                                "( ) Interr. il wifi del 3DS in mod. riposo",
                                                "( ) Imposta UNITINFO come svilup.",
                                                "( ) Disabilita gli Arm11 exception handlers",                                               
@@ -976,7 +976,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "/luma/twl_upscaling_filter.bin\n\n"
                                                  "Consulta la wiki per maggiori dettagli su questa funzione.",
 
-                                                 "Ammetti le combinazioni Sinistra+Destra/Su+Giù\n"
+                                                 "Ammetti le combinazioni Sinistra+Destra/Su+Giu'\n"
                                                  "(usando il DPAD e il CPAD\n"
                                                  "simultaneamente) nei software DS(i).\n\n"
                                                  "I software commerciali filtrano\n"
