@@ -856,14 +856,14 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                              };
 
     static const char *singleOptionsText[] = { "( ) Avvia automaticamente l'EmuNAND",
-                                               "( ) Abilita il caricamento di FIRM e moduli esterni",
-                                               "( ) Abilita patch dei giochi",
+                                               "( ) Ab. il caricamento di FIRM e moduli est.",
+                                               "( ) Abilita patching dei giochi",
                                                "( ) Reindir. threads app. syscore al core2",
-                                               "( ) Mostra NAND o stringa utente in imp. di sistema",
-                                               "( ) Mostra schermo avvio GBA negli AGB_FIRM patchati",
+                                               "( ) Mostra NAND o str. utente in imp. di sis.",
+                                               "( ) Mostra sch. avv. GBA negli AGB_FIRM patch.",
                                                "( ) Abilita filtri pers. di upscaling per DSi",
                                                "( ) Ammetti combo Sin+D/Su+Giu per DSi",
-                                               "( ) Interrompi il wifi del 3DS in modalita riposo",
+                                               "( ) Interr. il wifi del 3DS in mod. riposo",
                                                "( ) Imposta UNITINFO come svilup.",
                                                "( ) Disabilita gli Arm11 exception handlers",                                               
                                                "( ) Abilita Rosalina nel SAFE_FIRM",
@@ -895,7 +895,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 
                                                  "Abilita un blocco PIN.\n\n"
                                                  "Il PIN verra' chiesto ogni volta che\n"
-                                                 "CustomLuma3DS si avvia.\n\n"
+                                                 "Polari3DS si avvia.\n\n"
                                                  "Puo' essere impostato a 4, 6 o 8 cifre.\n\n"
                                                  "I tasti ABXY e i tasti del DPAD\n"
                                                  "possono essere usati come chiavi del blocco.\n\n"
