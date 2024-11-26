@@ -863,7 +863,8 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "( ) Abilita il patching di giochi",
                                                "( ) Mos. NAND o str. utente nelle imp. di sis.",
                                                "( ) Mos. lo sch. di av. GBA nel AGB_FIRM patch.",
-                                               "( ) Cons. combo Sx+Dx / Su+Giu' per DSi", //Sx e Dx indicano destra e sinistra nel vecchi metodo a mo' di wii
+                                               "( ) Filtri upscaling per DSi", //Sx e Dx indicano destra e sinistra nel vecchi metodo a mo' di wii
+                                               "( ) Combo sx/dx, su/giu' per DSi",
                                                "( ) Interr. il WiFi del 3DS in mod. riposo",
                                                "( ) Patch schedular cpu in perf mode", //Non so per cosa sta shcedular e cosa intenda con perf in questo caso
                                                "( ) Imp. UNITINFO da sviluppatore",
