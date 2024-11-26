@@ -846,7 +846,7 @@ void writeConfig(bool isConfigOptions)
 
 void configMenu(bool oldPinStatus, u32 oldPinMode)
 {
-    static const char *multiOptionsText[]  = { "\nEmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
+    static const char *multiOptionsText[]  = { "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
                                                "Luminosita' schermi: 4( ) 3( ) 2( ) 1( )",
                                                "Splash: Off( ) Prima( ) Dopo( ) le payload",
                                                "Blocco PIN: Off( ) 4( ) 6( ) 8( ) cifre",
@@ -855,7 +855,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "Forza l'audio su: Off( ) Cuffie( ) Casse( )"
                                              };
 
-    static const char *singleOptionsText[] = { "\n( ) Avvio automatico EmuNAND",
+    static const char *singleOptionsText[] = { "( ) Avvio automatico EmuNAND",
                                                "( ) Ativ. il caric. di FIRMs e moduli di sis. es.",//ativ sta per attiva(abilita ma più intuitiva l'abbreviazione)
                                                "( ) Abilita il patching di giochi",
                                                "( ) Reindir. app. syscore threads al core2",
@@ -879,7 +879,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
     static const char *optionsDescription[]  = { "Seleziona l'EmuNAND predef.\n\n"
                                                  "Verra' avviato quando nessun pulsante del pad\n" 
                                                  "direz. e' premuto (Su/Destra/Giu'/Sinistra\n" 
-                                                 "corrisp. alle EmuNAND 1/2/3/4).\n"
+                                                 "corrisp. alle EmuNAND 1/2/3/4)."
 
                                                  "Seleziona la luminosita' dello schermo.\n", //riagguingi le informazioni dello splash screen e poi finisci la traduzione (reminder per me stesso)
                                                 
@@ -892,13 +892,13 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "I tasti ABXY e i tasti del DPAD\n"
                                                  "possono essere usati come chiavi del blocco.\n\n"
                                                  "Puo' essere mostrato anche un messaggio\n"
-                                                 "(Consulta la wiki per istruzioni).\n",
+                                                 "(Consulta la wiki per istruzioni).",
 
                                                  "Seleziona la modalita' del New 3DS CPU.\n\n"
                                                  "Questo non verra' applicato per i\n"
                                                  "giochi esclusivi/potenziati per New3DS.\n\n"
                                                  "'Clock+L2' puo' creare problemi con alcuni\n"
-                                                 "giochi.\n",
+                                                 "giochi.",
 
                                                  "Abilita l'avvio automatico nell'homebrew menu,\n"
                                                  "sia in modalita' 3DS che DSi.\n\n"
@@ -915,7 +915,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "rimuovi le cuffie (se questo succede, entra ed esci dalla\n"
                                                  "modalita' riposo).\n\n"
                                                  "Viene anche bypassato dai suoni\n"
-                                                 "di scatto della fotocamera.\n",
+                                                 "di scatto della fotocamera.",
 
 
 
@@ -926,21 +926,12 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Per usare un EmuNAND differente dalla\n"
                                                  "predefinita, mantieni un tasto del DPAD\n"
                                                  "(Su/Destra/Giu'/Sinistra corrispondono alle EmuNANDs\n"
-                                                 "1/2/3/4).\n",
+                                                 "1/2/3/4).",
 
                                                  "Abilita il caricamento di FIRM e moduli di\n"
                                                  "sistema esterni.\n\n"
                                                  "Questo non e' necessario nella maggior parte dei casi.\n\n"
-                                                 "Consulta la wiki per maggiori istruzioni.\n",
-
-                                                 "Abilita l'oltrepassaggio del blocco regionale e\n"
-                                                 "della configurazione di lingua\n"
-                                                 "di codici binari patchati, exHeaders,\n"
-                                                 "IPS codici patchati e LayeredFS\n"
-                                                 "Per giochi specifici.\n\n"
-                                                 "Fa anche si' che certi DLC per giochi fuori\n"
-                                                 "dalla regione funzionino.\n\n"
-                                                 "Consulta la Wiki per istruzioni.\n",
+                                                 "Consulta la wiki per maggiori istruzioni.",
 
                                                  "Reindirizza i threads app. threads che si generano\n"
                                                  "sul core1, al core2 (che e' un core della\n"
@@ -949,7 +940,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Questo migliora le prestazioni di giochi\n"
                                                  "veramente pesanti (come Pok\x82mon US/UM)\n" // CP437
                                                  "di circa il 10%. Puo' rompere alcuni giochi\n"
-                                                 "e altre applicazioni.\n",
+                                                 "e altre applicazioni.",
 
                                                  "Abilita la visualizzazione della NAND attuale:\n\n"
                                                  "\t* Sys  = SysNAND\n"
@@ -957,29 +948,29 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "\t* EmuX = EmuNAND X\n\n"
                                                  "o una stringa personalizzata e definita\n"
                                                  "dall'utente nelle Impostazioni di sistema.\n\n"
-                                                 "Consulta la wiki per maggiori istruzioni.\n",
+                                                 "Consulta la wiki per maggiori istruzioni.",
 
                                                  "Abilita la visualizzazione dello schermo di avvio del GBA\n"
-                                                 "quando si avviano giochi GBA.\n",
+                                                 "quando si avviano giochi GBA.",
 
                                                  "Abilita il rimpiazzo dei filtri di\n"
                                                  "upscaling usati per i software DS(i) con i\n"
                                                  "contenuti di:\n\n"
                                                  "/luma/twl_upscaling_filter.bin\n\n"
-                                                 "Consulta la wiki per maggiori dettagli su questa funzione.\nn",
+                                                 "Consulta la wiki per maggiori dettagli su questa funzione.",
 
                                                  "Ammetti le combinazioni Sinistra+Destra/Su+Giù\n"
                                                  "(usando il DPAD e il CPAD\n"
                                                  "simultaneamente) nei software DS(i).\n\n"
                                                  "I software commerciali filtrano\n"
-                                                 "da soli queste combinazioni pero.",
+                                                 "da soli queste combinazioni pero'.",
                                                  
                                                  "Togli il wifi al 3DS in modalita' riposo.\n\n"
                                                  "Utile per risparmiare batteria ma impedira' ad\n"
                                                  "alcune funzioni come streetpass o\n"
                                                  "spotpass di funzionare in modalira riposo.\n\n"
                                                  "Usa questo se non vuoi usarle e\n"
-                                                 "vuoi risparmiare batteria in modalita riposo.\n",
+                                                 "vuoi risparmiare batteria in modalita riposo.",
                                                  
                                                  "Fa si' che la console sia sempre riconosciuta\n"
                                                  "come unita di sviluppo, e convertirla.\n"
@@ -987,14 +978,14 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "e i retail CIA, ma consente l'installazione\n"
                                                  "di alcuni software di sviluppo).\n\n"
                                                  "Seleziona questo solamente se sai cosa\n"
-                                                 "stai facendo!\n",
+                                                 "stai facendo!",
                                                  
                                                  "Disabilita gli improvvisi errori fatali handlers \n"
                                                  "per la CPU Arm11.\n\n"
                                                  "Nota: Disabilitare gli improvvisi handlers\n"
                                                  "ti rimuovera dal creare\n"
                                                  "issue o bug report nella repository Luma3DS\n"
-                                                 "di GitHub!\n",
+                                                 "di GitHub!",
                                                 
                                                  "Abilita Rosalina, il kernel esterno.\n"
                                                  "e la reimplementazione dei moduli di sistema\n"
@@ -1003,7 +994,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "permettendo così di usare la versione 8.1-11.3 N3DS su\n"
                                                  "New 2DSXL console.\n\n"
                                                  "Seleziona questo solamente se sai cosa\n"
-                                                 "stai facendo!\n",
+                                                 "stai facendo!",
                                                  
                                                  "Disabilita il riavvio dopo che sono capitati\n"
                                                  "errori ErrDisp. Abilita anche istantaneamente una\n"
@@ -1011,11 +1002,11 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "tua scheda SD quindi stai attento con questo.\n"
                                                  "La combo e' A + B + X + Y + Start.\n\n"
                                                  "Seleziona questo solamente se sai cosa\n"
-                                                 "stai facendo!\n",
+                                                 "stai facendo!",
                                                  
                                                  "Disablitare questo fara' si che le impostazioni\n"
                                                  "aggiuntive del menuu di configurazione di luma\n"
-                                                 "vengano nascoste.\n",
+                                                 "vengano nascoste.",
                                                  
                                                  "Abilitare questo sara' la causa completa di\n"
                                                  "di otp e della nand cid, quindi puoi\n"
@@ -1025,7 +1016,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Ricorda di mettere i file nand_cid.bin e otp.bin\n"
                                                  "nel percorso luma nella sd luma directory perche' e' dove\n"
                                                  "vengono letti e funziona solo con una scheda sd,\n"
-                                                 "perche' la nand e' sempre criptata.\n",
+                                                 "perche' la nand e' sempre criptata.",
                                                  
                                                  // Should always be the last 2 entries
                                                  "Avvia il menu chainloader di Luma3DS",
