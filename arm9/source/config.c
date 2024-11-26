@@ -857,11 +857,11 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                              };
 
     static const char *singleOptionsText[] = { "( ) Avvio automatico EmuNAND",
-                                               "( ) Ativ. il caric. di FIRMs e moduli di sis. es.",//ativ sta per attiva(abilita ma più intuitiva l'abbreviazione)
+                                               "( ) Ativ. il caric. di FIRMs e moduli di sis. es",//ativ sta per attiva(abilita ma più intuitiva l'abbreviazione) mentre es sta per esterni
                                                "( ) Abilita il patching di giochi",
                                                "( ) Reindir. app. syscore threads al core2",
                                                "( ) Mos. NAND o str. utente nelle imp. di sis.",
-                                               "( ) Mos. lo sch. di av. del GBA nel AGB_FIRM patch.",
+                                               "( ) Mos. lo sch. di av. GBA nel AGB_FIRM patch.",
                                                "( ) Cons. combo Sx+Dx / Su+Giu' per DSi", //Sx e Dx indicano destra e sinistra nel vecchi metodo a mo' di wii
                                                "( ) Interr. il WiFi del 3DS in mod. riposo",
                                                "( ) Patch schedular cpu in perf mode", //Non so per cosa sta shcedular e cosa intenda con perf in questo caso
