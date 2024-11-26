@@ -981,7 +981,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Usa questo se non vuoi usarle e\n"
                                                  "vuoi risparmiare batteria in modalita riposo.",
                                                  
-                                                 "Fa si' che la console sia sempre riconosciuta\n"
+                                                 /*"Fa si' che la console sia sempre riconosciuta\n"
                                                  "come unita di sviluppo, e convertirla.\n"
                                                  "(la quale rompe le funzioni online, amiibo\n"
                                                  "e i retail CIA, ma consente l'installazione\n"
@@ -1025,7 +1025,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Ricorda di mettere i file nand_cid.bin e otp.bin\n"
                                                  "nel percorso luma nella sd luma directory perche' e' dove\n"
                                                  "vengono letti e funziona solo con una scheda sd,\n"
-                                                 "perche' la nand e' sempre criptata.",
+                                                 "perche' la nand e' sempre criptata.",*/
                                                  
                                                  // Should always be the last 2 entries
                                                  "Avvia il menu chainloader di Luma3DS",
