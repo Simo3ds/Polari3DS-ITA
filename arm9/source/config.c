@@ -846,53 +846,56 @@ void writeConfig(bool isConfigOptions)
 
 void configMenu(bool oldPinStatus, u32 oldPinMode)
 {
-    static const char *multiOptionsText[]  = { " ",
-                                                "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
-                                               "Luminosita' schermi: 4( ) 3( ) 2( ) 1( )",
-                                               "Splash: Off( ) Prima( ) Dopo( ) le payload",
-                                               "Blocco PIN: Off( ) 4( ) 6( ) 8( ) cifre",
-                                               "New 3DS CPU: Off( ) Clock( ) L2( ) Clock+L2( )",
-                                               "Hbmenu avvio auto: Off( ) 3DS( ) DSi( )",
-                                               "Forza l'audio su: Off( ) Cuffie( ) Casse( )",
+    static const char *multiOptionsText[]  = { "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
+                                               "Luminosita schermo: 4( ) 3( ) 2( ) 1( )",
+                                               "Splash: Spento( ) Prima( ) Dopo( ) payloads",
+                                               "Blocco PIN: Spento( ) 4( ) 6( ) 8( ) cifre",
+                                               "New 3DS CPU: Spento( ) Clock( ) L2( ) Clock+L2( )",
+                                               "Avvio automatico hbmenu: Spento( ) 3DS( ) DSi( )",
+                                               "Forza l'audio: Spento( ) Cuffie( ) Casse( )"
                                              };
 
-    static const char *singleOptionsText[] = { " ",
-                                                "( ) Avvio automatico EmuNAND",
-                                               "( ) Ativ. il caric. di FIRMs e moduli di sis. es",//ativ sta per attiva(abilita ma più intuitiva l'abbreviazione) mentre es sta per esterni
-                                               "( ) Reindir. app. syscore threads al core2",
-                                               "( ) Abilita il patching di giochi",
-                                               "( ) Mos. NAND o str. utente nelle imp. di sis.",
-                                               "( ) Mos. lo sch. di av. GBA nel AGB_FIRM patch.",
-                                               "( ) Combo sx/dx, su/giu' per DSi",
-                                               "( ) Interr. il WiFi del 3DS in mod. riposo",
-                                               "( ) Patch schedular cpu in perf mode", //Non so per cosa sta shcedular e cosa intenda con perf in questo caso
-                                               "( ) Imp. UNITINFO da sviluppatore",
-                                               "( ) Disabilita i crash Arm11",                                               
+    static const char *singleOptionsText[] = { "( ) Avvia automaticamente l'EmuNAND",
+                                               "( ) Abilita il caricamento di FIRM e moduli esterni",
+                                               "( ) Abilita patch dei giochi",
+                                               "( ) Reindir. threads app. syscore al core2",
+                                               "( ) Mostra NAND o stringa utente in imp. di sistema",
+                                               "( ) Mostra schermo avvio GBA negli AGB_FIRM patchati",
+                                               "( ) Abilita filtri pers. di upscaling per DSi",
+                                               "( ) Ammetti combo Sin+D/Su+Giu per DSi",
+                                               "( ) Interrompi il wifi del 3DS in modalita riposo",
+                                               "( ) Imposta UNITINFO come svilup.",
+                                               "( ) Disabilita gli Arm11 exception handlers",                                               
                                                "( ) Abilita Rosalina nel SAFE_FIRM",
-                                               "( ) Abilita riavvio istant. + disabilita Errdisp",
-                                               "( ) Mostra impostazioni avanzate",
-                                               "( ) Abilita l'hardware patching di Nand Cid e Otp",
+                                               "( ) Abilita il riavvio ist. + disabilita Errdisp",
+                                               "( ) Mostra le impostazioni avanzate",
+                                               "( ) Abilita il patching di Nand Cid e Otp hardware",
                                                                                               
                                                // Should always be the last 2 entries
                                                "\nAvvia il chainloader",
                                                "\nSalva ed esci",
                                              };
 
-    static const char *optionsDescription[]  = {  " ",
-                                                
-                                                 "Seleziona l'EmuNAND predef.\n\n"
-                                                 "Verra' avviato quando nessun pulsante del pad\n" 
-                                                 "direz. e' premuto (Su/Destra/Giu'/Sinistra\n" 
-                                                 "corrisp. alle EmuNAND 1/2/3/4).",
+    static const char *optionsDescription[]  = { "Seleziona l'EmuNAND predefinita.\n\n"
+                                                 "Verra' avviata quando nesssun tasto \n"
+                                                 "del DPAD e' premuto (Su/Destra/Giu'\n"
+                                                 "/Sinistra corrispondono alle EmuNAND 1/2/3/4).",
 
-                                                 "Seleziona la luminosita' dello schermo.", //riagguingi le informazioni dello splash screen e poi finisci la traduzione (reminder per me stesso)
-                                                
-                                                 "Seleziona  se e quando visualizzare lo splash a\n"
-                                                 "schermo e se prima o dopo le payloads",
-                                                
+                                                 "Seleziona la luminosita' dello schermo.",
+
+                                                 "Abilita il supporto delle schermate splash.\n\n"
+                                                 "\t* 'Prima payloads' lo mostra\n"
+                                                 "prima di avviare le payloads\n"
+                                                 "(inteso per splash che mostrano\n"
+                                                 "indicazioni di tasti).\n\n"
+                                                 "\t* 'Dopo payloads' lo mostra\n"
+                                                 "dopo.\n\n"
+                                                 "Modifica la durata nel file lumae.ini (3s\n"
+                                                 "predefinita).",
+
                                                  "Abilita un blocco PIN.\n\n"
                                                  "Il PIN verra' chiesto ogni volta che\n"
-                                                 "Polari3DS si avvia.\n\n"
+                                                 "CustomLuma3DS si avvia.\n\n"
                                                  "Puo' essere impostato a 4, 6 o 8 cifre.\n\n"
                                                  "I tasti ABXY e i tasti del DPAD\n"
                                                  "possono essere usati come chiavi del blocco.\n\n"
@@ -922,7 +925,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Viene anche bypassato dai suoni\n"
                                                  "di scatto della fotocamera.",
 
-                                                
+
 
                                                  "Se abilitato, un EmuNAND\n"
                                                  "verra' lanciata all'avvio.\n\n"
@@ -938,6 +941,15 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Questo non e' necessario nella maggior parte dei casi.\n\n"
                                                  "Consulta la wiki per maggiori istruzioni.",
 
+                                                 "Abilita l'oltrepassaggio del blocco regionale e\n"
+                                                 "della configurazione di lingua\n"
+                                                 "di codici binari patchati, exHeaders,\n"
+                                                 "IPS codici patchati e LayeredFS\n"
+                                                 "Per giochi specifici.\n\n"
+                                                 "Fa anche si' che certi DLC per giochi fuori\n"
+                                                 "dalla regione funzionino.\n\n"
+                                                 "Consulta la Wiki per istruzioni.",
+
                                                  "Reindirizza i threads app. threads che si generano\n"
                                                  "sul core1, al core2 (che e' un core della\n"
                                                  "CPU aggiuntivo per applicazioni che solitamente\n"
@@ -945,9 +957,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Questo migliora le prestazioni di giochi\n"
                                                  "veramente pesanti (come Pok\x82mon US/UM)\n" // CP437
                                                  "di circa il 10%. Puo' rompere alcuni giochi\n"
-                                                 "e altre applicazioni.",
-
-                                                 "Abilita il patching di giochi tramite Polari3DS", //Not the real phrase, don't know why is despawned
+                                                 "e altre applicazioni.\n",
 
                                                  "Abilita la visualizzazione della NAND attuale:\n\n"
                                                  "\t* Sys  = SysNAND\n"
@@ -960,11 +970,17 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Abilita la visualizzazione dello schermo di avvio del GBA\n"
                                                  "quando si avviano giochi GBA.",
 
-                                                 "Ammetti le combinazioni Sinistra+Destra/Su+Giu'\n"
+                                                 "Abilita il rimpiazzo dei filtri di\n"
+                                                 "upscaling usati per i software DS(i) con i\n"
+                                                 "contenuti di:\n\n"
+                                                 "/luma/twl_upscaling_filter.bin\n\n"
+                                                 "Consulta la wiki per maggiori dettagli su questa funzione.",
+
+                                                 "Ammetti le combinazioni Sinistra+Destra/Su+Giù\n"
                                                  "(usando il DPAD e il CPAD\n"
                                                  "simultaneamente) nei software DS(i).\n\n"
                                                  "I software commerciali filtrano\n"
-                                                 "da soli queste combinazioni pero'.",
+                                                 "da soli queste combinazioni pero.",
                                                  
                                                  "Togli il wifi al 3DS in modalita' riposo.\n\n"
                                                  "Utile per risparmiare batteria ma impedira' ad\n"
@@ -1006,7 +1022,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "stai facendo!",
                                                  
                                                  "Disablitare questo fara' si che le impostazioni\n"
-                                                 "aggiuntive del menu di configurazione di luma\n"
+                                                 "aggiuntive del menuu di configurazione di luma\n"
                                                  "vengano nascoste.",
                                                  
                                                  "Abilitare questo sara' la causa completa di\n"
