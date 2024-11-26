@@ -847,47 +847,55 @@ void writeConfig(bool isConfigOptions)
 void configMenu(bool oldPinStatus, u32 oldPinMode)
 {
     static const char *multiOptionsText[]  = { "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
-                                               "Luminosita' schermi: 4( ) 3( ) 2( ) 1( )",
-                                               "Splash: Off( ) Prima( ) Dopo( ) le payload",
-                                               "Blocco PIN: Off( ) 4( ) 6( ) 8( ) cifre",
-                                               "New 3DS CPU: Off( ) Clock( ) L2( ) Clock+L2( )",
-                                               "Hbmenu avvio auto: Off( ) 3DS( ) DSi( )",
-                                               "Forza l'audio su: Off( ) Cuffie( ) Casse( )"
+                                               "Luminosita schermo: 4( ) 3( ) 2( ) 1( )",
+                                               "Splash: Spento( ) Prima( ) Dopo( ) payloads",
+                                               "Blocco PIN: Spento( ) 4( ) 6( ) 8( ) cifre",
+                                               "New 3DS CPU: Spento( ) Clock( ) L2( ) Clock+L2( )",
+                                               "Avvio automatico hbmenu: Spento( ) 3DS( ) DSi( )",
+                                               "Forza l'audio: Spento( ) Cuffie( ) Casse( )"
                                              };
 
-    static const char *singleOptionsText[] = { "( ) Avvio automatico EmuNAND",
-                                               "( ) Ativ. il caric. di FIRMs e moduli di sis. est.",//ativ sta per attiva(abilita ma più intuitiva l'abbreviazione)
-                                               "( ) Abilita il patching di giochi",
-                                               "( ) Reindir. app. syscore threads al core2",
-                                               "( ) Mostra NAND o str. utente nelle imp. di sis.",
-                                               "( ) Mostra lo sch. di av. del GBA nel AGB_FIRM patch.",
-                                               "( ) Cons. combo Sx+Dx / Su+Giu' per DSi", //Sx e Dx indicano destra e sinistra nel vecchi metodo a mo' di wii
-                                               "( ) Interr. il WiFi del 3DS in mod. riposo",
-                                               "( ) Patch schedular cpu in perf mode", //Non so per cosa sta shcedular e cosa intenda con perf in questo caso
-                                               "( ) Imp. UNITINFO da sviluppatore",
-                                               "( ) Disabilita i crash Arm11",                                               
+    static const char *singleOptionsText[] = { "( ) Avvia automaticamente l'EmuNAND",
+                                               "( ) Ab. il caricamento di FIRM e moduli est.",
+                                               "( ) Abilita patching dei giochi",
+                                               "( ) Reindir. threads app. syscore al core2",
+                                               "( ) Mostra NAND o str. utente in imp. di sis.",
+                                               "( ) Mostra sch. avv. GBA negli AGB_FIRM patch.",
+                                               "( ) Abilita filtri pers. di upscaling per DSi",
+                                               "( ) Ammetti combo Sin+D/Su+Giu' per DSi",
+                                               "( ) Interr. il wifi del 3DS in mod. riposo",
+                                               "( ) Imposta UNITINFO come svilup.",
+                                               "( ) Disabilita gli Arm11 exception handlers",                                               
                                                "( ) Abilita Rosalina nel SAFE_FIRM",
-                                               "( ) Abilita riavvio istant. + disabilita Errdisp",
-                                               "( ) Mostra impostazioni avanzate",
-                                               "( ) Abilita l'hardware patching di Nand Cid e Otp",
+                                               "( ) Abilita il riavvio ist. + disabilita Errdisp",
+                                               "( ) Mostra le impostazioni avanzate",
+                                               "( ) Abilita il patching di Nand Cid e Otp hardware",
                                                                                               
                                                // Should always be the last 2 entries
                                                "\nAvvia il chainloader",
-                                               "\nSalva ed esci"
+                                               "\nSalva ed esci",
                                              };
 
-    static const char *optionsDescription[]  = { "Seleziona l'EmuNAND predef.\n\n"
-                                                 "Verra' avviato quando nessun pulsante del pad\n" 
-                                                 "direz. e' premuto (Su/Destra/Giu'/Sinistra\n" 
-                                                 "corrisp. alle EmuNAND 1/2/3/4).\n"
+    static const char *optionsDescription[]  = { "Seleziona l'EmuNAND predefinita.\n\n"
+                                                 "Verra' avviata quando nesssun tasto \n"
+                                                 "del DPAD e' premuto (Su/Destra/Giu'\n"
+                                                 "/Sinistra corrispondono alle EmuNAND 1/2/3/4).",
 
-                                                 "Seleziona la luminosita' dello schermo.\n", //riagguingi le informazioni dello splash screen e poi finisci la traduzione (reminder per me stesso)
-                                                
+                                                 "Seleziona la luminosita' dello schermo.",
 
-                                                
+                                                 "Abilita il supporto delle schermate splash.\n\n"
+                                                 "\t* 'Prima payloads' lo mostra\n"
+                                                 "prima di avviare le payloads\n"
+                                                 "(inteso per splash che mostrano\n"
+                                                 "indicazioni di tasti).\n\n"
+                                                 "\t* 'Dopo payloads' lo mostra\n"
+                                                 "dopo.\n\n"
+                                                 "Modifica la durata nel file lumae.ini (3s\n"
+                                                 "predefinita).",
+
                                                  "Abilita un blocco PIN.\n\n"
                                                  "Il PIN verra' chiesto ogni volta che\n"
-                                                 "CustomLuma3DS si avvia.\n\n"
+                                                 "Polari3DS si avvia.\n\n"
                                                  "Puo' essere impostato a 4, 6 o 8 cifre.\n\n"
                                                  "I tasti ABXY e i tasti del DPAD\n"
                                                  "possono essere usati come chiavi del blocco.\n\n"
@@ -968,7 +976,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "/luma/twl_upscaling_filter.bin\n\n"
                                                  "Consulta la wiki per maggiori dettagli su questa funzione.",
 
-                                                 "Ammetti le combinazioni Sinistra+Destra/Su+Giù\n"
+                                                 "Ammetti le combinazioni Sinistra+Destra/Su+Giu'\n"
                                                  "(usando il DPAD e il CPAD\n"
                                                  "simultaneamente) nei software DS(i).\n\n"
                                                  "I software commerciali filtrano\n"
@@ -1032,7 +1040,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 
                                                  "Salva i cambiamenti ed esci. Per annullare\n"
                                                  "un qualsiasi cambiamento premere il tasto POWER.\n"
-                                                 "Premi Start come shortcout per questa entrata."
+                                                 "Premi Start come shortcout per questa entrata.",
                                                };
 
     FirmwareSource nandType = FIRMWARE_SYSNAND;
