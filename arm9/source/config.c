@@ -878,7 +878,9 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "\nSalva ed esci",
                                              };
 
-    static const char *optionsDescription[]  = { "Seleziona l'EmuNAND predef.\n\n"
+    static const char *optionsDescription[]  = {  " ",
+                                                
+                                                 "Seleziona l'EmuNAND predef.\n\n"
                                                  "Verra' avviato quando nessun pulsante del pad\n" 
                                                  "direz. e' premuto (Su/Destra/Giu'/Sinistra\n" 
                                                  "corrisp. alle EmuNAND 1/2/3/4).",
@@ -920,7 +922,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Viene anche bypassato dai suoni\n"
                                                  "di scatto della fotocamera.",
 
-
+                                                 " ",
 
                                                  "Se abilitato, un EmuNAND\n"
                                                  "verra' lanciata all'avvio.\n\n"
