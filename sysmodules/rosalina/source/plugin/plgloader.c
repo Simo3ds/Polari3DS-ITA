@@ -111,12 +111,12 @@ void        PluginLoader__MenuOption(void)
                 if(currentTitleUsesPlugin)
                 {
                     Draw_DrawString(10, 50, COLOR_GREEN, "Caricatore plugin auto. abilitato per questo titolo.");
-                    Draw_DrawString(10, 60, COLOR_WHITE, "Premi X per disabilitare il \ncaricatore plugin auto. \nper questo titolo."
+                    Draw_DrawString(10, 60, COLOR_WHITE, "Premi X per disabilitare il \ncaricatore plugin auto. \nper questo titolo.");
                 }
                 else
                 {
                     Draw_DrawString(10, 50, COLOR_RED, "Caricatore plugin auto. disabilitato per questo titolo.");
-                    Draw_DrawString(10, 60, COLOR_WHITE, "Premi X per abilitare il \ncaricatore plugin auto. \nper questo titolo."
+                    Draw_DrawString(10, 60, COLOR_WHITE, "Premi X per abilitare il \ncaricatore plugin auto. \nper questo titolo.");
                 }
 
                 Draw_DrawString(10, 80, COLOR_WHITE, "Rilancia il titolo corrente per \nsalvare i cambiamenti.");
