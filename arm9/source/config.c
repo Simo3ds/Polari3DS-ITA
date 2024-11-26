@@ -846,13 +846,14 @@ void writeConfig(bool isConfigOptions)
 
 void configMenu(bool oldPinStatus, u32 oldPinMode)
 {
-    static const char *multiOptionsText[]  = { "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
+    static const char *multiOptionsText[]  = { 
+                                                "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
                                                "Luminosita' schermi: 4( ) 3( ) 2( ) 1( )",
                                                "Splash: Off( ) Prima( ) Dopo( ) le payload",
                                                "Blocco PIN: Off( ) 4( ) 6( ) 8( ) cifre",
                                                "New 3DS CPU: Off( ) Clock( ) L2( ) Clock+L2( )",
                                                "Hbmenu avvio auto: Off( ) 3DS( ) DSi( )",
-                                               "Forza l'audio su: Off( ) Cuffie( ) Casse( )"
+                                               "Forza l'audio su: Off( ) Cuffie( ) Casse( )",
                                              };
 
     static const char *singleOptionsText[] = { "( ) Avvio automatico EmuNAND",
@@ -873,13 +874,13 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                                                               
                                                // Should always be the last 2 entries
                                                "\nAvvia il chainloader",
-                                               "\nSalva ed esci"
+                                               "\nSalva ed esci",
                                              };
 
     static const char *optionsDescription[]  = { "Seleziona l'EmuNAND predef.\n\n"
                                                  "Verra' avviato quando nessun pulsante del pad\n" 
                                                  "direz. e' premuto (Su/Destra/Giu'/Sinistra\n" 
-                                                 "corrisp. alle EmuNAND 1/2/3/4)."
+                                                 "corrisp. alle EmuNAND 1/2/3/4).",
 
                                                  "Seleziona la luminosita' dello schermo.\n", //riagguingi le informazioni dello splash screen e poi finisci la traduzione (reminder per me stesso)
                                                 
@@ -1023,7 +1024,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 
                                                  "Salva i cambiamenti ed esci. Per annullare\n"
                                                  "un qualsiasi cambiamento premere il tasto POWER.\n"
-                                                 "Premi Start come shortcout per questa entrata."
+                                                 "Premi Start come shortcout per questa entrata.",
                                                };
 
     FirmwareSource nandType = FIRMWARE_SYSNAND;
