@@ -846,7 +846,8 @@ void writeConfig(bool isConfigOptions)
 
 void configMenu(bool oldPinStatus, u32 oldPinMode)
 {
-    static const char *multiOptionsText[]  = { "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
+    static const char *multiOptionsText[]  = { " ",
+                                                "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
                                                "Luminosita' schermi: 4( ) 3( ) 2( ) 1( )",
                                                "Splash: Off( ) Prima( ) Dopo( ) le payload",
                                                "Blocco PIN: Off( ) 4( ) 6( ) 8( ) cifre",
@@ -855,7 +856,8 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "Forza l'audio su: Off( ) Cuffie( ) Casse( )",
                                              };
 
-    static const char *singleOptionsText[] = { "( ) Avvio automatico EmuNAND",
+    static const char *singleOptionsText[] = { " ",
+                                                "( ) Avvio automatico EmuNAND",
                                                "( ) Ativ. il caric. di FIRMs e moduli di sis. es",//ativ sta per attiva(abilita ma più intuitiva l'abbreviazione) mentre es sta per esterni
                                                "( ) Abilita il patching di giochi",
                                                "( ) Reindir. app. syscore threads al core2",
@@ -888,7 +890,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                 
                                                  "Abilita un blocco PIN.\n\n"
                                                  "Il PIN verra' chiesto ogni volta che\n"
-                                                 "CustomLuma3DS si avvia.\n\n"
+                                                 "Polari3DS si avvia.\n\n"
                                                  "Puo' essere impostato a 4, 6 o 8 cifre.\n\n"
                                                  "I tasti ABXY e i tasti del DPAD\n"
                                                  "possono essere usati come chiavi del blocco.\n\n"
@@ -960,7 +962,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "/luma/twl_upscaling_filter.bin\n\n"
                                                  "Consulta la wiki per maggiori dettagli su questa funzione.",
 
-                                                 "Ammetti le combinazioni Sinistra+Destra/Su+Giù\n"
+                                                 "Ammetti le combinazioni Sinistra+Destra/Su+Giu'\n"
                                                  "(usando il DPAD e il CPAD\n"
                                                  "simultaneamente) nei software DS(i).\n\n"
                                                  "I software commerciali filtrano\n"
@@ -1006,7 +1008,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "stai facendo!",
                                                  
                                                  "Disablitare questo fara' si che le impostazioni\n"
-                                                 "aggiuntive del menuu di configurazione di luma\n"
+                                                 "aggiuntive del menu di configurazione di luma\n"
                                                  "vengano nascoste.",
                                                  
                                                  "Abilitare questo sara' la causa completa di\n"
