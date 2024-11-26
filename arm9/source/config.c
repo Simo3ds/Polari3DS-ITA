@@ -863,7 +863,6 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "( ) Abilita il patching di giochi",
                                                "( ) Mos. NAND o str. utente nelle imp. di sis.",
                                                "( ) Mos. lo sch. di av. GBA nel AGB_FIRM patch.",
-                                               "( ) Filtri upscaling per DSi", //Sx e Dx indicano destra e sinistra nel vecchi metodo a mo' di wii
                                                "( ) Combo sx/dx, su/giu' per DSi",
                                                "( ) Interr. il WiFi del 3DS in mod. riposo",
                                                "( ) Patch schedular cpu in perf mode", //Non so per cosa sta shcedular e cosa intenda con perf in questo caso
@@ -960,12 +959,6 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 
                                                  "Abilita la visualizzazione dello schermo di avvio del GBA\n"
                                                  "quando si avviano giochi GBA.",
-
-                                                 "Abilita il rimpiazzo dei filtri di\n"
-                                                 "upscaling usati per i software DS(i) con i\n"
-                                                 "contenuti di:\n\n"
-                                                 "/luma/twl_upscaling_filter.bin\n\n"
-                                                 "Consulta la wiki per maggiori dettagli su questa funzione.",
 
                                                  "Ammetti le combinazioni Sinistra+Destra/Su+Giu'\n"
                                                  "(usando il DPAD e il CPAD\n"
