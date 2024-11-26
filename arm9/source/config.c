@@ -856,20 +856,20 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                              };
 
     static const char *singleOptionsText[] = { "( ) Avvio automatico EmuNAND",
-                                               "( ) Ativ. il caric. di FIRMs e moduli di sis. est.",//ativ sta per attiva(abilita ma più intuitiva l'abbreviazione)
+                                               "( ) Ativ. il caric. di FIRMs e moduli di sis. es.",//ativ sta per attiva(abilita ma più intuitiva l'abbreviazione)
                                                "( ) Abilita il patching di giochi",
-                                               //"( ) Reindir. app. syscore threads al core2",
-                                               "( ) Mostra NAND o str. utente nelle imp. di sis.",
-                                               "( ) Mostra lo sch. di av. del GBA nel AGB_FIRM patch.",
+                                               "( ) Reindir. app. syscore threads al core2",
+                                               "( ) Mos. NAND o str. utente nelle imp. di sis.",
+                                               "( ) Mos. lo sch. di av. del GBA nel AGB_FIRM patch.",
                                                "( ) Cons. combo Sx+Dx / Su+Giu' per DSi", //Sx e Dx indicano destra e sinistra nel vecchi metodo a mo' di wii
                                                "( ) Interr. il WiFi del 3DS in mod. riposo",
                                                "( ) Patch schedular cpu in perf mode", //Non so per cosa sta shcedular e cosa intenda con perf in questo caso
-                                              /*"( ) Imp. UNITINFO da sviluppatore",
+                                               "( ) Imp. UNITINFO da sviluppatore",
                                                "( ) Disabilita i crash Arm11",                                               
                                                "( ) Abilita Rosalina nel SAFE_FIRM",
                                                "( ) Abilita riavvio istant. + disabilita Errdisp",
                                                "( ) Mostra impostazioni avanzate",
-                                               "( ) Abilita l'hardware patching di Nand Cid e Otp",*/
+                                               "( ) Abilita l'hardware patching di Nand Cid e Otp",
                                                                                               
                                                // Should always be the last 2 entries
                                                "\nAvvia il chainloader",
@@ -926,7 +926,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Per usare un EmuNAND differente dalla\n"
                                                  "predefinita, mantieni un tasto del DPAD\n"
                                                  "(Su/Destra/Giu'/Sinistra corrispondono alle EmuNANDs\n"
-                                                 "1/2/3/4).",
+                                                 "1/2/3/4).\n",
 
                                                  "Abilita il caricamento di FIRM e moduli di\n"
                                                  "sistema esterni.\n\n"
@@ -979,22 +979,22 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "alcune funzioni come streetpass o\n"
                                                  "spotpass di funzionare in modalira riposo.\n\n"
                                                  "Usa questo se non vuoi usarle e\n"
-                                                 "vuoi risparmiare batteria in modalita riposo.",
+                                                 "vuoi risparmiare batteria in modalita riposo.\n",
                                                  
-                                                 /*"Fa si' che la console sia sempre riconosciuta\n"
+                                                 "Fa si' che la console sia sempre riconosciuta\n"
                                                  "come unita di sviluppo, e convertirla.\n"
                                                  "(la quale rompe le funzioni online, amiibo\n"
                                                  "e i retail CIA, ma consente l'installazione\n"
                                                  "di alcuni software di sviluppo).\n\n"
                                                  "Seleziona questo solamente se sai cosa\n"
-                                                 "stai facendo!",
+                                                 "stai facendo!\n",
                                                  
                                                  "Disabilita gli improvvisi errori fatali handlers \n"
                                                  "per la CPU Arm11.\n\n"
                                                  "Nota: Disabilitare gli improvvisi handlers\n"
                                                  "ti rimuovera dal creare\n"
                                                  "issue o bug report nella repository Luma3DS\n"
-                                                 "di GitHub!",
+                                                 "di GitHub!\n",
                                                 
                                                  "Abilita Rosalina, il kernel esterno.\n"
                                                  "e la reimplementazione dei moduli di sistema\n"
@@ -1003,7 +1003,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "permettendo così di usare la versione 8.1-11.3 N3DS su\n"
                                                  "New 2DSXL console.\n\n"
                                                  "Seleziona questo solamente se sai cosa\n"
-                                                 "stai facendo!",
+                                                 "stai facendo!\n",
                                                  
                                                  "Disabilita il riavvio dopo che sono capitati\n"
                                                  "errori ErrDisp. Abilita anche istantaneamente una\n"
@@ -1011,11 +1011,11 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "tua scheda SD quindi stai attento con questo.\n"
                                                  "La combo e' A + B + X + Y + Start.\n\n"
                                                  "Seleziona questo solamente se sai cosa\n"
-                                                 "stai facendo!",
+                                                 "stai facendo!\n",
                                                  
                                                  "Disablitare questo fara' si che le impostazioni\n"
                                                  "aggiuntive del menuu di configurazione di luma\n"
-                                                 "vengano nascoste.",
+                                                 "vengano nascoste.\n",
                                                  
                                                  "Abilitare questo sara' la causa completa di\n"
                                                  "di otp e della nand cid, quindi puoi\n"
@@ -1025,7 +1025,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Ricorda di mettere i file nand_cid.bin e otp.bin\n"
                                                  "nel percorso luma nella sd luma directory perche' e' dove\n"
                                                  "vengono letti e funziona solo con una scheda sd,\n"
-                                                 "perche' la nand e' sempre criptata.",*/
+                                                 "perche' la nand e' sempre criptata.\n",
                                                  
                                                  // Should always be the last 2 entries
                                                  "Avvia il menu chainloader di Luma3DS",
