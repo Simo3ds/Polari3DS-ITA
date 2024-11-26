@@ -892,13 +892,13 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "I tasti ABXY e i tasti del DPAD\n"
                                                  "possono essere usati come chiavi del blocco.\n\n"
                                                  "Puo' essere mostrato anche un messaggio\n"
-                                                 "(Consulta la wiki per istruzioni).",
+                                                 "(Consulta la wiki per istruzioni).\n",
 
                                                  "Seleziona la modalita' del New 3DS CPU.\n\n"
                                                  "Questo non verra' applicato per i\n"
                                                  "giochi esclusivi/potenziati per New3DS.\n\n"
                                                  "'Clock+L2' puo' creare problemi con alcuni\n"
-                                                 "giochi.",
+                                                 "giochi.\n",
 
                                                  "Abilita l'avvio automatico nell'homebrew menu,\n"
                                                  "sia in modalita' 3DS che DSi.\n\n"
@@ -915,7 +915,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "rimuovi le cuffie (se questo succede, entra ed esci dalla\n"
                                                  "modalita' riposo).\n\n"
                                                  "Viene anche bypassato dai suoni\n"
-                                                 "di scatto della fotocamera.",
+                                                 "di scatto della fotocamera.\n",
 
 
 
@@ -931,7 +931,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Abilita il caricamento di FIRM e moduli di\n"
                                                  "sistema esterni.\n\n"
                                                  "Questo non e' necessario nella maggior parte dei casi.\n\n"
-                                                 "Consulta la wiki per maggiori istruzioni.",
+                                                 "Consulta la wiki per maggiori istruzioni.\n",
 
                                                  "Abilita l'oltrepassaggio del blocco regionale e\n"
                                                  "della configurazione di lingua\n"
@@ -940,7 +940,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Per giochi specifici.\n\n"
                                                  "Fa anche si' che certi DLC per giochi fuori\n"
                                                  "dalla regione funzionino.\n\n"
-                                                 "Consulta la Wiki per istruzioni.",
+                                                 "Consulta la Wiki per istruzioni.\n",
 
                                                  "Reindirizza i threads app. threads che si generano\n"
                                                  "sul core1, al core2 (che e' un core della\n"
@@ -957,16 +957,16 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "\t* EmuX = EmuNAND X\n\n"
                                                  "o una stringa personalizzata e definita\n"
                                                  "dall'utente nelle Impostazioni di sistema.\n\n"
-                                                 "Consulta la wiki per maggiori istruzioni.",
+                                                 "Consulta la wiki per maggiori istruzioni.\n",
 
                                                  "Abilita la visualizzazione dello schermo di avvio del GBA\n"
-                                                 "quando si avviano giochi GBA.",
+                                                 "quando si avviano giochi GBA.\n",
 
                                                  "Abilita il rimpiazzo dei filtri di\n"
                                                  "upscaling usati per i software DS(i) con i\n"
                                                  "contenuti di:\n\n"
                                                  "/luma/twl_upscaling_filter.bin\n\n"
-                                                 "Consulta la wiki per maggiori dettagli su questa funzione.",
+                                                 "Consulta la wiki per maggiori dettagli su questa funzione.\nn",
 
                                                  "Ammetti le combinazioni Sinistra+Destra/Su+Giù\n"
                                                  "(usando il DPAD e il CPAD\n"
