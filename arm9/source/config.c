@@ -859,8 +859,8 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
     static const char *singleOptionsText[] = { " ",
                                                 "( ) Avvio automatico EmuNAND",
                                                "( ) Ativ. il caric. di FIRMs e moduli di sis. es",//ativ sta per attiva(abilita ma più intuitiva l'abbreviazione) mentre es sta per esterni
-                                               "( ) Abilita il patching di giochi",
                                                "( ) Reindir. app. syscore threads al core2",
+                                               "( ) Abilita il patching di giochi",
                                                "( ) Mos. NAND o str. utente nelle imp. di sis.",
                                                "( ) Mos. lo sch. di av. GBA nel AGB_FIRM patch.",
                                                "( ) Cons. combo Sx+Dx / Su+Giu' per DSi", //Sx e Dx indicano destra e sinistra nel vecchi metodo a mo' di wii
@@ -946,6 +946,8 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "veramente pesanti (come Pok\x82mon US/UM)\n" // CP437
                                                  "di circa il 10%. Puo' rompere alcuni giochi\n"
                                                  "e altre applicazioni.",
+
+                                                 "Abilita il patching di giochi tramite Polari3DS", //Not the real phrase, don't know why is despawned
 
                                                  "Abilita la visualizzazione della NAND attuale:\n\n"
                                                  "\t* Sys  = SysNAND\n"
