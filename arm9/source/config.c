@@ -922,7 +922,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Viene anche bypassato dai suoni\n"
                                                  "di scatto della fotocamera.",
 
-                                                 " ",
+                                                
 
                                                  "Se abilitato, un EmuNAND\n"
                                                  "verra' lanciata all'avvio.\n\n"
