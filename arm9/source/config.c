@@ -846,8 +846,7 @@ void writeConfig(bool isConfigOptions)
 
 void configMenu(bool oldPinStatus, u32 oldPinMode)
 {
-    static const char *multiOptionsText[]  = { 
-                                                "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
+    static const char *multiOptionsText[]  = { "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
                                                "Luminosita' schermi: 4( ) 3( ) 2( ) 1( )",
                                                "Splash: Off( ) Prima( ) Dopo( ) le payload",
                                                "Blocco PIN: Off( ) 4( ) 6( ) 8( ) cifre",
@@ -882,9 +881,10 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "direz. e' premuto (Su/Destra/Giu'/Sinistra\n" 
                                                  "corrisp. alle EmuNAND 1/2/3/4).",
 
-                                                 "Seleziona la luminosita' dello schermo.\n", //riagguingi le informazioni dello splash screen e poi finisci la traduzione (reminder per me stesso)
+                                                 "Seleziona la luminosita' dello schermo.", //riagguingi le informazioni dello splash screen e poi finisci la traduzione (reminder per me stesso)
                                                 
-
+                                                 "Seleziona  se e quando visualizzare lo splash a\n"
+                                                 "schermo e se prima o dopo le payloads",
                                                 
                                                  "Abilita un blocco PIN.\n\n"
                                                  "Il PIN verra' chiesto ogni volta che\n"
