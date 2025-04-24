@@ -193,7 +193,7 @@ static void handleShellNotification(u32 notificationId)
         {
             ScreenFilter_SuppressLeds();
         }
-        
+
         // Shell opened
         // Note that this notification is also fired on system init.
         // Sequence goes like this: MCU fires notif. 0x200 on shell open
@@ -261,6 +261,8 @@ static void handlePreTermNotification(u32 notificationId)
     Draw_Lock();
     if (isHidInitialized)
         hidExit();
+    if (isQtmInitialized)
+        svcCloseHandle(*qtmGetSessionHandle()); // qtmExit();
 
     // Termination request
     menuShouldExit = true;

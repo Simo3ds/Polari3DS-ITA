@@ -162,15 +162,26 @@ static void ScreenFiltersMenu_SetCct(u16 cct)
 
 static void ScreenFiltersMenu_UpdateEntries(void)
 {
-    if (topScreenFilter.colorCurveCorrection == 0 || bottomScreenFilter.colorCurveCorrection == 0)
+    if (topScreenFilter.colorCurveCorrection == 0)
     {
-        screenFiltersMenu.items[10].title = "Adjust both screens color curve to sRGB";
-        screenFiltersMenu.items[10].method = &ScreenFiltersMenu_SetSrgbColorCurves;
+        screenFiltersMenu.items[10].title = "[IPS recommended] Enhance top screen colors";
+        screenFiltersMenu.items[10].method = &ScreenFiltersMenu_SetTopScreenSrgbColorCurve;
     }
     else
     {
-        screenFiltersMenu.items[10].title = "Restore both screens color curve";
-        screenFiltersMenu.items[10].method = &ScreenFiltersMenu_RestoreColorCurves;
+        screenFiltersMenu.items[10].title = "Restore top screen color curve";
+        screenFiltersMenu.items[10].method = &ScreenFiltersMenu_RestoreTopScreenColorCurve;
+    }
+
+    if (bottomScreenFilter.colorCurveCorrection == 0)
+    {
+        screenFiltersMenu.items[11].title = "[IPS recommended] Enhance bottom screen colors";
+        screenFiltersMenu.items[11].method = &ScreenFiltersMenu_SetBottomScreenSrgbColorCurve;
+    }
+    else
+    {
+        screenFiltersMenu.items[11].title = "Restore bottom screen color curve";
+        screenFiltersMenu.items[11].method = &ScreenFiltersMenu_RestoreBottomScreenColorCurve;
     }
 }
 static void ScreenFiltersMenu_SetColorCurveCorrection(bool top, u8 colorCurveCorrection)
@@ -197,7 +208,8 @@ Menu screenFiltersMenu = {
         { "[2300K] Warm Incandescent", METHOD, .method = &ScreenFiltersMenu_SetWarmIncandescent },
         { "[1900K] Candle", METHOD, .method = &ScreenFiltersMenu_SetCandle },
         { "[1200K] Ember", METHOD, .method = &ScreenFiltersMenu_SetEmber },
-        { "Adjust both screen color curve to sRGB", METHOD, .method = &ScreenFiltersMenu_SetSrgbColorCurves },
+        { "[IPS recommended] Enhance top screen colors", METHOD, .method = &ScreenFiltersMenu_SetTopScreenSrgbColorCurve },
+        { "[IPS recommended] Enhance bottom screen colors", METHOD, .method = &ScreenFiltersMenu_SetTopScreenSrgbColorCurve },
         { "Advanced configuration...", METHOD, .method = &ScreenFiltersMenu_AdvancedConfiguration },
         {},
     }
@@ -320,15 +332,23 @@ DEF_CCT_SETTER(2300, WarmIncandescent)
 DEF_CCT_SETTER(1900, Candle)
 DEF_CCT_SETTER(1200, Ember)
 
-void ScreenFiltersMenu_SetSrgbColorCurves(void)
+void ScreenFiltersMenu_SetTopScreenSrgbColorCurve(void)
 {
     ScreenFiltersMenu_SetColorCurveCorrection(true, 1);
+}
+
+void ScreenFiltersMenu_RestoreTopScreenColorCurve(void)
+{
+    ScreenFiltersMenu_SetColorCurveCorrection(true, 0);
+}
+
+void ScreenFiltersMenu_SetBottomScreenSrgbColorCurve(void)
+{
     ScreenFiltersMenu_SetColorCurveCorrection(false, 2);
 }
 
-void ScreenFiltersMenu_RestoreColorCurves(void)
+void ScreenFiltersMenu_RestoreBottomScreenColorCurve(void)
 {
-    ScreenFiltersMenu_SetColorCurveCorrection(true, 0);
     ScreenFiltersMenu_SetColorCurveCorrection(false, 0);
 }
 

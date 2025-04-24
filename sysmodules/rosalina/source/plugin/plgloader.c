@@ -232,7 +232,7 @@ void     PluginLoader__HandleCommands(void *_ctx)
     {
         case 1: // Load plugin
         {
-            if (cmdbuf[0] != IPC_MakeHeader(1, 1, 0))
+            if (cmdbuf[0] != IPC_MakeHeader(1, 2, 0))
             {
                 error(cmdbuf, 0xD9001830);
                 break;
@@ -245,7 +245,7 @@ void     PluginLoader__HandleCommands(void *_ctx)
                 TaskRunner_RunTask(j_PluginLoader__SetMode3AppMode, NULL, 0);
 
             bool flash = !(ctx->useUserLoadParameters && ctx->userLoadParameters.noFlash);
-            if (ctx->isEnabled && TryToLoadPlugin(ctx->target))
+            if (ctx->isEnabled && TryToLoadPlugin(ctx->target, cmdbuf[2]))
             {
                 if (flash)
                 {
@@ -639,6 +639,7 @@ static void WaitForProcessTerminated(void *arg)
     ctx->isSwapFunctionset = false;
     ctx->pluginMemoryStrategy = PLG_STRATEGY_SWAP;
     ctx->eventsSelfManaged = false;
+    ctx->isMemPrivate = false;
     g_blockMenuOpen = 0;
     MemoryBlock__ResetSwapSettings();
     //if (!ctx->userLoadParameters.noIRPatch)

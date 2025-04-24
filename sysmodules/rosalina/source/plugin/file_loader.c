@@ -142,7 +142,7 @@ static Result   CheckPluginCompatibility(_3gx_Header *header, u32 processTitle)
     return -1;
 }
 
-bool     TryToLoadPlugin(Handle process)
+bool     TryToLoadPlugin(Handle process, bool isHomebrew)
 {
     u64             tid;
     u64             fileSize;
@@ -208,12 +208,20 @@ bool     TryToLoadPlugin(Handle process)
     // Check compatibility
     if (!res && fileHeader.infos.compatibility == PLG_COMPAT_EMULATOR) {
         ctx->error.message = "Plugin is only compatible with emulators";
-        return false;
+        res = -1;
+    }
+
+    // Check if plugin can load on homebrew
+    if (!res && (isHomebrew && !fileHeader.infos.allowHomebrewLoad)) {
+        // Do not display message as this is a common case
+        ctx->error.message = NULL;
+        res = -1;
     }
 
     // Flags
     if (!res) {
         ctx->eventsSelfManaged = fileHeader.infos.eventsSelfManaged;
+        ctx->isMemPrivate = fileHeader.infos.usePrivateMemory;
         if (ctx->pluginMemoryStrategy == PLG_STRATEGY_SWAP && fileHeader.infos.swapNotNeeded)
             ctx->pluginMemoryStrategy = PLG_STRATEGY_NONE;
     }
@@ -292,7 +300,7 @@ bool     TryToLoadPlugin(Handle process)
 
         extern u32  g_savedGameInstr[2];
 
-        if (R_FAILED((res = svcMapProcessMemoryEx(CUR_PROCESS_HANDLE, procStart, process, procStart, 0x1000))))
+        if (R_FAILED((res = svcMapProcessMemoryEx(CUR_PROCESS_HANDLE, procStart, process, procStart, 0x1000, 0))))
         {
             ctx->error.message = "Couldn't map process";
             ctx->error.code = res;
