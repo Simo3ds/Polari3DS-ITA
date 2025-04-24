@@ -62,7 +62,6 @@ Menu rosalinaMenu = {
         { "", METHOD, .method = PluginLoader__MenuOption},
         { "Screen filters...", MENU, .menu = &screenFiltersMenu },
         { "New 3DS settings...", MENU, .menu = &N3DSMenu, .visibility = &menuCheckN3ds },
-        { "Streaming", MENU, .menu = &streamingMenu },
         { "Process hacker", METHOD, .method = &RosalinaMenu_ProcessList },
         { "Debugger options...", MENU, .menu = &debuggerMenu },
         { "System configuration...", MENU, .menu = &sysconfigMenu },
