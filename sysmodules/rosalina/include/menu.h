@@ -78,8 +78,9 @@ typedef struct Menu {
 
 extern u32 menuCombo;
 extern bool isHidInitialized;
+extern bool isQtmInitialized;
 extern u32 mcuFwVersion;
-extern u8 mcuInfoTable[9];
+extern u8 mcuInfoTable[10];
 extern bool mcuInfoTableRead;
 extern u32 g_blockMenuOpen;
 extern bool rosalinaOpen;
