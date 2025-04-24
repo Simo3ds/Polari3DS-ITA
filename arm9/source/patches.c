@@ -45,6 +45,7 @@
 #define K11EXT_VA         0x70000000
 
 extern u16 launchedPath[];
+extern u32 firmProtoVersion;
 
 u8 *getProcess9Info(u8 *pos, u32 size, u32 *process9Size, u32 *process9MemAddr)
 {
@@ -54,10 +55,20 @@ u8 *getProcess9Info(u8 *pos, u32 size, u32 *process9Size, u32 *process9MemAddr)
 
     Cxi *off = (Cxi *)(temp - 0x100);
 
-    *process9Size = (off->ncch.exeFsSize - 1) * 0x200;
     *process9MemAddr = off->exHeader.systemControlInfo.textCodeSet.address;
 
-    return (u8 *)off + (off->ncch.exeFsOffset + 1) * 0x200;
+    // Prototype FW has a different NCCH format
+    if (firmProtoVersion && firmProtoVersion <= 243)
+    {
+        *process9Size = off->ncch.exeFsSize;
+        return (u8 *)off + off->ncch.exeFsOffset;
+    }
+    else
+    {
+        *process9Size = (off->ncch.exeFsSize - 1) * 0x200;
+        return (u8 *)off + (off->ncch.exeFsOffset + 1) * 0x200;
+    }
+
 }
 
 u32 *getKernel11Info(u8 *pos, u32 size, u32 *baseK11VA, u8 **freeK11Space, u32 **arm11SvcHandler, u32 **arm11ExceptionsPage)
@@ -1073,5 +1084,38 @@ u32 nandTypoFix(u8 *pos, u32 size)
     
     off[12] = 0xe02b; // b +35
     
+    return 0;
+}
+
+u32 patchProtoNandSignatureCheck(u8 *pos, u32 size) {
+    if (firmProtoVersion == 243) {
+        static const u8 pattern[] = {0x08, 0x31, 0x9F, 0xE5};
+
+        // Signature check function returns 0 if failed and 1 if succeeded.
+        // Proc9 breaks if the returned value is 0, change it to break if
+        // the returned value is 2 (never).
+        u8 *off = memsearch(pos, pattern, size, sizeof(pattern));
+        if (!off)
+            return 1;
+
+        off[0x20] = 2;
+    }
+
+    else if (firmProtoVersion == 238) { // SDK 0.10
+        // Same patch as for v243 ported to the different ncsd_read() function
+        static const u8 pattern[] = {
+            0x00, 0x11, 0x9f, 0xe5,
+            0x00, 0x51, 0x9f, 0xe5,
+        };
+
+        u8 *off = memsearch(pos, pattern, size, sizeof(pattern));
+        if (!off)
+            return 1;
+
+        off[0x20] = 2;
+    }
+
+    else return 1;
+
     return 0;
 }

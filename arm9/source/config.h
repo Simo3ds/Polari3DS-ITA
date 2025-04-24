@@ -39,7 +39,7 @@
 
 #define CONFIG_FILE         "lumae.ini"
 #define CONFIG_VERSIONMAJOR 5
-#define CONFIG_VERSIONMINOR 4
+#define CONFIG_VERSIONMINOR 5
 
 #define BOOTCFG_NAND         BOOTCONFIG(0, 1)
 #define BOOTCFG_EMUINDEX     BOOTCONFIG(1, 3)
