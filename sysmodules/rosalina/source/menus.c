@@ -58,10 +58,11 @@ Menu rosalinaMenu = {
     {
         { "Screenshot NFTs", METHOD, .method = &RosalinaMenu_TakeScreenshot },
         { "Change screen brightness", METHOD, .method = &RosalinaMenu_ChangeScreenBrightness },
-        { "Screen filters...", MENU, .menu = &screenFiltersMenu },
         { "Cheater", METHOD, .method = &RosalinaMenu_Cheats },
         { "", METHOD, .method = PluginLoader__MenuOption},
+        { "Screen filters...", MENU, .menu = &screenFiltersMenu },
         { "New 3DS settings...", MENU, .menu = &N3DSMenu, .visibility = &menuCheckN3ds },
+        { "Streaming", MENU, .menu = &streamingMenu },
         { "Process hacker", METHOD, .method = &RosalinaMenu_ProcessList },
         { "Debugger options...", MENU, .menu = &debuggerMenu },
         { "System configuration...", MENU, .menu = &sysconfigMenu },
