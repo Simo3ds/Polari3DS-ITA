@@ -32,7 +32,7 @@ https://github.com/cooolgamer/the-pirate-launcher
 * fix quick debugger in loader (missing process and data...)
  
 (little feature)/(improvements):
-* add cool patch like mcu bricker for notification led;
+Nothing at the moment 
 
 Revision
 
