@@ -9,10 +9,10 @@ endif
 TOPDIR ?= $(CURDIR)
 include $(DEVKITARM)/base_rules
 
-export REVISION			:=	v1.2.1
+export REVISION			:=	v1.2.2
 export VERSION_MAJOR	:=	1
 export VERSION_MINOR	:=	2
-export VERSION_BUILD	:=	1
+export VERSION_BUILD	:=	2
 export COMMIT			:=	$(shell git rev-parse --short=8 HEAD)
 export IS_RELEASE		:=	1
 
@@ -68,10 +68,10 @@ endif
 
 ifeq ($(BUILD_FOR_GDB),1)
         EXTRA_DEFINES += -DBUILD_FOR_GDB=1
-	OPTFLAGS := -Og -fno-fast-math
+	OPTFLAGS := -Og -fno-fast-math -ftrivial-auto-var-init=pattern
 	UFLAGS := 
 else
-	OPTFLAGS := -O2 -fomit-frame-pointer -ffast-math
+	OPTFLAGS := -O2 -fomit-frame-pointer -ffast-math -ftrivial-auto-var-init=zero
 	UFLAGS := -fno-rtti -fno-exceptions
 endif
 
@@ -79,7 +79,7 @@ DEFINES += 	$(EXTRA_DEFINES)
 
 FALSEPOSITIVES := -Wno-array-bounds -Wno-stringop-overflow -Wno-stringop-overread
 CFLAGS	:=	-g -std=gnu11 -Wall -Wextra -Werror -mword-relocations \
-	        -ffunction-sections -fdata-sections \
+	        -fzero-init-padding-bits=all -ffunction-sections -fdata-sections \
                 -Wno-main $(OPTFLAGS) $(FALSEPOSITIVES) $(ARCH) $(DEFINES)
 
 CFLAGS	+=	$(INCLUDE) -fno-builtin-memcpy

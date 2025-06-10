@@ -58,7 +58,7 @@ void locateEmuNand(FirmwareSource *nandType, u32 *emunandIndex, bool configureCt
     {
         static const u32 roundedMinsizes[] = {0x1D8000, 0x26E000};
 
-        u32 nandOffset;
+        u32 __attribute__((uninitialized)) nandOffset;
         switch(i)
         {
             case 1:
