@@ -225,9 +225,9 @@ static void ProcessListMenu_MemoryViewer(const ProcessInfo *info)
 
     if(R_SUCCEEDED(res))
     {
-        u32 codeStartAddress, heapStartAddress;
-        u32 codeDestAddress, heapDestAddress;
-        u32 codeTotalSize, heapTotalSize;
+        u32 __attribute__((uninitialized)) codeStartAddress, heapStartAddress;
+        u32 __attribute__((uninitialized)) codeDestAddress, heapDestAddress;
+        u32 __attribute__((uninitialized)) codeTotalSize, heapTotalSize;
 
         s64 textStartAddress, textTotalRoundedSize, rodataTotalRoundedSize, dataTotalRoundedSize;
 

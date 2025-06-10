@@ -44,7 +44,6 @@
 #include "menus/screen_filters.h"
 #include "menus/config_extra.h"
 #include "menus/sysconfig.h"
-#include "menus/chainloader.h"
 #include "config_template_ini.h"
 #include "configExtra_ini.h"
 

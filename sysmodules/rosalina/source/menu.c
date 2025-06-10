@@ -52,7 +52,6 @@
 #include "shell.h"
 #include "menus/quick_switchers.h"
 #include "volume.h"
-#include "menus/chainloader.h"
 #include "config_template_ini.h"
 #include "configExtra_ini.h"
 
@@ -81,8 +80,7 @@ void menuMakeLedDabadeedabada(void)
 {
     // Do shit with LEDs
     mcuHwcInit();
-    u8 result;
-    result = 1;
+    u8 result = 0x1;
     MCUHWC_WriteRegister(0x29, &result, 1);
     mcuHwcExit();
 }
@@ -719,6 +717,10 @@ void menuShow(Menu *root)
             menuToggleLeds();
         }
          else if(pressed & KEY_Y)
+        {
+            ledmulticolor();
+        }
+        else if(pressed & KEY_X)
         {
             menuMakeLedDabadeedabada();
         }
