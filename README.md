@@ -36,7 +36,7 @@ Nothing at the moment
 
 Revision
 
-* fix and reformat chainloader
+* Chainloader isn't coming back i am making a separate app for that is memory safer;
   
 NOT AT THE MOMENT
 * gateway sysnand support🤔 (gateway3ds can still cause many problems so for now i'm not adding it)
