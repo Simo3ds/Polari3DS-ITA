@@ -35,18 +35,18 @@ ARCH	:=	-march=armv6k -mtune=mpcore -mlittle-endian -mfloat-abi=hard -mfpu=vfpv2
 DEFINES :=	-D__3DS__ -DHBLDR_DEFAULT_3DSX_TID="0x$(HBLDR_DEFAULT_3DSX_TID)ULL" -DHBLDR_DEFAULT_3DSX_TITLE_NAME="\"$(HBLDR_DEFAULT_3DSX_TITLE_NAME)\""
 
 ifeq ($(BUILD_FOR_GDB),1)
-	OPTFLAGS := -Og -fno-fast-math -ftrivial-auto-var-init=pattern
+	OPTFLAGS := -Og -fno-fast-math
 	UFLAGS := 
 	LIBS := -lctrud -lm
 else
-	OPTFLAGS := -Os -fomit-frame-pointer -ffast-math -ftrivial-auto-var-init=zero
+	OPTFLAGS := -Os -fomit-frame-pointer -ffast-math
 	UFLAGS := -fno-rtti -fno-exceptions
 	LIBS := -lctru -lm
 endif
 
 FALSEPOSITIVES := -Wno-array-bounds -Wno-stringop-overflow -Wno-stringop-overread
 CFLAGS	:=	-g -std=gnu11 -Wall -Wextra -Werror -Wno-unused-value -mword-relocations \
-		-fzero-init-padding-bits=all -ffunction-sections -fdata-sections \
+		-ftrivial-auto-var-init=zero -fzero-init-padding-bits=all -ffunction-sections -fdata-sections \
 		    $(OPTFLAGS) $(FALSEPOSITIVES) $(ARCH) $(DEFINES)
 
 CFLAGS	+=	$(INCLUDE)
