@@ -29,15 +29,15 @@ ARCH	:=	-march=armv6k -mtune=mpcore -mlittle-endian -mfloat-abi=hard -mfpu=vfpv2
 DEFINES :=	-DARM11 -D__3DS__
 
 ifeq ($(BUILD_FOR_GDB),1)
-	OPTFLAGS := -Og -fno-fast-math -ftrivial-auto-var-init=pattern
+	OPTFLAGS := -Og -fno-fast-math
 	UFLAGS := 
 else
-	OPTFLAGS := -O2 -fomit-frame-pointer -ffast-math -ftrivial-auto-var-init=zero
+	OPTFLAGS := -O2 -fomit-frame-pointer -ffast-math
 	UFLAGS := -fno-rtti -fno-exceptions
 endif
 
 CFLAGS	:=	-g -std=gnu11 -Wall -Wextra -Werror -mword-relocations \
-	        -fzero-init-padding-bits=all -ffunction-sections -fdata-sections \
+	        -ftrivial-auto-var-init=zero -fzero-init-padding-bits=all -ffunction-sections -fdata-sections \
 		-Wno-main -fno-builtin $(OPTFLAGS) $(ARCH) $(DEFINES)
 
 CFLAGS	+=	$(INCLUDE)
