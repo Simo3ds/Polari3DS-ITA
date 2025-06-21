@@ -37,6 +37,7 @@
 #include "screen.h"
 #include "fmt.h"
 #include "chainloader.h"
+#include "buttons.h"
 
 static Firm *firm = (Firm *)0x20001000;
 u32 firmProtoVersion = 0;
@@ -649,6 +650,9 @@ u32 patchTwlFirm(u32 firmVersion, FirmwareSource nandType, bool loadFromStorage,
     u32 section2Size = firm->section[2].size;
 
     u8 *arm9Section = (u8 *)firm + firm->section[3].offset;
+    
+    u32 pressed = 0;
+    pressed = HID_PAD;
 
     // Below 3.0, do not actually do anything.
     if(!ISN3DS && firmVersion < 0xC)
@@ -672,7 +676,7 @@ u32 patchTwlFirm(u32 firmVersion, FirmwareSource nandType, bool loadFromStorage,
     ret += patchLgySignatureChecks(process9Offset, process9Size);
     ret += patchTwlInvalidSignatureChecks(process9Offset, process9Size);
     ret += patchTwlNintendoLogoChecks(process9Offset, process9Size);
-    ret += patchTwlWhitelistChecks(process9Offset, process9Size);
+    if(!(pressed & BUTTON_B)) ret += patchTwlWhitelistChecks(process9Offset, process9Size);
     if(ISN3DS || firmVersion > 0x11) ret += patchTwlFlashcartChecks(process9Offset, process9Size, firmVersion);
     else if(!ISN3DS && firmVersion == 0x11) ret += patchOldTwlFlashcartChecks(process9Offset, process9Size);
     ret += patchTwlShaHashChecks(process9Offset, process9Size);
