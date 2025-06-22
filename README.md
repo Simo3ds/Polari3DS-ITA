@@ -71,6 +71,7 @@ Restored UNITINFO and enable rosalina on safe_firm and disable arm11exceptions  
   - Press Start on Rosalina menu to toggle wifi -> [Original](https://github.com/DullPointer/Luma3DS/commit/c1a20558bed3d792d54069719a898006af20ba85)
   - Press Select on Rosalina menu to toggle LEDs -> [Original](https://github.com/DullPointer/Luma3DS/commit/fa70d374c00e39dee8b9ef54f60deb1da35a0c51) (and press X to force blue led as a workaround when the battery is low)
 - Press Y for a surprise;
+Press B to enable the patch for stargate3ds, before booting the card through nrimal means I mean not not booting firmware itself
 - Added n3ds clock + L2 status in rosalina menu -> [Original](https://github.com/DullPointer/Luma3DS/commit/2dbfa8b5c9b719b7f3056691f54332f42da6de8d)
 also selectable per title
 - Added Software Volume Control -> [Original](https://github.com/DullPointer/Luma3DS/commit/dc636d82492d1e87eb51785fa7f2a98617e7ece9)
