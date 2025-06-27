@@ -3,7 +3,7 @@
 *READ BELOW!!!!*
 # 
 
-From today you won't need to. Download polari from pc anymore I welcome you to polari refresher, the new old updater refreshed to have polari always fresh 😅, indeed. 
+From today you won't need to download polari from pc anymore I present you to polari refresher, the new old updater refreshed to have polari always fresh 😅, indeed. 
 https://github.com/Alexyo21/polari-refresher
 
 twl redirection to sd patch:
