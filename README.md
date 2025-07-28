@@ -31,7 +31,7 @@ https://github.com/cooolgamer/the-pirate-launcher
 
 ## next update
 
-* nighshift remake;
+* nighshift remake(it has been a while I should make a poll) ;
 * fix quick debugger in loader (missing process and data...)
  
 (little feature)/(improvements):
