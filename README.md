@@ -5,6 +5,8 @@
 
 From today you won't need to download polari from pc anymore I present you to polari refresher, the new old updater refreshed to have polari always fresh 😅, indeed. 
 https://github.com/Alexyo21/polari-refresher
+I use this spot for telling anyone who reads this that from now on polari3ds will have silent updates (no version changes since it breaks one file) when the changes are the one from official repo or bug fixes from official repo as well that don't touch or meddle with ini file or config: dw I will warn you if there is one... 
+
 
 twl redirection to sd patch:
 https://github.com/Alexyo21/twl_firm_patcher
