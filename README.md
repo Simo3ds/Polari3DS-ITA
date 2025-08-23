@@ -32,6 +32,7 @@ https://github.com/cooolgamer/the-pirate-launcher
 #
 
 ## next update
+Bug fix on new3ds menu thanks to lisko(will provvide soon I am on vacation) 
 
 * nighshift remake(it has been a while I should make a poll) ;
 * fix quick debugger in loader (missing process and data...)
