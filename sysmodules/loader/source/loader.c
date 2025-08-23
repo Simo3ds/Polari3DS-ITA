@@ -289,7 +289,7 @@ Result  PLGLDR__SetPluginLoaderState(bool enabled)
 }
 
 // Try to load a plugin for the game
-static Result PLGLDR_LoadPlugin(u32 processID, bool isHomebrew)
+static Result PLGLDR_LoadPlugin(u32 processID)
 {
     // Special case handling: games rebooting the 3DS on old models
     if (!isN3DS && g_exheaderInfo.aci.local_caps.core_info.o3ds_system_mode > 0)
@@ -305,9 +305,8 @@ static Result PLGLDR_LoadPlugin(u32 processID, bool isHomebrew)
 
     u32* cmdbuf = getThreadCommandBuffer();
 
-    cmdbuf[0] = IPC_MakeHeader(1, 2, 0);
+    cmdbuf[0] = IPC_MakeHeader(1, 1, 0);
     cmdbuf[1] = processID;
-    cmdbuf[2] = isHomebrew;
     return svcSendSyncRequest(plgldrHandle);
 }
 
@@ -475,16 +474,18 @@ static Result LoadProcessImpl(Handle *outProcessHandle, const ExHeader_Info *exh
             res = R_SUCCEEDED(res) ? 0 : res;
             
             // check for plugin
-            if (!res && ((u32)((titleId >> 0x20) & 0xFFFFFFEDULL) == 0x00040000))
+            if (!res && !isHomebrew && ((u32)((titleId >> 0x20) & 0xFFFFFFEDULL) == 0x00040000))
             {
                 u32 processID;
                 assertSuccess(svcGetProcessId(&processID, *outProcessHandle));
                 assertSuccess(plgldrInit());
+
                 if(usePerGamePluginSetting() && enablePluginForTitle(titleId)) 
                 {
                     assertSuccess(PLGLDR__SetPluginLoaderState(true));
                 }
-                assertSuccess(PLGLDR_LoadPlugin(processID, isHomebrew));
+
+                assertSuccess(PLGLDR_LoadPlugin(processID));
                 plgldrExit();
             }
         }

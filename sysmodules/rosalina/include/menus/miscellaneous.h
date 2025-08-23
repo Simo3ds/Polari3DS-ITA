@@ -29,6 +29,7 @@
 #include <3ds/types.h>
 #include "menu.h"
 #include "utils.h"
+#include "menus/chainloader.h"
 
 extern Menu miscellaneousMenu;
 extern int lastNtpTzOffset;

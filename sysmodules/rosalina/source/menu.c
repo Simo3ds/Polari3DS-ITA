@@ -52,16 +52,14 @@
 #include "shell.h"
 #include "menus/quick_switchers.h"
 #include "volume.h"
+#include "menus/chainloader.h"
 #include "config_template_ini.h"
 #include "configExtra_ini.h"
 
-//#define ROSALINA_MENU_SELF_SCREENSHOT 1 // uncomment this to enable the feature
-
 u32 menuCombo = 0;
 bool isHidInitialized = false;
-bool isQtmInitialized = false;
 u32 mcuFwVersion = 0;
-u8 mcuInfoTable[10] = {0};
+u8 mcuInfoTable[9] = {0};
 bool mcuInfoTableRead = false;
 bool rosalinaOpen = false;
 
@@ -80,7 +78,8 @@ void menuMakeLedDabadeedabada(void)
 {
     // Do shit with LEDs
     mcuHwcInit();
-    u8 result = 0x1;
+    u8 result;
+    result = 1;
     MCUHWC_WriteRegister(0x29, &result, 1);
     mcuHwcExit();
 }
@@ -109,20 +108,8 @@ bool hidShouldUseIrrst(void)
 
 static inline u32 convertHidKeys(u32 keys)
 {
-    // No actual conversion done
+    // Nothing to do yet
     return keys;
-}
-
-void scanInputHook(void)
-{
-    hidScanInput();
-
-#ifdef ROSALINA_MENU_SELF_SCREENSHOT
-    // Ugly hack but should work. For self-documentation w/o capture card purposes only.
-    u32 selfScreenshotCombo = KEY_L | KEY_DUP | KEY_SELECT;
-    if ((hidKeysHeld() & selfScreenshotCombo) == selfScreenshotCombo && (hidKeysDown() & selfScreenshotCombo) != 0)
-        menuTakeSelfScreenshot();
-#endif
 }
 
 u32 waitInputWithTimeout(s32 msec)
@@ -142,7 +129,7 @@ u32 waitInputWithTimeout(s32 msec)
         }
         n++;
 
-        scanInputHook();
+        hidScanInput();
         keys = convertHidKeys(hidKeysDown()) | (convertHidKeys(hidKeysDownRepeat()) & DIRECTIONAL_KEYS);
         Draw_Unlock();
     } while (keys == 0 && !menuShouldExit && isHidInitialized && (msec < 0 || n < msec));
@@ -168,7 +155,7 @@ u32 waitInputWithTimeoutEx(u32 *outHeldKeys, s32 msec)
         }
         n++;
 
-        scanInputHook();
+        hidScanInput();
         keys = convertHidKeys(hidKeysDown()) | (convertHidKeys(hidKeysDownRepeat()) & DIRECTIONAL_KEYS);
         *outHeldKeys = convertHidKeys(hidKeysHeld());
         Draw_Unlock();
@@ -193,7 +180,7 @@ static u32 scanHeldKeys(void)
         keys = 0;
     else
     {
-        scanInputHook();
+        hidScanInput();
         keys = convertHidKeys(hidKeysHeld());
     }
 
@@ -314,7 +301,7 @@ static const char *menuGetScreenTypeStr(u8 vendorId)
     {
         case 1:  return "IPS"; // SHARP
         case 12: return "TN";  // JDN
-        default: return "unknown";
+        default: return "sconosciuto";
     }
 }
 
@@ -352,24 +339,6 @@ static void menuReadScreenTypes(void)
     }
 }
 
-static void menuInitializeQtm(void)
-{
-    if (isQtmInitialized)
-        return;
-
-    // Steal QTM handle from GSP, because there is a limit of 3 sessions (or 2 before 9.3) for ALL qtm services
-    Handle qtmHandle = 0;
-    for (int i = 0; i < 30 && !qtmIsInitialized(); i++)
-    {
-        if (R_SUCCEEDED(svcControlService(SERVICEOP_STEAL_CLIENT_SESSION, &qtmHandle, "qtm:sp")))
-            *qtmGetSessionHandle() = qtmHandle;
-        else
-            svcSleepThread(100 * 100 * 1000LL);
-    }
-
-    isQtmInitialized = qtmIsInitialized();
-}
-
 static inline u32 menuAdvanceCursor(u32 pos, u32 numItems, s32 displ)
 {
     return (pos + numItems + displ) % numItems;
@@ -404,16 +373,15 @@ u32 g_blockMenuOpen = 0;
 
 void menuThreadMain(void)
 {
+    if(isN3DS)
+        N3DSMenu_UpdateStatus();
+    
+    QuickSwitchers_UpdateStatuses();
+    SysConfigMenu_UpdateRehidFolderStatus();
+    ConfigExtra_UpdateAllMenuItems();
+
     while (!isServiceUsable("ac:u") || !isServiceUsable("hid:USER") || !isServiceUsable("gsp::Gpu") || !isServiceUsable("gsp::Lcd") || !isServiceUsable("cdc:CHK"))
         svcSleepThread(250 * 1000 * 1000LL);
-
-    if (isN3DS)
-    {
-        while (!isServiceUsable("qtm:u"))
-            svcSleepThread(250 * 1000 * 1000LL);
-        menuInitializeQtm();
-        N3DSMenu_UpdateStatus();
-    }
 
     handleShellOpened();
 
@@ -435,13 +403,8 @@ void menuThreadMain(void)
 
         Cheat_ApplyCheats();
 
-        u32 kHeld = scanHeldKeys();
-
-        if(((kHeld & menuCombo) == menuCombo) && !rosalinaOpen && !g_blockMenuOpen)
+        if(((scanHeldKeys() & menuCombo) == menuCombo) && !rosalinaOpen && !g_blockMenuOpen)
         {
-            QuickSwitchers_UpdateStatuses();
-            SysConfigMenu_UpdateRehidFolderStatus();
-            ConfigExtra_UpdateAllMenuItems();
             openRosalina();
         }
         
@@ -452,10 +415,8 @@ void menuThreadMain(void)
             __builtin_unreachable();
         }
 
-        u32 hHeld = scanHeldKeys();
-        
         // toggle bottom screen combo
-        if(((hHeld & (KEY_SELECT | KEY_START)) == (KEY_SELECT | KEY_START)) && configExtra.toggleBottomLcd && hasTopScreen)
+        if(((scanHeldKeys() & (KEY_SELECT | KEY_START)) == (KEY_SELECT | KEY_START)) && configExtra.toggleBottomLcd && hasTopScreen)
         {
             u8 result, botStatus;
             mcuHwcInit();
@@ -582,7 +543,14 @@ static void menuDraw(Menu *menu, u32 selected)
         int n = sprintf(ipBuffer, "%hhu.%hhu.%hhu.%hhu", addr[0], addr[1], addr[2], addr[3]);
         Draw_DrawString(SCREEN_BOT_WIDTH - 10 - SPACING_X * n, 10, COLOR_WHITE, ipBuffer);
     }
-
+#if 0
+    else if (areScreenTypesInitialized)
+    {
+        char screenTypesBuffer[32];
+        int n = sprintf(screenTypesBuffer, "T: %s | B: %s", topScreenType, bottomScreenType);
+        Draw_DrawString(SCREEN_BOT_WIDTH - 10 - SPACING_X * n, 10, COLOR_WHITE, screenTypesBuffer);
+    }
+#endif
     else
         Draw_DrawFormattedString(SCREEN_BOT_WIDTH - 10 - SPACING_X * 15, 10, COLOR_WHITE, "%15s", "");
 
@@ -618,9 +586,9 @@ static void menuDraw(Menu *menu, u32 selected)
         Draw_DrawFormattedString(SCREEN_BOT_WIDTH - 10 - SPACING_X * 19, SCREEN_BOT_HEIGHT - 20, COLOR_WHITE, "%19s", "");
 
     if(isRelease)
-        Draw_DrawFormattedString(10, SCREEN_BOT_HEIGHT - 20, COLOR_TITLE, "Polari3DS %s", versionString);
+        Draw_DrawFormattedString(10, SCREEN_BOT_HEIGHT - 20, COLOR_TITLE, "Polari3DS-ITA %s", versionString);
     else
-        Draw_DrawFormattedString(10, SCREEN_BOT_HEIGHT - 20, COLOR_TITLE, "Polari3DS %s-%08lx", versionString, commitHash);
+        Draw_DrawFormattedString(10, SCREEN_BOT_HEIGHT - 20, COLOR_TITLE, "Polari3DS-ITA %s-%08lx", versionString, commitHash);
 
     Draw_FlushFramebuffer();
 }
@@ -705,22 +673,23 @@ void menuShow(Menu *root)
             else
                 break;
         }
-        else if(pressed & (KEY_DOWN | KEY_UP))
+        else if(pressed & KEY_DOWN)
         {
-            s32 n = (pressed & KEY_DOWN) != 0 ? 1 : -1;
-            do {
-                selectedItem = menuAdvanceCursor(selectedItem, numItems, n);
-            } while (menuItemIsHidden(&currentMenu->items[selectedItem])); // assume at least one item is visible
+            selectedItem = menuAdvanceCursor(selectedItem, numItems, 1);
+            if (menuItemIsHidden(&currentMenu->items[selectedItem]))
+                selectedItem = menuAdvanceCursor(selectedItem, numItems, 1);
+        }
+        else if(pressed & KEY_UP)
+        {
+            selectedItem = menuAdvanceCursor(selectedItem, numItems, -1);
+            if (menuItemIsHidden(&currentMenu->items[selectedItem]))
+                selectedItem = menuAdvanceCursor(selectedItem, numItems, -1);
         }
         else if(pressed & KEY_SELECT)
         {
             menuToggleLeds();
         }
          else if(pressed & KEY_Y)
-        {
-            ledmulticolor();
-        }
-        else if(pressed & KEY_X)
         {
             menuMakeLedDabadeedabada();
         }

@@ -31,7 +31,6 @@
 *   FIRM partition writes patches by delebile
 *   Idea for svcBreak patches from yellows8 and others on #3dsdev
 *   TWL_FIRM patches by Steveice10 and others
-*   Signature patches for prototype FW by PabloMK7
 */
 
 #pragma once
@@ -75,4 +74,3 @@ u32 patchReadFileSHA256Vtab11(u8 *pos, u32 size, u32 process9MemAddr);
 u32 patchNandInit(u8 *pos, u32 size);
 u32 patchCidInit(u8 *pos, u32 size);
 u32 nandTypoFix(u8 *pos, u32 size);
-u32 patchProtoNandSignatureCheck(u8 *pos, u32 size);

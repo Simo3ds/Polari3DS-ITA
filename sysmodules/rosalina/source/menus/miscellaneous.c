@@ -44,6 +44,7 @@
 #include "menus/screen_filters.h"
 #include "menus/config_extra.h"
 #include "menus/sysconfig.h"
+#include "menus/chainloader.h"
 #include "config_template_ini.h"
 #include "configExtra_ini.h"
 
@@ -75,14 +76,14 @@ typedef struct DspFirm {
 Menu miscellaneousMenu = {
     "Miscellaneous options menu",
     {
-        { "Switch the hb. title to the current app.", METHOD, .method = &MiscellaneousMenu_SwitchBoot3dsxTargetTitle },
-        { "Change the menu combo", METHOD, .method = &MiscellaneousMenu_ChangeMenuCombo },
-        { "Start InputRedirection", METHOD, .method = &MiscellaneousMenu_InputRedirection },
-        { "Update time and date via NTP", METHOD, .method = &MiscellaneousMenu_UpdateTimeDateNtp },
+        { "Scambia il titolo hb. alla seguente app.", METHOD, .method = &MiscellaneousMenu_SwitchBoot3dsxTargetTitle },
+        { "Cambia la combo di rosalina", METHOD, .method = &MiscellaneousMenu_ChangeMenuCombo },
+        { "Avvia InputRedirection", METHOD, .method = &MiscellaneousMenu_InputRedirection },
+        { "Aggiorna data e ora via NTP", METHOD, .method = &MiscellaneousMenu_UpdateTimeDateNtp },
         { "Nullify user time offset", METHOD, .method = &MiscellaneousMenu_NullifyUserTimeOffset },
-        { "Dump DSP firmware", METHOD, .method = &MiscellaneousMenu_DumpDspFirm },
-       // { "Chainloader", METHOD, .method = &chainloader },
-        { "Set Play Coins to 300", METHOD, .method = &MiscellaneousMenu_MaxPlayCoins },
+        { "Dumpa il DSP firmware", METHOD, .method = &MiscellaneousMenu_DumpDspFirm },
+        { "Imposta le monete di gioco a 300", METHOD, .method = &MiscellaneousMenu_MaxPlayCoins },
+        // { "Chainloader", METHOD, .method = &chainloader },
         {},
     }
 };
@@ -115,7 +116,7 @@ void MiscellaneousMenu_SwitchBoot3dsxTargetTitle(void)
         else
         {
             res = -1;
-            strcpy(failureReason, "no suitable process found");
+            strcpy(failureReason, "nessun processo idoneo trovato");
         }
     }
     else
@@ -137,9 +138,9 @@ void MiscellaneousMenu_SwitchBoot3dsxTargetTitle(void)
         Luma_SharedConfig->hbldr_3dsx_tid = newTid;
 
     if (compareTids(newTid, HBLDR_DEFAULT_3DSX_TID))
-        miscellaneousMenu.items[0].title = "Switch the hb. title to the current app.";
+        miscellaneousMenu.items[0].title = "Scambia il titolo hb. alla seguente app.";
     else
-        miscellaneousMenu.items[0].title = "Switch the hb. title to " HBLDR_DEFAULT_3DSX_TITLE_NAME;
+        miscellaneousMenu.items[0].title = "Scambia il titolo hb. a" HBLDR_DEFAULT_3DSX_TITLE_NAME;
 
     Draw_Lock();
     Draw_ClearFramebuffer();
@@ -148,12 +149,12 @@ void MiscellaneousMenu_SwitchBoot3dsxTargetTitle(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Miscellaneous options menu");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
 
         if(R_SUCCEEDED(res))
-            Draw_DrawString(10, 30, COLOR_WHITE, "Operation succeeded.");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Operazione eseguita con successo.");
         else
-            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Operation failed (%s).", failureReason);
+            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Operazione fallita (%s).", failureReason);
 
         Draw_FlushFramebuffer();
         Draw_Unlock();
@@ -174,10 +175,10 @@ void MiscellaneousMenu_ChangeMenuCombo(void)
     LumaConfig_ConvertComboToString(comboStrOrig, menuCombo);
 
     Draw_Lock();
-    Draw_DrawString(10, 10, COLOR_TITLE, "Miscellaneous options menu");
+    Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
 
-    posY = Draw_DrawFormattedString(10, 30, COLOR_WHITE, "The current menu combo is:  %s", comboStrOrig);
-    posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "Please enter the new combo:");
+    posY = Draw_DrawFormattedString(10, 30, COLOR_WHITE, "La combo di rosalina corrente e':  %s", comboStrOrig);
+    posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "Perfavore inserisci la nuova combo:");
 
     menuCombo = waitCombo();
     LumaConfig_ConvertComboToString(comboStr, menuCombo);
@@ -185,12 +186,12 @@ void MiscellaneousMenu_ChangeMenuCombo(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Miscellaneous options menu");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
 
-        posY = Draw_DrawFormattedString(10, 30, COLOR_WHITE, "The current menu combo is:  %s", comboStrOrig);
-        posY = Draw_DrawFormattedString(10, posY + SPACING_Y, COLOR_WHITE, "Please enter the new combo: %s", comboStr) + SPACING_Y;
+        posY = Draw_DrawFormattedString(10, 30, COLOR_WHITE, "La combo di rosalina corrente e':  %s", comboStrOrig);
+        posY = Draw_DrawFormattedString(10, posY + SPACING_Y, COLOR_WHITE, "Perfavore inserisci la nuova combo: %s", comboStr) + SPACING_Y;
 
-        posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "Successfully changed the menu combo.");
+        posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "Combo cambiata con successo.");
 
         Draw_FlushFramebuffer();
         Draw_Unlock();
@@ -211,9 +212,9 @@ void MiscellaneousMenu_InputRedirection(void)
     {
         res = InputRedirection_Disable(5 * 1000 * 1000 * 1000LL);
         if(res != 0)
-            sprintf(buf, "Failed to stop InputRedirection (0x%08lx).", (u32)res);
+            sprintf(buf, "Fallita l'interruzione di InputRedirection (0x%08lx).", (u32)res);
         else
-            miscellaneousMenu.items[2].title = "Start InputRedirection";
+            miscellaneousMenu.items[2].title = "Avvia l' InputRedirection";
     }
     else
     {
@@ -241,13 +242,13 @@ void MiscellaneousMenu_InputRedirection(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Miscellaneous options menu");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
 
         if(!wasEnabled && cantStart)
-            Draw_DrawString(10, 30, COLOR_WHITE, "Can't start the input redirection before the system\nhas finished loading.");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Impossibile avviare input redirection prima che il sistema abbia\nhas finito di caricarsi.");
         else if(!wasEnabled)
         {
-            Draw_DrawString(10, 30, COLOR_WHITE, "Starting InputRedirection...");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Avviando InputRedirection...");
             if(!done)
             {
                 res = InputRedirection_DoOrUndoPatches();
@@ -272,15 +273,15 @@ void MiscellaneousMenu_InputRedirection(void)
                 }
 
                 if(res != 0)
-                    sprintf(buf, "Starting InputRedirection... failed (0x%08lx).", (u32)res);
+                    sprintf(buf, "Avviando InputRedirection... fallita (0x%08lx).", (u32)res);
                 else
-                    miscellaneousMenu.items[2].title = "Stop InputRedirection";
+                    miscellaneousMenu.items[2].title = "Interrompi InputRedirection";
 
                 done = true;
             }
 
             if(res == 0)
-                Draw_DrawString(10, 30, COLOR_WHITE, "Starting InputRedirection... OK.");
+                Draw_DrawString(10, 30, COLOR_WHITE, "Avviando InputRedirection... OK.");
             else
                 Draw_DrawString(10, 30, COLOR_WHITE, buf);
         }
@@ -289,16 +290,16 @@ void MiscellaneousMenu_InputRedirection(void)
             if(res == 0)
             {
                 u32 posY = 30;
-                posY = Draw_DrawString(10, posY, COLOR_WHITE, "InputRedirection stopped successfully.\n\n");
+                posY = Draw_DrawString(10, posY, COLOR_WHITE, "InputRedirection interrota con successo.\n\n");
                 if (isN3DS)
                 {
                     posY = Draw_DrawString(
                         10,
                         posY,
                         COLOR_WHITE,
-                        "This might cause a key press to be repeated in\n"
-                        "Home Menu for no reason.\n\n"
-                        "Just pressing ZL/ZR on the console is enough to fix\nthis.\n"
+                        "Questo puo' essere causa per aver premuto un tasto e averlo ripetuto nel\n"
+                        "Menu Home senza ragione.\n\n"
+                        "Solamente premendo ZL/ZR sulla console e' necessario per risolvere\nquesto.\n"
                     );
                 }
             }
@@ -331,30 +332,23 @@ void MiscellaneousMenu_UpdateTimeDateNtp(void)
     int utcOffset = dt / 60;
     int utcOffsetMinute = dt%60;
     int absOffset;
-
-    Draw_Lock();
-    Draw_ClearFramebuffer();
-    Draw_FlushFramebuffer();
-    Draw_Unlock();
-
-    do
-    {
+    do{
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Miscellaneous options menu");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
 
         absOffset = utcOffset - 12;
         absOffset = absOffset < 0 ? -absOffset : absOffset;
-        posY = Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Current UTC offset:  %c%02d%02d", utcOffset < 12 ? '-' : '+', absOffset, utcOffsetMinute);
-        posY = Draw_DrawFormattedString(10, posY + SPACING_Y, COLOR_WHITE, "Use DPAD Left/Right to change hour offset.\nUse DPAD Up/Down to change minute offset.\nPress A when done.") + SPACING_Y;
-
-        Draw_FlushFramebuffer();
-        Draw_Unlock();
+        posY = Draw_DrawFormattedString(10, 30, COLOR_WHITE, "UTC offset corrente:  %c%02d%02d", utcOffset < 12 ? '-' : '+', absOffset, utcOffsetMinute);
+        posY = Draw_DrawFormattedString(10, posY + SPACING_Y, COLOR_WHITE, "Usa i tasti del DPAD: Sinistra/Destra\n per cambiare l'offs. dell'ora.\nUsa i tasti del DPAD: Su/Giu'\n per cambiare l'offs. del min.\nPremi A quando hai fatto.") + SPACING_Y;
 
         input = waitInput();
+
         if(input & KEY_LEFT) utcOffset = (27 + utcOffset - 1) % 27; // ensure utcOffset >= 0
         if(input & KEY_RIGHT) utcOffset = (utcOffset + 1) % 27;
         if(input & KEY_UP) utcOffsetMinute = (utcOffsetMinute + 1) % 60;
         if(input & KEY_DOWN) utcOffsetMinute = (60 + utcOffsetMinute - 1) % 60;
+        Draw_FlushFramebuffer();
+        Draw_Unlock();
     }
     while(!(input & (KEY_A | KEY_B)) && !menuShouldExit);
 
@@ -377,30 +371,28 @@ void MiscellaneousMenu_UpdateTimeDateNtp(void)
         }
     }
 
-    Draw_Lock();
-    Draw_ClearFramebuffer();
-    Draw_FlushFramebuffer();
-    Draw_Unlock();
-
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Miscellaneous options menu");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
 
         absOffset = utcOffset;
         absOffset = absOffset < 0 ? -absOffset : absOffset;
-        Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Current UTC offset:  %c%02d", utcOffset < 0 ? '-' : '+', absOffset);
+        Draw_DrawFormattedString(10, 30, COLOR_WHITE, "UTC offset corrente:  %c%02d", utcOffset < 0 ? '-' : '+', absOffset);
         if (cantStart)
-            Draw_DrawFormattedString(10, posY + 2 * SPACING_Y, COLOR_WHITE, "Can't sync time/date before the system\nhas finished loading.") + SPACING_Y;
+            Draw_DrawFormattedString(10, posY + 2 * SPACING_Y, COLOR_WHITE, "Impossibile sincr. la data/ora prima che il sistema\nabbia finito di caricarsi.") + SPACING_Y;
         else if (R_FAILED(res))
-            Draw_DrawFormattedString(10, posY + 2 * SPACING_Y, COLOR_WHITE, "Operation failed (%08lx).", (u32)res) + SPACING_Y;
+            Draw_DrawFormattedString(10, posY + 2 * SPACING_Y, COLOR_WHITE, "Operazione fallita (%08lx).", (u32)res) + SPACING_Y;
         else
-            Draw_DrawFormattedString(10, posY + 2 * SPACING_Y, COLOR_WHITE, "Time/date updated successfully.") + SPACING_Y;
+            Draw_DrawFormattedString(10, posY + 2 * SPACING_Y, COLOR_WHITE, "Data/ora aggiornate con successo.") + SPACING_Y;
+
+        input = waitInput();
 
         Draw_FlushFramebuffer();
         Draw_Unlock();
     }
-    while(!(waitInput() & KEY_B) && !menuShouldExit);
+    while(!(input & KEY_B) && !menuShouldExit);
+
 }
 
 void MiscellaneousMenu_NullifyUserTimeOffset(void)
@@ -415,11 +407,11 @@ void MiscellaneousMenu_NullifyUserTimeOffset(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Miscellaneous options menu");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
         if(R_SUCCEEDED(res))
-            Draw_DrawString(10, 30, COLOR_WHITE, "Operation succeeded.\n\nPlease reboot to finalize the changes.");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Operazione eseguita con successo.\n\nRiavvia la console per finalizzare i cambiamenti.");
         else
-            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Operation failed (0x%08lx).", res);
+            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Operazione fallita (0x%08lx).", res);
         Draw_FlushFramebuffer();
         Draw_Unlock();
     }
@@ -495,13 +487,13 @@ void MiscellaneousMenu_DumpDspFirm(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Miscellaneous options menu");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
         if(R_SUCCEEDED(res))
-            Draw_DrawString(10, 30, COLOR_WHITE, "DSP firm. successfully written to /3ds/dspfirm.cdc\non the SD card.");
+            Draw_DrawString(10, 30, COLOR_WHITE, "DSP firm. scritto con successo in /3ds/dspfirm.cdc\nsulla scheda SD.");
         else
             Draw_DrawFormattedString(
                 10, 30, COLOR_WHITE,
-                "Operation failed (0x%08lx).\n\nMake sure that Home Menu is running and that your\nSD card is inserted.",
+                "Operazione fallita (0x%08lx).\n\nAssicurati che l'home menu sia in esecuzione e che la\nscheda SD sia inserita.",
                 res
             );
         Draw_FlushFramebuffer();
@@ -564,13 +556,13 @@ void MiscellaneousMenu_MaxPlayCoins(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Miscellaneous options menu");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
         if(R_SUCCEEDED(res))
-            Draw_DrawString(10, 30, COLOR_WHITE, "Play Coins successfully set to 300.");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Monete di gioco impostate correttamente a 300.");
         else
 
             Draw_DrawFormattedString(10, 30, COLOR_WHITE,
-            "Error occured while setting Play Coins (0x%08lx).",
+            "Si e' verificato un errore durante il settaggio delle monete di gioco (0x%08lx).",
             res
         );
 

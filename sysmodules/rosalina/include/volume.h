@@ -9,7 +9,7 @@ extern s8 currVolumeSliderOverride;
 
 float Volume_ExtractVolume(int nul, int one, int slider);
 void Volume_AdjustVolume(u8* out, int slider, float value);
-// static Result ApplyVolumeOverride(void);
+void Volume_ControlVolume(void);
 void LoadConfig(void);
 void AdjustVolume(void);
 

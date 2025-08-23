@@ -70,14 +70,6 @@ void prepareArm11ForFirmlaunch(void)
 void deinitScreens(void)
 {
     if(ARESCREENSINITIALIZED) invokeArm11Function(DEINIT_SCREENS);
-
-    // Backlight voltage off
-    I2C_writeReg(I2C_DEV_MCU, 0x22, 0x14);
-    wait(50);
-
-    // LCD panel voltage off
-    I2C_writeReg(I2C_DEV_MCU, 0x22, 0x01);
-    wait(50);
 }
 
 void updateBrightness(u32 brightnessIndex)
@@ -110,31 +102,8 @@ void initScreens(void)
             memcpy((void *)(ARM11_PARAMETERS_ADDRESS + 4), fbs, sizeof(fbs));
             invokeArm11Function(INIT_SCREENS);
 
-            // Fragile code, needs proper fix/total rewrite of the baremetal components anyway
-            // Assume controller revision is not 0x00 for either screen (this revision is extremely
-            // old and shouldn't be seen in retail units nor normal devunits)
-
-            // Controller reset off
-            I2C_writeReg(I2C_DEV_LCD_TOP, 0xFE, 0xAA);
-            I2C_writeReg(I2C_DEV_LCD_BOT, 0xFE, 0xAA);
-            wait(5);
-
-            // Controller power on
-            I2C_writeReg(I2C_DEV_LCD_TOP, 0x01, 0x10);
-            I2C_writeReg(I2C_DEV_LCD_BOT, 0x01, 0x10);
-            wait(5);
-
-            // Clear error flag
-            I2C_writeReg(I2C_DEV_LCD_TOP, 0x60, 0x00);
-            I2C_writeReg(I2C_DEV_LCD_BOT, 0x60, 0x00);
-            wait(5);
-
-            // LCD panel (bias ?) voltage on
-            I2C_writeReg(I2C_DEV_MCU, 0x22, 0x02);
-            wait(50);
-
-            // Backlight voltage on
-            I2C_writeReg(I2C_DEV_MCU, 0x22, 0x28);
+            //Turn on backlight
+            I2C_writeReg(I2C_DEV_MCU, 0x22, 0x2A);
             wait(5);
         }
         else updateBrightness(MULTICONFIG(BRIGHTNESS));
@@ -148,9 +117,4 @@ void initScreens(void)
 
     clearScreens(false);
     swapFramebuffers(false);
-}
-
-void zerofillN3dsAblRegisters(void)
-{
-    invokeArm11Function(ZEROFILL_N3DS_ABL_REGISTERS);
 }

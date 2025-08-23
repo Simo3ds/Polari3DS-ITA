@@ -122,8 +122,8 @@ void initSystem(void)
         svcBreak(USERBREAK_PANIC);
 
     miscellaneousMenu.items[0].title = Luma_SharedConfig->selected_hbldr_3dsx_tid == HBLDR_DEFAULT_3DSX_TID ?
-        "Switch the hb. title to the current app." :
-        "Switch the hb. title to " HBLDR_DEFAULT_3DSX_TITLE_NAME;
+        "Scambia il titolo hb. con l'app corrente" :
+        "Scambia il titolo hb. con " HBLDR_DEFAULT_3DSX_TITLE_NAME;
 
     // **** DO NOT init services that don't come from KIPs here ****
     // Instead, init the service only where it's actually init (then deinit it).
@@ -193,7 +193,7 @@ static void handleShellNotification(u32 notificationId)
         {
             ScreenFilter_SuppressLeds();
         }
-
+        
         // Shell opened
         // Note that this notification is also fired on system init.
         // Sequence goes like this: MCU fires notif. 0x200 on shell open
@@ -261,8 +261,6 @@ static void handlePreTermNotification(u32 notificationId)
     Draw_Lock();
     if (isHidInitialized)
         hidExit();
-    if (isQtmInitialized)
-        svcCloseHandle(*qtmGetSessionHandle()); // qtmExit();
 
     // Termination request
     menuShouldExit = true;

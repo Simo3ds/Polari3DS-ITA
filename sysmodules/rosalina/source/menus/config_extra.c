@@ -19,30 +19,28 @@
 config_extra configExtra = { .suppressLeds = true, .cutSlotPower = false, .cutSleepWifi = false, .homeToRosalina = false, .toggleBottomLcd = false, .turnLedsOffStandby = false, .perGamePlugin = false };
 bool configExtraSaved = false;
 
-static const char menuText[8][32] = {
-    "Automatically suppress LEDs",
-    "Cut power to TWL Flashcards",
-    "Cut 3DS WiFi in sleep mode",
-    "Home button opens Rosalina",
-    "St+Se toggle bottom LCD in menu",
-    "Disable led during standby",
-    "Enable plugin loader per-game",
-    "Save config. Changes saved"
+static const char menuText[7][100] = {
+    "Sopprimi automaticamente i led",
+    "Interrompi power nelle flashcards TWL",
+    "Interrompi il wifi del 3DS in modalita' riposo",
+    "Tasto home apre rosalina",
+    "St+Se imposta i tasti LCD nel menu'",
+    "Disattiva i led durante la mod. riposo",
+    "Salva le config. Config. salvate."
 };
 
-static char menuDisplay[8][64];
+static char menuDisplay[7][200];
 
 Menu configExtraMenu = {
-    "Extra config menu",
+    "Menu configurazione extra",
     {
-        { menuText[0], METHOD, .method = &ConfigExtra_SetSuppressLeds },
-        { menuText[1], METHOD, .method = &ConfigExtra_SetCutSlotPower },
-        { menuText[2], METHOD, .method = &ConfigExtra_SetCutSleepWifi },
-        { menuText[3], METHOD, .method = &ConfigExtra_SetHomeToRosalina },
-        { menuText[4], METHOD, .method = &ConfigExtra_SetToggleBottomLcd, .visibility = &old2DScheck },
-        { menuText[5], METHOD, .method = &ConfigExtra_SetTurnLedsOffStandby },
-        { menuText[6], METHOD, .method = &ConfigExtra_SetPerGamePlugin },     
-        { menuText[7], METHOD, .method = &ConfigExtra_WriteConfigExtra },
+        { menuText[0], METHOD, .method = &ConfigExtra_SetSuppressLeds},
+        { menuText[1], METHOD, .method = &ConfigExtra_SetCutSlotPower},
+        { menuText[2], METHOD, .method = &ConfigExtra_SetCutSleepWifi},
+        { menuText[3], METHOD, .method = &ConfigExtra_SetHomeToRosalina},
+        { menuText[4], METHOD, .method = &ConfigExtra_SetToggleBottomLcd},
+        { menuText[5], METHOD, .method = &ConfigExtra_SetTurnLedsOffStandby},      
+        { menuText[6], METHOD, .method = &ConfigExtra_WriteConfigExtra},
         {},
     }
 };

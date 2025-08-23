@@ -124,7 +124,6 @@ _start:
     mov r0, r9
     mov r1, r10
     mov r2, r11
-    mov fp, sp  @ Change frame pointer to sp address
     b main
 .pool
 

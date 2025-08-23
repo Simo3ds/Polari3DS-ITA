@@ -140,8 +140,7 @@ typedef enum FirmwareType
     AGB_FIRM,
     SAFE_FIRM,
     SYSUPDATER_FIRM,
-    NATIVE_FIRM1X2X,
-    NATIVE_PROTOTYPE,
+    NATIVE_FIRM1X2X
 } FirmwareType;
 
 typedef enum bootType

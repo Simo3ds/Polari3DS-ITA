@@ -54,55 +54,24 @@ void Volume_AdjustVolume(u8* out, int slider, float value)
 
 static Result ApplyVolumeOverride(void)
 {
-    // This feature repurposes the functionality used for the camera shutter sound.
-    // As such, it interferes with it:
-    //     - shutter volume is set to the override instead of its default 100% value
-    //     - due to implementation details, having the shutter sound effect play will
-    //       make this feature stop working until the volume override is reapplied by
-    //       going back to this menu
-
-    // Original credit: profi200
-
-    u8 i2s1Mux;
-    u8 i2s2Mux;
+    // Credit profi200
+    u8 tmp;
     Result res = cdcChkInit();
 
-    if (R_SUCCEEDED(res)) res = CDCCHK_ReadRegisters2(0,  116, &i2s1Mux, 1); // used for shutter sound in TWL mode, and all GBA/DSi/3DS application
-    if (R_SUCCEEDED(res)) res = CDCCHK_ReadRegisters2(100, 49, &i2s2Mux, 1); // used for shutter sound in CTR mode and CTR mode library applets
-
+    if (R_SUCCEEDED(res)) res = CDCCHK_ReadRegisters2(0, 116, &tmp, 1); // CDC_REG_VOL_MICDET_PIN_SAR_ADC
     if (currVolumeSliderOverride >= 0)
-    {
-        i2s1Mux &= ~0x80;
-        i2s2Mux |=  0x20;
-    }
+        tmp &= ~0x80;
     else
-    {
-        i2s1Mux |=  0x80;
-        i2s2Mux &= ~0x20;
-    }
+        tmp |= 0x80;
+    if (R_SUCCEEDED(res)) res = CDCCHK_WriteRegisters2(0, 116, &tmp, 1);
 
-    s8 i2s1Volume;
-    s8 i2s2Volume;
-    if (currVolumeSliderOverride >= 0)
-    {
-        i2s1Volume = -128 + (((float)currVolumeSliderOverride/100.f) * 108);
-        i2s2Volume = i2s1Volume;
+    if (currVolumeSliderOverride >= 0) {
+        s8 calculated = -128 + (((float)currVolumeSliderOverride/100.f) * 108);
+        if (calculated > -20)
+            res = -1; // Just in case
+        s8 volumes[2] = {calculated, calculated}; // Volume in 0.5 dB steps. -128 (muted) to 48. Do not go above -20 (100%).
+        if (R_SUCCEEDED(res)) res = CDCCHK_WriteRegisters2(0, 65, volumes, 2); // CDC_REG_DAC_L_VOLUME_CTRL, CDC_REG_DAC_R_VOLUME_CTRL
     }
-    else
-    {
-        // Restore shutter sound volumes. This sould be sourced from cfg,
-        // however the values are the same everwhere
-        i2s1Volume =  -3; // -1.5 dB (115.7%, only used by TWL applications when taking photos)
-        i2s2Volume = -20; // -10 dB  (100%)
-    }
-
-    // Write volume overrides values before writing to the pinmux registers
-    if (R_SUCCEEDED(res)) res = CDCCHK_WriteRegisters2(0, 65, &i2s1Volume, 1); // CDC_REG_DAC_L_VOLUME_CTRL
-    if (R_SUCCEEDED(res)) res = CDCCHK_WriteRegisters2(0, 66, &i2s1Volume, 1); // CDC_REG_DAC_R_VOLUME_CTRL
-    if (R_SUCCEEDED(res)) res = CDCCHK_WriteRegisters2(100, 123, &i2s2Volume, 1);
-
-    if (R_SUCCEEDED(res)) res = CDCCHK_WriteRegisters2(0, 116, &i2s1Mux, 1);
-    if (R_SUCCEEDED(res)) res = CDCCHK_WriteRegisters2(100, 49, &i2s2Mux, 1);
 
     cdcChkExit();
     return res;
@@ -132,22 +101,18 @@ void AdjustVolume(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "System configuration menu");
-        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Y: Toggle volume slider override.\nDPAD/CPAD: Adjust the volume level.\nA: Apply\nB: Go back\n\n");
-        Draw_DrawString(10, posY, COLOR_WHITE, "Current status:");
-        posY = Draw_DrawString(100, posY, (tempVolumeOverride == -1) ? COLOR_RED : COLOR_GREEN, (tempVolumeOverride == -1) ? " DISABLED" : " ENABLED ");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu configurazione di sistema");
+        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Y: Attiva/Disattiva l'ovverride del cursore del volume.\nDPAD: Aggiusta il livello del volume.\nA: Applica\nB: Torna indietro\n\n");
+        Draw_DrawString(10, posY, COLOR_WHITE, "Stato attuale:");
+        posY = Draw_DrawString(100, posY, (tempVolumeOverride == -1) ? COLOR_RED : COLOR_GREEN, (tempVolumeOverride == -1) ? " DISABILITATO " : " ABILITATO ");
         if (tempVolumeOverride != -1) {
-            posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "\nValue: [%d%%]    ", tempVolumeOverride);
+            posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "\nValore: [%d%%]", tempVolumeOverride);
         } else {
             posY = Draw_DrawString(30, posY, COLOR_WHITE, "\n                 ");
         }
 
         Draw_FlushFramebuffer();
-        Draw_Unlock();
-
         u32 pressed = waitInputWithTimeout(1000);
-
-        Draw_Lock();
 
         if(pressed & KEY_A)
         {
@@ -155,9 +120,9 @@ void AdjustVolume(void)
             Result res = ApplyVolumeOverride();
             LumaConfig_SaveSettings();
             if (R_SUCCEEDED(res))
-                Draw_DrawString(10, posY, COLOR_GREEN, "\nSuccess!");
+                Draw_DrawString(10, posY, COLOR_GREEN, "\nSuccesso!");
             else
-                Draw_DrawFormattedString(10, posY, COLOR_RED, "\nFailed: 0x%08lX", res);
+                Draw_DrawFormattedString(10, posY, COLOR_RED, "\nFallito: 0x%08lX", res);
         }
         else if(pressed & KEY_B)
             return;
@@ -171,16 +136,16 @@ void AdjustVolume(void)
                 tempVolumeOverride = -1;
             }
         }
-        else if ((pressed & (KEY_UP | KEY_DOWN | KEY_LEFT | KEY_RIGHT)) && tempVolumeOverride != -1)
+        else if ((pressed & (KEY_DUP | KEY_DDOWN | KEY_DLEFT | KEY_DRIGHT)) && tempVolumeOverride != -1)
         {
             Draw_DrawString(10, posY, COLOR_WHITE, "\n                 ");
-            if (pressed & KEY_UP)
+            if (pressed & KEY_DUP)
                 tempVolumeOverride++;
-            else if (pressed & KEY_DOWN)
+            else if (pressed & KEY_DDOWN)
                 tempVolumeOverride--;
-            else if (pressed & KEY_RIGHT)
+            else if (pressed & KEY_DRIGHT)
                 tempVolumeOverride+=10;
-            else if (pressed & KEY_LEFT)
+            else if (pressed & KEY_DLEFT)
                 tempVolumeOverride-=10;
 
             if (tempVolumeOverride < 0)
@@ -189,7 +154,5 @@ void AdjustVolume(void)
                 tempVolumeOverride = 100;
         }
 
-        Draw_FlushFramebuffer();
-        Draw_Unlock();
     } while(!menuShouldExit);
 }

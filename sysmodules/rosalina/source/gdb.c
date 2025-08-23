@@ -28,10 +28,6 @@ void GDB_InitializeContext(GDBContext *ctx)
     ctx->eventToWaitFor = ctx->processAttachedEvent;
     ctx->continueFlags = (DebugFlags)(DBG_SIGNAL_FAULT_EXCEPTION_EVENTS | DBG_INHIBIT_USER_CPU_EXCEPTION_HANDLERS);
 
-#ifdef DEBUG_GDB_COMMUNICATIONS
-    IFile_Open(&ctx->debugFile, ARCHIVE_SDMC, fsMakePath(PATH_EMPTY, ""), fsMakePath(PATH_ASCII, "/luma/gdb_debug.txt"), FS_OPEN_READ | FS_OPEN_WRITE | FS_OPEN_CREATE);
-#endif
-
     RecursiveLock_Unlock(&ctx->lock);
 }
 
@@ -43,10 +39,6 @@ void GDB_FinalizeContext(GDBContext *ctx)
 
     svcCloseHandle(ctx->processAttachedEvent);
     svcCloseHandle(ctx->continuedEvent);
-
-#ifdef DEBUG_GDB_COMMUNICATIONS
-    IFile_Close(&ctx->debugFile);
-#endif
 
     RecursiveLock_Unlock(&ctx->lock);
 }

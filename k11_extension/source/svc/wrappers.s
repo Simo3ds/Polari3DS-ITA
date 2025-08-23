@@ -118,12 +118,8 @@ ControlMemoryUnsafeWrapper:
 .global MapProcessMemoryExWrapper
 .type   MapProcessMemoryExWrapper, %function
 MapProcessMemoryExWrapper:
-    push {r5, lr} @ We need to save r5 because the old implementation doesn't save it
-    cmp r0, #0xFFFFFFF2 @ Check magic value, for backwards compatibility
-    moveq r0, r6 @ If value present, flags present in r5 and dst process in r6, so move dst process back to r0
-    movne r5, #0 @ If value not present, clear the flags as its the old version
-    str r5, [sp, #-4]!
+    push {lr}
     str r4, [sp, #-4]!
     bl MapProcessMemoryEx
-    add sp, #8
-    pop {r5, pc}
+    add sp, #4
+    pop {pc}

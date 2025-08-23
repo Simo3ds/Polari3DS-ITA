@@ -9,10 +9,10 @@ endif
 TOPDIR ?= $(CURDIR)
 include $(DEVKITARM)/base_rules
 
-export REVISION			:=	v1.2.2
+export REVISION			:=	v1.1.1
 export VERSION_MAJOR	:=	1
-export VERSION_MINOR	:=	2
-export VERSION_BUILD	:=	2
+export VERSION_MINOR	:=	1
+export VERSION_BUILD	:=	1
 export COMMIT			:=	$(shell git rev-parse --short=8 HEAD)
 export IS_RELEASE		:=	1
 
@@ -79,7 +79,7 @@ DEFINES += 	$(EXTRA_DEFINES)
 
 FALSEPOSITIVES := -Wno-array-bounds -Wno-stringop-overflow -Wno-stringop-overread
 CFLAGS	:=	-g -std=gnu11 -Wall -Wextra -Werror -mword-relocations \
-	        -ftrivial-auto-var-init=zero -fzero-init-padding-bits=all -ffunction-sections -fdata-sections \
+	        -ffunction-sections -fdata-sections \
                 -Wno-main $(OPTFLAGS) $(FALSEPOSITIVES) $(ARCH) $(DEFINES)
 
 CFLAGS	+=	$(INCLUDE) -fno-builtin-memcpy

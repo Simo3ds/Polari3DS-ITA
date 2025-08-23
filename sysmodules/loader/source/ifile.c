@@ -23,9 +23,7 @@ Result IFile_OpenFromArchive(IFile *file, FS_Archive archive, FS_Path filePath, 
 
 Result IFile_Close(IFile *file)
 {
-  Result res = file->handle != 0 ? FSFILE_Close(file->handle) : 0;
-  file->handle = 0;
-  return res;
+  return FSFILE_Close(file->handle);
 }
 
 Result IFile_GetSize(IFile *file, u64 *size)

@@ -55,7 +55,7 @@ start:
     mcr p15, 0, r0, c7, c10, 4
 
     ldr sp, =__stack_top__
-    mov fp, sp
+    mov fp, #0
 
     @ Clear BSS
     ldr r0, =__bss_start__
