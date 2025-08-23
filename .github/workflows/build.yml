@@ -26,7 +26,7 @@ jobs:
     - name: safedir
       run: git config --global --add safe.directory /__w/Polari3DS-ITA/Polari3DS-ITA
     - name: Build
-      run: make -j$(nproc --all)
+      run: make -j$(nproc --always)
     - uses: actions/upload-artifact@v4
       with:
         name: Polari3DS-nightly
