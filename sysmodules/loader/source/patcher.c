@@ -569,7 +569,7 @@ static inline bool loadTitleLocaleConfig(u64 progId, u8 *mask, u8 *regionId, u8 
     if(R_FAILED(IFile_GetSize(&file, &fileSize)) || fileSize < 3) goto exit;
     if(fileSize >= 12) fileSize = 12;
 
-    char buf[12] = "------------";
+    char buf[12+1] = "------------";
     u64 total;
 
     if(R_FAILED(IFile_Read(&file, &total, buf, fileSize))) goto exit;
@@ -1127,7 +1127,7 @@ void patchCode(u64 progId, u16 progVer, u8 *code, u32 size, u32 textSize, u32 ro
                countryId,
                stateId;
 
-            if(loadTitleLocaleConfig(progId, &mask, &regionId, &languageId, &countryId, &stateId))
+            if(isLumaWithKext && loadTitleLocaleConfig(progId, &mask, &regionId, &languageId, &countryId, &stateId))
                 svcKernelSetState(0x10001, ((u32)stateId << 24) | ((u32)countryId << 16) | ((u32)languageId << 8) | ((u32)regionId << 4) | (u32)mask , progId);
             if(!patchLayeredFs(progId, code, size, textSize, roSize, dataSize, roAddress, dataAddress)) goto error;
         }

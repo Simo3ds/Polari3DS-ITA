@@ -17,6 +17,9 @@
 #include "ifile.h"
 #include "utils.h"
 
+// Uncomment the line below to dump GDB communications to a file
+//#define DEBUG_GDB_COMMUNICATIONS
+
 #define MAX_DEBUG           3
 #define MAX_DEBUG_THREAD    127
 #define MAX_BREAKPOINT      64
@@ -155,6 +158,10 @@ typedef struct GDBContext
 
     char memoryOsInfoXmlData[0x800];
     char processesOsInfoXmlData[0x1800];
+
+#ifdef DEBUG_GDB_COMMUNICATIONS
+    IFile debugFile;
+#endif
 } GDBContext;
 
 typedef int (*GDBCommandHandler)(GDBContext *ctx);

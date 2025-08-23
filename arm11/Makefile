@@ -37,7 +37,7 @@ else
 endif
 
 CFLAGS	:=	-g -std=gnu11 -Wall -Wextra -Werror -mword-relocations \
-	        -ffunction-sections -fdata-sections \
+	        -ftrivial-auto-var-init=zero -fzero-init-padding-bits=all -ffunction-sections -fdata-sections \
 		-Wno-main -fno-builtin $(OPTFLAGS) $(ARCH) $(DEFINES)
 
 CFLAGS	+=	$(INCLUDE)

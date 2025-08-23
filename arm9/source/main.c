@@ -401,6 +401,9 @@ boot:
         case NATIVE_FIRM1X2X:
             res = patch1x2xNativeAndSafeFirm();
             break;
+        case NATIVE_PROTOTYPE:
+            res = patchPrototypeNative(nandType);
+            break;
     }
 
     if(res != 0) error("Applicazione a %u FIRM patch(es) fallita.", res);
