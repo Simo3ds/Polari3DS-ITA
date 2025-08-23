@@ -1,4 +1,4 @@
-# Polari3DS
+# Polari3DS-ITA
 *Noob/Advanced-proof (N)3DS "Custom Firmware"*
 *READ BELOW!!!!*
 # 
