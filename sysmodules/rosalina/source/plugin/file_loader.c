@@ -134,15 +134,15 @@ static Result   CheckPluginCompatibility(_3gx_Header *header, u32 processTitle)
             return 0;
     }
 
-    sprintf(errorBuf, "Il plugin - %s -\nnon e' compatibile con questo gioco.\n" \
-                      "Contatta \"%s\" per piu' info.", header->infos.titleMsg, header->infos.authorMsg);
+    sprintf(errorBuf, "The plugin - %s -\nis not compatible with this game.\n" \
+                      "Contact \"%s\" for more infos.", header->infos.titleMsg, header->infos.authorMsg);
     
     PluginLoaderCtx.error.message = errorBuf;
 
     return -1;
 }
 
-bool     TryToLoadPlugin(Handle process)
+bool     TryToLoadPlugin(Handle process, bool isHomebrew)
 {
     u64             tid;
     u64             fileSize;
@@ -186,16 +186,16 @@ bool     TryToLoadPlugin(Handle process)
     }
 
     if (R_FAILED((res = IFile_GetSize(&plugin, &fileSize))))
-        ctx->error.message = "Impos. ottere le dim. del file";
+        ctx->error.message = "Couldn't get file size";
 
     if (!res && R_FAILED(res = Check_3gx_Magic(&plugin)))
     {
         const char * errors[] = 
         {
-            "Impos. leggere il file",
-            "Plugin file non valido\nIl plugin non e' in un formato 3gx valido!",
-            "Plugin file obsoleto\nControlla per una ver. aggiornata del plugin.",
-            "Caricatore plugin obsoleto\nControlla aggiornamenti di Luma3DS"   
+            "Couldn't read file.",
+            "Invalid plugin file\nNot a valid 3GX plugin format!",
+            "Outdated plugin file\nCheck for an updated plugin.",
+            "Outdated plugin loader\nCheck for Luma3DS updates."   
         };
 
         ctx->error.message = errors[R_MODULE(res) == RM_LDR ? R_DESCRIPTION(res) : 0];
@@ -203,29 +203,37 @@ bool     TryToLoadPlugin(Handle process)
 
     // Read header
     if (!res && R_FAILED((res = Read_3gx_Header(&plugin, &fileHeader))))
-        ctx->error.message = "Impossibile leggere il file";
+        ctx->error.message = "Couldn't read file";
 
     // Check compatibility
     if (!res && fileHeader.infos.compatibility == PLG_COMPAT_EMULATOR) {
-        ctx->error.message = "Il plugin e' compatibile solo con emulatori";
-        return false;
+        ctx->error.message = "Plugin is only compatible with emulators";
+        res = -1;
+    }
+
+    // Check if plugin can load on homebrew
+    if (!res && (isHomebrew && !fileHeader.infos.allowHomebrewLoad)) {
+        // Do not display message as this is a common case
+        ctx->error.message = NULL;
+        res = -1;
     }
 
     // Flags
     if (!res) {
         ctx->eventsSelfManaged = fileHeader.infos.eventsSelfManaged;
+        ctx->isMemPrivate = fileHeader.infos.usePrivateMemory;
         if (ctx->pluginMemoryStrategy == PLG_STRATEGY_SWAP && fileHeader.infos.swapNotNeeded)
             ctx->pluginMemoryStrategy = PLG_STRATEGY_NONE;
     }
 
     // Set memory region size according to header
     if (!res && R_FAILED((res = MemoryBlock__SetSize(memRegionSizes[fileHeader.infos.memoryRegionSize])))) {
-        ctx->error.message = "Impossibile impostare la dimensione memblock";
+        ctx->error.message = "Couldn't set memblock size.";
     }
     
     // Ensure memory block is mounted
     if (!res && R_FAILED((res = MemoryBlock__IsReady())))
-        ctx->error.message = "Allocamento a memoria fallito";
+        ctx->error.message = "Failed to allocate memory.";
 
     // Plugins will not exceed 5MB so this is fine
     if (!res) {
@@ -235,11 +243,11 @@ bool     TryToLoadPlugin(Handle process)
 
     // Parse rest of header
     if (!res && R_FAILED((res = Read_3gx_ParseHeader(&plugin, header))))
-        ctx->error.message = "impossibile leggere il file";
+        ctx->error.message = "Couldn't read file";
 
     // Read embedded save/load functions
     if (!res && R_FAILED((res = Read_3gx_EmbeddedPayloads(&plugin, header))))
-        ctx->error.message = "Payload di salva./carica. invalida";
+        ctx->error.message = "Invalid save/load payloads.";
     
     // Save exe checksum
     if (!res)
@@ -250,9 +258,9 @@ bool     TryToLoadPlugin(Handle process)
 
     // Read code
     if (!res && R_FAILED(res = Read_3gx_LoadSegments(&plugin, header, ctx->memblock.memblock + sizeof(PluginHeader)))) {
-        if (res == MAKERESULT(RL_PERMANENT, RS_INVALIDARG, RM_LDR, RD_NO_DATA)) ctx->error.message = "Questo plugin richiede una funzione di caricamento.";
-        else if (res == MAKERESULT(RL_PERMANENT, RS_INVALIDARG, RM_LDR, RD_INVALID_ADDRESS)) ctx->error.message = "Questo plugin e' corrotto.";
-        else ctx->error.message = "Impossibile leggere il codice del plugin.";
+        if (res == MAKERESULT(RL_PERMANENT, RS_INVALIDARG, RM_LDR, RD_NO_DATA)) ctx->error.message = "This plugin requires a loading function.";
+        else if (res == MAKERESULT(RL_PERMANENT, RS_INVALIDARG, RM_LDR, RD_INVALID_ADDRESS)) ctx->error.message = "This plugin file is corrupted.";
+        else ctx->error.message = "Couldn't read plugin's code";
     }
 
     if (R_FAILED(res))
@@ -292,9 +300,9 @@ bool     TryToLoadPlugin(Handle process)
 
         extern u32  g_savedGameInstr[2];
 
-        if (R_FAILED((res = svcMapProcessMemoryEx(CUR_PROCESS_HANDLE, procStart, process, procStart, 0x1000))))
+        if (R_FAILED((res = svcMapProcessMemoryEx(CUR_PROCESS_HANDLE, procStart, process, procStart, 0x1000, 0))))
         {
-            ctx->error.message = "Impossibile mappare il processo";
+            ctx->error.message = "Couldn't map process";
             ctx->error.code = res;
             goto exitFail;
         }

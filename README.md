@@ -1,7 +1,10 @@
-# Polari3DS-ITA
+# Polari3DS
 *Noob/Advanced-proof (N)3DS "Custom Firmware"*
 *READ BELOW!!!!*
 # 
+
+From today you won't need to download polari from pc anymore I present you to polari refresher, the new old updater refreshed to have polari always fresh 😅, indeed. 
+https://github.com/Alexyo21/polari-refresher
 
 twl redirection to sd patch:
 https://github.com/Alexyo21/twl_firm_patcher
@@ -32,11 +35,11 @@ https://github.com/cooolgamer/the-pirate-launcher
 * fix quick debugger in loader (missing process and data...)
  
 (little feature)/(improvements):
-* add cool patch like mcu bricker for notification led;
+Nothing at the moment 
 
 Revision
 
-* fix and reformat chainloader
+* Chainloader isn't coming back i am making a separate app for that is memory safer;
   
 NOT AT THE MOMENT
 * gateway sysnand support🤔 (gateway3ds can still cause many problems so for now i'm not adding it)
@@ -69,7 +72,9 @@ Restored UNITINFO and enable rosalina on safe_firm and disable arm11exceptions  
   - Press start + select to toggle bottom screen (nice when you watch videos) inspired by [This](https://github.com/DullPointer/Luma3DS/commit/9fea831656446cbaa2b5b4f6364407bb1b35dee7), limit on o2ds, cause hardware register for up and down lcd are the same looking for new test though... also you can toggle even up display you have to change scrren brightness and with button Y you can change which screen you wanna toggle, it only works in there.
   - Press A + B + X + Y + Start to instantly reboot the console. Useful in case of freeze, but don't complain if your sdcard get corrupted because of this. also this needs to be activated in the hidden conf.(lumae.ini) also enabling ignore err disp will make your console ignore some hardware error be careful your hardware is still damaged... also for new3ds you should enable the rosalina susmodule(maybe not so sus...) in safe firm in hidden conf menu.
   - Press Start on Rosalina menu to toggle wifi -> [Original](https://github.com/DullPointer/Luma3DS/commit/c1a20558bed3d792d54069719a898006af20ba85)
-  - Press Select on Rosalina menu to toggle LEDs -> [Original](https://github.com/DullPointer/Luma3DS/commit/fa70d374c00e39dee8b9ef54f60deb1da35a0c51) (and press Y to force blue led as a workaround when the battery is low)
+  - Press Select on Rosalina menu to toggle LEDs -> [Original](https://github.com/DullPointer/Luma3DS/commit/fa70d374c00e39dee8b9ef54f60deb1da35a0c51) (and press X to force blue led as a workaround when the battery is low)
+- Press Y for a surprise;
+Press B to enable the patch for stargate3ds, before booting the card through nrimal means I mean not not booting firmware itself
 - Added n3ds clock + L2 status in rosalina menu -> [Original](https://github.com/DullPointer/Luma3DS/commit/2dbfa8b5c9b719b7f3056691f54332f42da6de8d)
 also selectable per title
 - Added Software Volume Control -> [Original](https://github.com/DullPointer/Luma3DS/commit/dc636d82492d1e87eb51785fa7f2a98617e7ece9)

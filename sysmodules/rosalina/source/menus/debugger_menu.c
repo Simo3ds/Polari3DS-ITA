@@ -32,11 +32,11 @@
 #include "menus.h"
 
 Menu debuggerMenu = {
-    "Menu impostazioni del debugger",
+    "Debugger options menu",
     {
-        {"Abilita il debugger", METHOD, .method = &DebuggerMenu_EnableDebugger},
-        {"Disabilita il debugger", METHOD, .method = &DebuggerMenu_DisableDebugger},
-        {"Forza-debug all'avvio della prossima applicazione", METHOD, .method = &DebuggerMenu_DebugNextApplicationByForce},
+        {"Enable debugger", METHOD, .method = &DebuggerMenu_EnableDebugger},
+        {"Disable debugger", METHOD, .method = &DebuggerMenu_DisableDebugger},
+        {"Force-debug next application at launch", METHOD, .method = &DebuggerMenu_DebugNextApplicationByForce},
         {},
     }};
 
@@ -57,25 +57,25 @@ void DebuggerMenu_EnableDebugger(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni del debugger");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Debugger options menu");
 
         if (alreadyEnabled)
-            Draw_DrawString(10, 30, COLOR_WHITE, "Gia' attivato!");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Already enabled!");
         else if (!isSocURegistered)
-            Draw_DrawString(10, 30, COLOR_WHITE, "Impossibile avviare il debugger prima che il sistema abbia fi-\nnito di caricarsi.");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Can't start the debugger before the system has fi-\nnished loading.");
         else
         {
-            Draw_DrawString(10, 30, COLOR_WHITE, "Avviando il debugger...");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Starting debugger...");
 
             if (!done)
             {
                 res = debuggerEnable(5 * 1000 * 1000 * 1000LL);
                 if (res != 0)
-                    sprintf(buf, "Avviando il debugger... fallito (0x%08lx).", (u32)res);
+                    sprintf(buf, "Starting debugger... failed (0x%08lx).", (u32)res);
                 done = true;
             }
             if (res == 0)
-                Draw_DrawString(10, 30, COLOR_WHITE, "Avviando il debugger... OK.");
+                Draw_DrawString(10, 30, COLOR_WHITE, "Starting debugger... OK.");
             else
                 Draw_DrawString(10, 30, COLOR_WHITE, buf);
         }
@@ -93,13 +93,13 @@ void DebuggerMenu_DisableDebugger(void)
     char buf[65];
 
     if (res != 0)
-        sprintf(buf, "Disattivazione del debugger fallita (0x%08lx).", (u32)res);
+        sprintf(buf, "Failed to disable debugger (0x%08lx).", (u32)res);
 
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni del debugger");
-        Draw_DrawString(10, 30, COLOR_WHITE, initialized ? (res == 0 ? "Debugger disattivato con successo." : buf) : "Debugger non abilitato.");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Debugger options menu");
+        Draw_DrawString(10, 30, COLOR_WHITE, initialized ? (res == 0 ? "Debugger disabled successfully." : buf) : "Debugger not enabled.");
         Draw_FlushFramebuffer();
         Draw_Unlock();
     } while (!(waitInput() & KEY_B) && !menuShouldExit);
@@ -119,29 +119,29 @@ void DebuggerMenu_DebugNextApplicationByForce(void)
         switch (res)
         {
         case 0:
-            strcpy(buf, "Operazione gia' esewguita.");
+            strcpy(buf, "Operation already performed.");
             break;
         case 1:
-            sprintf(buf, "Operazione eseguita con successo.\nUsa la porta %d per connettere la prossima\napplicatione avviata.", nextApplicationGdbCtx->localPort);
+            sprintf(buf, "Operation succeeded.\nUse port %d to connect to the next launched\napplication.", nextApplicationGdbCtx->localPort);
             break;
         case 2:
-            strcpy(buf, "Allocazione di uno slot fallita.\nPerfavore prima deseleziona un processo nella lista processi.");
+            strcpy(buf, "Failed to allocate a slot.\nPlease unselect a process in the process list first");
             break;
         default:
             if (!R_SUCCEEDED(res))
             {
-                sprintf(buf, "Operazione fallita (0x%08lx).", (u32)res);
+                sprintf(buf, "Operation failed (0x%08lx).", (u32)res);
             }
             break;
         }
     }
     else
-        strcpy(buf, "Debugger non abilitato.");
+        strcpy(buf, "Debugger not enabled.");
 
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni del debugger");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Debugger options menu");
         Draw_DrawString(10, 30, COLOR_WHITE, buf);
         Draw_FlushFramebuffer();
         Draw_Unlock();

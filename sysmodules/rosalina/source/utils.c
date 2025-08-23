@@ -49,21 +49,21 @@ void formatUserMemoryState(char *outbuf, MemState state)
 {
     static const char *states[12] =
     {
-        "Libero",
-        "Riservato",
+        "Free",
+        "Reserved",
         "IO",
-        "Statico",
-        "Codice",
-        "Privato",
-        "Condiviso",
-        "Continuo",
+        "Static",
+        "Code",
+        "Private",
+        "Shared",
+        "Continuous",
         "Aliased",
         "Alias",
-        "CodiceAlias",
-        "Bloccato"
+        "AliasCode",
+        "Locked"
     };
 
-    strcpy(outbuf, state > 11 ? "Sconosciuto" : states[state]);
+    strcpy(outbuf, state > 11 ? "Unknown" : states[state]);
 }
 
 u32 formatMemoryMapOfProcess(char *outbuf, u32 bufLen, Handle handle)

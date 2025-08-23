@@ -40,13 +40,13 @@ static char g_menuDisplay[NO_OF_SWITCHABLES][266];
 u32 entryCount = 0;
 
 Menu quickSwitchersMenu = {
-    "Menu Scambio rapido",
+    "Quick-Switchers menu",
     {
         { g_switchables[0].menuText, METHOD, .method = &QuickSwitchers_TwlBg},
         { g_switchables[1].menuText, METHOD, .method = &QuickSwitchers_Widescreen},
         { g_switchables[2].menuText, METHOD, .method = &QuickSwitchers_AgbBg},
         { g_switchables[3].menuText, METHOD, .method = &QuickSwitchers_OpenAgb},
-        { "Ripristina lo schermo largo TWL", METHOD, .method = &QuickSwitchers_RevertWidescreen},
+        { "Revert TWL widescreen", METHOD, .method = &QuickSwitchers_RevertWidescreen},
         {},
     }
 };
@@ -92,7 +92,7 @@ void QuickSwitchers_DisplayFiles(void)
             Draw_Lock();
             Draw_DrawFormattedString(10, 10, COLOR_TITLE, "%s Quick-Switcher - by Nutez", g_switchables[g_switchablesIndex].menuText);
 
-            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Nessun file trovato");
+            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "No files found");
 
             Draw_FlushFramebuffer();
             Draw_Unlock();
@@ -123,7 +123,7 @@ void QuickSwitchers_DisplayFiles(void)
             }
             else
             {
-                Draw_DrawFormattedString(10, 10, COLOR_TITLE, "ERRORE: %08lx", r);
+                Draw_DrawFormattedString(10, 10, COLOR_TITLE, "ERROR: %08lx", r);
             }
             Draw_FlushFramebuffer();
             Draw_Unlock();
@@ -318,17 +318,17 @@ void QuickSwitchers_RevertWidescreen(void)
         {
             if(R_SUCCEEDED(FSUSER_RenameFile(sdmcArchive, fsMakePath(PATH_ASCII, twlbgBakPath), sdmcArchive, fsMakePath(PATH_ASCII, twlbgPath)))) // renames chosen file to the required name for external programme
             {
-                item->title = "Ripristina lo schermo largo TWL: [Successo]";
+                item->title = "Revert TWL widescreen: [Succeeded]";
             }
             else 
             {
                 FSUSER_RenameFile(sdmcArchive, fsMakePath(PATH_ASCII, widescreenPath), sdmcArchive, fsMakePath(PATH_ASCII, twlbgPath));
-                item->title = "Ripristina lo schermo largo TWL: [Non necessario]";
+                item->title = "Revert TWL widescreen: [Unneeded]";
             }
         }
         else
         {
-            item->title = "Ripristina lo schermo largo TWL: [Non necessario]";
+            item->title = "Revert TWL widescreen: [Unneeded]";
         }
 
         FSUSER_CloseArchive(sdmcArchive);
