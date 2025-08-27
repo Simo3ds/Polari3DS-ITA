@@ -20,14 +20,14 @@ jobs:
     runs-on: ubuntu-latest
     container: pablomk7/luma3dsbuildtools
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
     - name: safedir
-      run: git config --always --global --add safe.directory /__w/Polari3DS-ITA/Polari3DS-ITA
+      run: git config --global --add safe.directory /__w/Polari3DS-ITA/Polari3DS-ITA
     - name: Build
       run: make -j$(nproc --all)
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v3
       with:
         name: Polari3DS-ITA_beta
         path: boot.firm
