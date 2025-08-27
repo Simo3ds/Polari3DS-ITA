@@ -74,13 +74,6 @@ void svcInvalidateEntireInstructionCache(void);
 
 ///@name Memory management
 ///@{
-
-/// Flags for svcMapProcessMemoryEx
-typedef enum MapExFlags
-{
-    MAPEXFLAGS_PRIVATE = BIT(0), ///< Maps the memory as PRIVATE (0xBB05) instead of SHARED (0x5806)
-} MapExFlags;
-
 /**
  * @brief Maps a block of process memory.
  * @param dstProcessHandle Handle of the process to map the memory in (destination)
@@ -88,9 +81,8 @@ typedef enum MapExFlags
  * @param srcProcessHandle Handle of the process to map the memory from (source)
  * @param srcAddress Start address of the memory block in the source process
  * @param size Size of the block of the memory to map (truncated to a multiple of 0x1000 bytes)
- * @param flags Extended flags for mapping the memory (see MapExFlags)
 */
-Result svcMapProcessMemoryEx(Handle dstProcessHandle, u32 destAddress, Handle srcProcessHandle, u32 srcAddress, u32 size, MapExFlags flags);
+Result svcMapProcessMemoryEx(Handle dstProcessHandle, u32 destAddress, Handle srcProcessHandle, u32 srcAddress, u32 size);
 
 /**
  * @brief Unmaps a block of process memory.

@@ -36,7 +36,7 @@
 #include "sleep.h"
 #include "luma_config.h"
 #include "luma_shared_config.h"
-#include "mcubricker.h"
+#include "menus/chainloader.h"
 
 #define HID_PAD           (REG32(0x10146000) ^ 0xFFF)
 
@@ -78,9 +78,8 @@ typedef struct Menu {
 
 extern u32 menuCombo;
 extern bool isHidInitialized;
-extern bool isQtmInitialized;
 extern u32 mcuFwVersion;
-extern u8 mcuInfoTable[10];
+extern u8 mcuInfoTable[9];
 extern bool mcuInfoTableRead;
 extern u32 g_blockMenuOpen;
 extern bool rosalinaOpen;
