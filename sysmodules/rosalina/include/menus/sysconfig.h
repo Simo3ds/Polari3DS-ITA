@@ -50,5 +50,3 @@ void SysConfigMenu_ToggleCardIfPower(void);
 void SysConfigMenu_ToggleRehidFolder(void);
 void SysConfigMenu_UpdateRehidFolderStatus(void);
 void SysConfigMenu_Tip(void);
-void SysConfigMenu_LoadConfig(void);
-void SysConfigMenu_ChangeScreenBrightness(void);

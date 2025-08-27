@@ -32,8 +32,6 @@
 
 extern Menu N3DSMenu;
 
-bool N3DSMenu_CheckNotN2dsXl(void);
-
 void N3DSMenu_UpdateStatus(void);
 void N3DSMenu_ChangeClockRate(void);
 void N3DSMenu_EnableDisableL2Cache(void);
@@ -43,7 +41,3 @@ void N3DSMenu_DeleteConfigFile(void);
 void N3DSMenu_UpdateConfig(void);
 void N3DSMenu_UpdateConfigStatus(void);
 bool currentTitleAvailable(void);
-
-void N3DSMenu_ToggleSs3d(void);
-void N3DSMenu_TestBarrierPositions(void);
-void N3DSMenu_Ss3dCalibration(void);
