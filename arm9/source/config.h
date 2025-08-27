@@ -47,8 +47,8 @@
 #define BOOTCFG_NTRCARDBOOT  BOOTCONFIG(4, 1)
 
 #define FVERSION_MAJOR 13 // fake version spoofing
-#define FVERSION_MINOR 2
-#define FVERSION_BUILD 1
+#define FVERSION_MINOR 3
+#define FVERSION_BUILD 3
 
 enum multiOptions
 {
