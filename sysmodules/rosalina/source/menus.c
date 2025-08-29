@@ -287,8 +287,8 @@ void RosalinaMenu_ChangeScreenBrightness(void)
 
         posY = Draw_DrawString(10, posY, COLOR_RED, "ATTENZIONE: \n");
         posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * I valori glitchano raramente >172, Non usare questi!\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * Tuti i cambiamenti vengono ripristinati alla riapertura degli schermi daslla M.S.\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * il framebuffer superiore sarà visibile finche' non uscirai.\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * Tuti i cambiamenti vengono ripristinati alla riapertura degli schermi dalla M.S.\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * il framebuffer superiore sarà visibile fino a che non uscirai.\n");
         posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * le funzioni dello schermo superiore torneranno normali quando\nla luce di fondo viene spenta.\n");
         Draw_FlushFramebuffer();
         Draw_Unlock();
@@ -456,7 +456,7 @@ void RosalinaMenu_PowerPerformanceOptions(void)
             Draw_DrawString(10, 70, COLOR_WHITE, "Premi L: riavvia con il core2 reindirizzato.");
             Draw_DrawString(10, 80, COLOR_WHITE, "Premi R: avvia homebrew con la massima mem* & core2.");
         }
-        Draw_DrawString(10, 90, COLOR_WHITE, "Premi Giu': pulisci le impostazioni delle prestazioni e riavvia.");
+        Draw_DrawString(10, 90, COLOR_WHITE, "Premi Giu': resetta le impostazioni delle prestazioni e riavvia.");
         Draw_DrawString(10, 110, COLOR_WHITE, "Premi B per tornare indietro.");
         Draw_FlushFramebuffer();
         Draw_Unlock();

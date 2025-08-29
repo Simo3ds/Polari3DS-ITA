@@ -61,7 +61,7 @@ void detectAndProcessExceptionDumps(void)
     const vu8 *additionalData = stackDump + dumpHeader->stackDumpSize;
 
     static const char *handledExceptionNames[] = {
-        "FIQ", "Istruzioni indefinite", "Aborto Prefetch", "Aborto Dati"
+        "FIQ", "Istruzioni indefinite", "Crash Prefetch", "Crash Dati"
     },
                       *specialExceptions[] = {
         "panico kernel", "svcBreak"
@@ -72,10 +72,10 @@ void detectAndProcessExceptionDumps(void)
     },
                       *faultStatusNames[] = {
         "Alignment", "Instr.cache maintenance op.",
-        "Ext.Aborto su traduzione - Lv1", "Ext.Aborto su traduzione- Lv2",
+        "Est.Crash su traduzione - Lv1", "Est.Crash su traduzione- Lv2",
         "Traduzione - Sezione", "Traduzione - Pagina", "Accesso bit - Sezione", "Accesso bit - Pagina",
         "Dominio - Sezione", "Dominio - Pagina", "Permissi - Sezione", "Permissi - Pagina",
-        "Aborto Esterno Preciso", "Aborto Esterno Impreciso", "Evento di debug"
+        "Crash Esterno Preciso", "Crash Esterno Impreciso", "Evento di debug"
     };
 
     static const u32 faultStatusValues[] = {

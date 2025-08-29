@@ -36,7 +36,7 @@
 static _3DSX_Reloc s_relocBuf[MAXRELOCS];
 u32 ldrArgvBuf[ARGVBUF_SIZE/4];
 
-#define SEC_ASSERT(x) do { if (!(x)) { Log_PrintP("Assertion failed: %s", #x); return false; } } while (0)
+#define SEC_ASSERT(x) do { if (!(x)) { Log_PrintP("Asserzione fallita: %s", #x); return false; } } while (0)
 
 typedef struct
 {
@@ -60,7 +60,7 @@ bool Ldr_Get3dsxSize(u32* pSize, IFile *file)
 
     if (IFile_Read2(file, &hdr, sizeof(hdr), 0) != sizeof(hdr))
     {
-        Log_PrintP("Impossibile leggere l'intestata 3DSX");
+        Log_PrintP("Impossibile leggere la testata file 3DSX");
         return false;
     }
 
@@ -122,7 +122,7 @@ Handle Ldr_CodesetFrom3dsx(const char* name, u32* codePages, u32 baseAddr, IFile
     {
         if (IFile_Read2(file, &extraPage[i*nRelocTables], hdr.relocHdrSize, readOffset) != hdr.relocHdrSize)
         {
-            Log_PrintP("impossibile leggere l'intestazione correlata %d", i);
+            Log_PrintP("impossibile leggere la testata del file correlata %d", i);
             return 0;
         }
         readOffset += hdr.relocHdrSize;
@@ -139,7 +139,7 @@ Handle Ldr_CodesetFrom3dsx(const char* name, u32* codePages, u32 baseAddr, IFile
     // Read the rodata segment
     if (IFile_Read2(file, d.segPtrs[1], hdr.rodataSegSize, readOffset) != hdr.rodataSegSize)
     {
-        Log_PrintP("Impossibile leggere i dati leggibili");
+        Log_PrintP("Impossibile leggere i segmenti rodata");
         return 0;
     }
     readOffset += hdr.rodataSegSize;
@@ -178,7 +178,7 @@ Handle Ldr_CodesetFrom3dsx(const char* name, u32* codePages, u32 baseAddr, IFile
                 u32 readSize = toDo*sizeof(_3DSX_Reloc);
                 if (IFile_Read2(file, s_relocBuf, readSize, readOffset) != readSize)
                 {
-                    Log_PrintP("Impossibile leggere la tavola relocata (%d,%d)", i, j);
+                    Log_PrintP("Impossibile leggere la tavola riallocata (%d,%d)", i, j);
                     return 0;
                 }
                 readOffset += readSize;

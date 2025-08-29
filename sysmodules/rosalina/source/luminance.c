@@ -212,7 +212,7 @@ void Luminance_RecalibrateBrightnessDefaults(void)
         posY = Draw_DrawString(10, posY, COLOR_RED, "ATTENZIONE: ") + SPACING_Y;
         posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * L'anteprima della lum. non e' possibile qui\n per rischio glitch.") + SPACING_Y;
         posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * testa i valori via 'Cambia luminosita' schermi'.") + SPACING_Y;
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * e' frequente per minimizzare la pressione(?) della NAND(!).") + SPACING_Y;//note that (?) mean that is a possible uncorrect translation
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * e' frequente per minimizzare il consumo della NAND(!).") + SPACING_Y;//note that (?) mean that is a possible uncorrect translation
         posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * 172 e' solamente presunto(!) sicuro per uso prolungato.") + (SPACING_Y*2);
 
         sprintf(fmtbuf, "%c Liv.1 valore: %i", (sel == 0 ? '>' : ' '), s_blPwmData.luminanceLevels[0]);

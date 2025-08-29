@@ -228,7 +228,7 @@ bool     TryToLoadPlugin(Handle process, bool isHomebrew)
 
     // Set memory region size according to header
     if (!res && R_FAILED((res = MemoryBlock__SetSize(memRegionSizes[fileHeader.infos.memoryRegionSize])))) {
-        ctx->error.message = "Impossibile impostare la dimensione memblock";
+        ctx->error.message = "Impossibile impostare la dimensione blocco mem";
     }
     
     // Ensure memory block is mounted

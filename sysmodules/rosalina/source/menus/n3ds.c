@@ -50,9 +50,9 @@ Menu N3DSMenu = {
         { "Abilita la L2 cache", METHOD, .method = &N3DSMenu_EnableDisableL2Cache },
         { clkRateBuf, METHOD, .method = &N3DSMenu_ChangeClockRate },
         { new3dsMenuConfigBuf, METHOD, .method = &N3DSMenu_UpdateConfig, .visibility = &currentTitleAvailable },
-        { "Temporarily disable Super-Stable 3D", METHOD, .method = &N3DSMenu_ToggleSs3d, .visibility = &N3DSMenu_CheckNotN2dsXl },
+        { "Disabilita temporaneamente il SS3D", METHOD, .method = &N3DSMenu_ToggleSs3d, .visibility = &N3DSMenu_CheckNotN2dsXl },
         { "Test parallax barrier positions", METHOD, .method = &N3DSMenu_TestBarrierPositions, .visibility = &N3DSMenu_CheckNotN2dsXl },
-        { "Super-Stable 3D calibration", METHOD, .method = &N3DSMenu_Ss3dCalibration, .visibility = &N3DSMenu_CheckNotN2dsXl },
+        { "Super-Stable 3D: calibrazione", METHOD, .method = &N3DSMenu_Ss3dCalibration, .visibility = &N3DSMenu_CheckNotN2dsXl },
         {},
     }
 };
@@ -82,7 +82,7 @@ void N3DSMenu_UpdateStatus(void)
     svcGetSystemInfo(&L2CacheEnabled, 0x10001, 2);
 
     N3DSMenu.items[0].title = L2CacheEnabled ? "Disabilita la L2 cache" : "Abilita la L2 cache";
-    sprintf(clkRateBuf, "Imposta la clock rate a %luMHz", clkRate != 268 ? 268 : (u32)higherClkRate);
+    sprintf(clkRateBuf, "Imposta il clock rate a %luMHz", clkRate != 268 ? 268 : (u32)higherClkRate);
     
     sprintf(new3dsMenuBuf, "Impostazioni New3DS: [%luMHz%s", clkRate == 268 ? 268 : (u32)higherClkRate, L2CacheEnabled ? " & L2]" : "]");
     

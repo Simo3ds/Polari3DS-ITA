@@ -848,22 +848,23 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 {
     static const char *multiOptionsText[]  = { "EmuNAND predefinita: 1( ) 2( ) 3( ) 4( )",
                                                "Luminosita schermo: 4( ) 3( ) 2( ) 1( )",
-                                               "Splash: Spento( ) Prima( ) Dopo( ) payloads",
-                                               "Blocco PIN: Spento( ) 4( ) 6( ) 8( ) cifre",
-                                               "New 3DS CPU: Spento( ) Clock( ) L2( ) Clock+L2( )",
-                                               "Avvio automatico hbmenu: Spento( ) 3DS( ) DSi( )",
-                                               "Forza l'audio: Spento( ) Cuffie( ) Casse( )"
+                                               "Splash: Disattivato( ) Prima( ) Dopo( ) payloads",
+                                               "Blocco PIN: Disattivato( ) 4( ) 6( ) 8( ) cifre",
+                                               "New 3DS CPU: Disattivato( ) Clock( ) L2( ) Clock+L2( )",
+                                               "Autoavvio hbmenu: Disattivato( ) 3DS( ) DSi( )",
+                                               "Forza l'audio: Disattivato( ) Cuffie( ) Casse( )"
                                              };
 
     static const char *singleOptionsText[] = { "( ) Avvia automaticamente l'EmuNAND",
                                                "( ) Ab. il caricamento di FIRM e moduli est.",
                                                "( ) Abilita patching dei giochi",
-                                               "( ) Reindir. threads app. syscore al core2",
+                                               "( ) Reindirizza i threads app. syscore al core2",
                                                "( ) Mostra NAND o str. utente in imp. di sis.",
-                                               "( ) Mostra sch. avv. GBA negli AGB_FIRM patch.",
+                                               "( ) Mostra sch. avv. GBA nell'AGB_FIRM patchato",
+                                               "( ) Abilita la modalita' prestazioni",
                                                "( ) Abilita filtri pers. di upscaling per DSi",
-                                               "( ) Ammetti combo Sin+D/Su+Giu' per DSi",
-                                               "( ) Interr. il wifi del 3DS in mod. riposo",
+                                               "( ) Ammetti combo Sinistra+Destra/Su+Giu' per DSi",
+                                               "( ) Interr. il wifi del 3DS nella mod. riposo",
                                                "( ) Imposta UNITINFO come svilup.",
                                                "( ) Disabilita gli Arm11 exception handlers",                                               
                                                "( ) Abilita Rosalina nel SAFE_FIRM",

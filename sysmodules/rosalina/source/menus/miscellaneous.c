@@ -73,14 +73,14 @@ typedef struct DspFirm {
 } DspFirm;
 
 Menu miscellaneousMenu = {
-    "Miscellaneous options menu",
+    "Menu opzioni miste",
     {
-        { "Scambia il titolo hb. alla seguente app.", METHOD, .method = &MiscellaneousMenu_SwitchBoot3dsxTargetTitle },
+        { "Cambia il titolo hb. con la seguente app.", METHOD, .method = &MiscellaneousMenu_SwitchBoot3dsxTargetTitle },
         { "Cambia la combo di rosalina", METHOD, .method = &MiscellaneousMenu_ChangeMenuCombo },
         { "Avvia InputRedirection", METHOD, .method = &MiscellaneousMenu_InputRedirection },
         { "Aggiorna data e ora via NTP", METHOD, .method = &MiscellaneousMenu_UpdateTimeDateNtp },
         { "Nullify user time offset", METHOD, .method = &MiscellaneousMenu_NullifyUserTimeOffset },
-        { "Dumpa il DSP firmware", METHOD, .method = &MiscellaneousMenu_DumpDspFirm },
+        { "Estrai il DSP firmware", METHOD, .method = &MiscellaneousMenu_DumpDspFirm },
         { "Imposta le monete di gioco a 300", METHOD, .method = &MiscellaneousMenu_MaxPlayCoins },
         // { "Chainloader", METHOD, .method = &chainloader },
         {},
@@ -137,9 +137,9 @@ void MiscellaneousMenu_SwitchBoot3dsxTargetTitle(void)
         Luma_SharedConfig->hbldr_3dsx_tid = newTid;
 
     if (compareTids(newTid, HBLDR_DEFAULT_3DSX_TID))
-        miscellaneousMenu.items[0].title = "Scambia il titolo hb. alla seguente app.";
+        miscellaneousMenu.items[0].title = "Cambia il titolo hb. con la seguente app.";
     else
-        miscellaneousMenu.items[0].title = "Scambia il titolo hb. a" HBLDR_DEFAULT_3DSX_TITLE_NAME;
+        miscellaneousMenu.items[0].title = "Cambia il titolo hb. a" HBLDR_DEFAULT_3DSX_TITLE_NAME;
 
     Draw_Lock();
     Draw_ClearFramebuffer();
@@ -148,7 +148,7 @@ void MiscellaneousMenu_SwitchBoot3dsxTargetTitle(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu opzioni miste");
 
         if(R_SUCCEEDED(res))
             Draw_DrawString(10, 30, COLOR_WHITE, "Operazione eseguita con successo.");
@@ -174,7 +174,7 @@ void MiscellaneousMenu_ChangeMenuCombo(void)
     LumaConfig_ConvertComboToString(comboStrOrig, menuCombo);
 
     Draw_Lock();
-    Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
+    Draw_DrawString(10, 10, COLOR_TITLE, "Menu opzioni miste");
 
     posY = Draw_DrawFormattedString(10, 30, COLOR_WHITE, "La combo di rosalina corrente e':  %s", comboStrOrig);
     posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "Perfavore inserisci la nuova combo:");
@@ -185,7 +185,7 @@ void MiscellaneousMenu_ChangeMenuCombo(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu opzioni miste");
 
         posY = Draw_DrawFormattedString(10, 30, COLOR_WHITE, "La combo di rosalina corrente e':  %s", comboStrOrig);
         posY = Draw_DrawFormattedString(10, posY + SPACING_Y, COLOR_WHITE, "Perfavore inserisci la nuova combo: %s", comboStr) + SPACING_Y;
@@ -241,7 +241,7 @@ void MiscellaneousMenu_InputRedirection(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu opzioni miste");
 
         if(!wasEnabled && cantStart)
             Draw_DrawString(10, 30, COLOR_WHITE, "Impossibile avviare input redirection prima che il sistema abbia\nhas finito di caricarsi.");
@@ -340,7 +340,7 @@ void MiscellaneousMenu_UpdateTimeDateNtp(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu opzioni miste");
 
         absOffset = utcOffset - 12;
         absOffset = absOffset < 0 ? -absOffset : absOffset;
@@ -380,7 +380,7 @@ void MiscellaneousMenu_UpdateTimeDateNtp(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu opzioni miste");
 
         absOffset = utcOffset;
         absOffset = absOffset < 0 ? -absOffset : absOffset;
@@ -410,7 +410,7 @@ void MiscellaneousMenu_NullifyUserTimeOffset(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu opzioni miste");
         if(R_SUCCEEDED(res))
             Draw_DrawString(10, 30, COLOR_WHITE, "Operazione eseguita con successo.\n\nRiavvia la console per finalizzare i cambiamenti.");
         else
@@ -490,7 +490,7 @@ void MiscellaneousMenu_DumpDspFirm(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu opzioni miste");
         if(R_SUCCEEDED(res))
             Draw_DrawString(10, 30, COLOR_WHITE, "DSP firm. scritto con successo in /3ds/dspfirm.cdc\nsulla scheda SD.");
         else
@@ -559,7 +559,7 @@ void MiscellaneousMenu_MaxPlayCoins(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu impostazioni miste");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu opzioni miste");
         if(R_SUCCEEDED(res))
             Draw_DrawString(10, 30, COLOR_WHITE, "Monete di gioco impostate correttamente a 300.");
         else

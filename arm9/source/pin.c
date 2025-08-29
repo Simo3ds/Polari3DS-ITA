@@ -149,7 +149,7 @@ bool verifyPin(u32 pinMode)
     swapFramebuffers(true);
 
     drawString(true, 10, 10, COLOR_TITLE, "Inserisci il PIN usando ABXY e il DPad per procedere");
-    drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Inserisci il PIN usando ABXY e il DPad per procedere");
+    drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Premi START per spegnere, SELECT per resettare");
 
     drawFormattedString(true, 10, 10 + 3 * SPACING_Y, COLOR_WHITE, "PIN (%u digits): ", lengthBlock[0]);
 

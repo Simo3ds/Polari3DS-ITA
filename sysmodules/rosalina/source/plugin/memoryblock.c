@@ -118,7 +118,7 @@ Result      MemoryBlock__Free(void)
     memblock->memblock = NULL;
 
     if (R_FAILED(res))
-        PluginLoader__Error("Impossibile liberare i memblock", res); // memblock penso sia blocchi di memoria, ma siccome è più breve così, resterà così, in inglese.
+        PluginLoader__Error("Impossibile liberare i blocchi mem", res); // memblock penso sia blocchi di memoria, ma siccome è più breve così, resterà così, in inglese.
 
     return res;
 }
