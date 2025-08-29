@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     container: pablomk7/luma3dsbuildtools
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
     - name: safedir
