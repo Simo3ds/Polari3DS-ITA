@@ -841,7 +841,7 @@ void writeConfig(bool isConfigOptions)
         writeConfigMcu();
 
     if(updateIni && !writeLumaIniConfig())
-        error("Errore durante la scrit. del file di config.");
+        error("Errore nella scrittura del file di configurazione.");
 }
 
 void configMenu(bool oldPinStatus, u32 oldPinMode)
