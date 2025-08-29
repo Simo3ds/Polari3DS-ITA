@@ -19,14 +19,7 @@
 config_extra configExtra = { .suppressLeds = true, .cutSlotPower = false, .cutSleepWifi = false, .homeToRosalina = false, .toggleBottomLcd = false, .turnLedsOffStandby = false, .perGamePlugin = false };
 bool configExtraSaved = false;
 
-static const char menuText[7][100] = {
-    "Sopprimi automaticamente i led",
-    "Interrompi power nelle flashcards TWL",
-    "Interrompi il wifi del 3DS in modalita' riposo",
-    "Tasto home apre rosalina",
-    "St+Se imposta i tasti LCD nel menu'",
-    "Disattiva i led durante la mod. riposo",
-    "Salva le config. Config. salvate."
+    "Salva la configurazione"
 };
 
 static char menuDisplay[7][200];
