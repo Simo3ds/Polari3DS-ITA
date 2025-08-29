@@ -53,7 +53,7 @@ ConfigurationStatus needConfig;
 static CfgData oldConfig;
 
 static CfgDataMcu configDataMcu;
-static_assert(sizeof(CfgDataMcu) > 0, "Dimensione dati sbaglaita");
+static_assert(sizeof(CfgDataMcu) > 0, "Dimensione dati sbagliata");
 
 // INI parsing
 // ===========================================================
