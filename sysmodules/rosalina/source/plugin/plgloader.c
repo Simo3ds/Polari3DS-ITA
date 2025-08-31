@@ -165,8 +165,8 @@ void        PluginLoader__UpdateMenu(void)
 {
     static const char *status[2] =
     {
-        "Caricatore Plugin: [Disabilitato] %s",
-        "Caricatore Plugin: [Abilitato] %s"
+        "Caricatore Plugin: [Disabilitato]%s",
+        "Caricatore Plugin: [Abilitato]%s"
     };
 
     sprintf(menuBuf, status[PluginLoaderCtx.isEnabled], " [Per Gioco]");
@@ -178,7 +178,7 @@ static ControlApplicationMemoryModeOverrideConfig g_memorymodeoverridebackup = {
 Result  PluginLoader__SetMode3AppMode(bool enable)
 {
 	Handle loaderHandle;
-    Result res = srvGetServiceHandle(&loaderHandle, "Caricatore");
+    Result res = srvGetServiceHandle(&loaderHandle, "Loafer");
 
     if (R_FAILED(res)) return res;
 
