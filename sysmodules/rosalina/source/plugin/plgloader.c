@@ -178,7 +178,7 @@ static ControlApplicationMemoryModeOverrideConfig g_memorymodeoverridebackup = {
 Result  PluginLoader__SetMode3AppMode(bool enable)
 {
 	Handle loaderHandle;
-    Result res = srvGetServiceHandle(&loaderHandle, "Loafer");
+    Result res = srvGetServiceHandle(&loaderHandle, "Loader");
 
     if (R_FAILED(res)) return res;
 
