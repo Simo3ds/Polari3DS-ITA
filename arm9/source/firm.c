@@ -195,7 +195,7 @@ u32 loadNintendoFirm(FirmwareType *firmType, FirmwareSource nandType, bool loadF
             loadedFromStorage = true;
             firmSize = result;
         }
-        else if(ctrNandError) error("Impossibile montare la CTRNAND o caricare il CTRNAND FIRM.\nPlerfavore usarne uno esterno.");
+        else if(ctrNandError) error("Impossibile montare la CTRNAND o caricare il CTRNAND FIRM.\nPer favore usarne uno esterno.");
         else storageLoadError = true;
     }
     // If all attempts failed, panic.
