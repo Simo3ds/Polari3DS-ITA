@@ -195,11 +195,10 @@ u32 loadNintendoFirm(FirmwareType *firmType, FirmwareSource nandType, bool loadF
             loadedFromStorage = true;
             firmSize = result;
         }
-        else if(ctrNandError) error("Impossibile montare la CTRNAND o caricare il CTRNAND FIRM.\nPer favore usarne uno esterno.");
         else storageLoadError = true;
     }
     // If all attempts failed, panic.
-    if(ctrNandError && storageLoadError) error("Unable to mount CTRNAND or load the CTRNAND FIRM.\nPlease use an external one.");
+    if(ctrNandError && storageLoadError) error("Impossibile montare la CTRNAND o caricare il CTRNAND FIRM.\nPer favore usarne uno esterno.");
 
     //Check that the FIRM is right for the console from the Arm9 section address
     bool isO3dsFirm = firm->section[3].offset == 0 && firm->section[2].address == (u8 *)0x8006800;
