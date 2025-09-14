@@ -133,7 +133,7 @@ void AdjustVolume(void)
     {
         Draw_Lock();
         Draw_DrawString(10, 10, COLOR_TITLE, "Menu configurazione di sistema");
-        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Y: Attiva/Disattiva l'ovverride del cursore del volume.\nDPAD: Aggiusta il livello del volume.\nA: Applica\nB: Torna indietro\n\n");
+        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Y: Attiva/Disattiva l'override del cursore del volume.\nDPAD: Aggiusta il livello del volume.\nA: Applica\nB: Torna indietro\n\n");
         Draw_DrawString(10, posY, COLOR_WHITE, "Stato attuale:");
         posY = Draw_DrawString(100, posY, (tempVolumeOverride == -1) ? COLOR_RED : COLOR_GREEN, (tempVolumeOverride == -1) ? " DISABILITATO " : " ABILITATO ");
 

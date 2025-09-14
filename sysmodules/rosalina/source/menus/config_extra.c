@@ -19,10 +19,7 @@
 config_extra configExtra = { .suppressLeds = true, .cutSlotPower = false, .cutSleepWifi = false, .homeToRosalina = false, .toggleBottomLcd = false, .turnLedsOffStandby = false, .perGamePlugin = false };
 bool configExtraSaved = false;
 
-    "Salva la configurazione"
-};
-
-static char menuDisplay[7][200];
+static char menuDisplay[8][64];
 
 Menu configExtraMenu = {
     "Menu configurazione extra",

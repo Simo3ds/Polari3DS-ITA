@@ -80,7 +80,7 @@ void SysConfigMenu_ToggleLEDs(void)
         Draw_DrawString(10, 30, COLOR_WHITE, "Press A per attivare/disattivare, premi B per tornare indietro.");
         Draw_DrawString(10, 50, COLOR_RED, "ATTENZIONE:");
         Draw_DrawString(10, 60, COLOR_WHITE, "  * Entrare in modalita' riposo resettera' lo stato dei LED!");
-        Draw_DrawString(10, 70, COLOR_WHITE, "  * I LED non possono esssere attivati quando la batteria e' bassa!");
+        Draw_DrawString(10, 70, COLOR_WHITE, "  * I LED non possono essere attivati quando la batteria e' bassa!");
         Draw_FlushFramebuffer();
         Draw_Unlock();
 
@@ -242,7 +242,7 @@ void SysConfigMenu_TogglePowerButton(void)
         Draw_DrawString(10, 30, COLOR_WHITE, "Premi A per Attivare/Disattivare, Premi B per tornare indietro.");
 
         Draw_DrawString(10, 50, COLOR_WHITE, "Stato attuale:");
-        Draw_DrawString(100, 50, (((mcuIRQMask & 0x00000001) == 0x00000001) ? COLOR_RED : COLOR_GREEN), (((mcuIRQMask & 0x00000001) == 0x00000001) ? " DISABILITATO" : " ABILITATO "));;
+        Draw_DrawString(100, 50, (((mcuIRQMask & 0x00000001) == 0x00000001) ? COLOR_RED : COLOR_GREEN), (((mcuIRQMask & 0x00000001) == 0x00000001) ? " DISABILITATO" : " ABILITATO "));
 
         Draw_FlushFramebuffer();
         Draw_Unlock();
@@ -288,7 +288,7 @@ void SysConfigMenu_ControlWifi(void)
     {
         Draw_Lock();
         Draw_DrawString(10, 10, COLOR_TITLE, "Menu Configurazione di sistema");
-        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Premi A per forzare la connessione per uno slot, Premi B per annullare\n\n");;
+        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Premi A per forzare la connessione per uno slot, Premi B per annullare\n\n");
 
         for (u32 i = 0; i < 3; i++)
         {
@@ -370,7 +370,7 @@ void SysConfigMenu_ToggleCardIfPower(void)
         u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Premi A peer attivare/disattivare, premi B per tornare indietro.\n\n");
         posY = Draw_DrawString(10, posY, COLOR_WHITE, "Inserire o rimuovere una scheda resettera' lo stato,\ne dovrai reinserire la scheda se vorrai\ngiocarci.\n\n");
         Draw_DrawString(10, posY, COLOR_WHITE, "Stato attuale:");
-        Draw_DrawString(100, posY, !cardIfStatus ? COLOR_RED : COLOR_GREEN, !cardIfStatus ? " DISABILITATO " : " ABILITATO ");;
+        Draw_DrawString(100, posY, !cardIfStatus ? COLOR_RED : COLOR_GREEN, !cardIfStatus ? " DISABILITATO " : " ABILITATO ");
 
         Draw_FlushFramebuffer();
         Draw_Unlock();
