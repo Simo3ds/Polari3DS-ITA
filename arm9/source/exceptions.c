@@ -138,7 +138,7 @@ void detectAndProcessExceptionDumps(void)
                                     "Processo corrente: %.8s (%016llX)", (const char *)additionalData, *(vu64 *)(additionalData + 8));
         else
             posY = drawFormattedString(true, 10, posY + SPACING_Y, COLOR_WHITE,
-                                    "Arm9 memory dump at offset %X size %lX", (uintptr_t)additionalData - (uintptr_t)dumpHeader, size);
+                                    "Memoria Arm9 estratta all'offset %X di dim. %lX", (uintptr_t)additionalData - (uintptr_t)dumpHeader, size);
     }
     posY += SPACING_Y;
 
@@ -159,9 +159,9 @@ void detectAndProcessExceptionDumps(void)
 
     u32 mode = regs[16] & 0xF;
     if(dumpHeader->type == 3 && (mode == 7 || mode == 11))
-        posY = drawString(true, 10, posY + SPACING_Y, COLOR_YELLOW, "Dump non correttto: Dump di codice e/o dello stack fallito") + SPACING_Y;
+        posY = drawString(true, 10, posY + SPACING_Y, COLOR_YELLOW, "Estrazione non correttta: Estrazione di codice e/o dello stack fallita") + SPACING_Y;
 
-    u32 posYBottom = drawString(false, 10, 10, COLOR_WHITE, "Stack dump:") + SPACING_Y;
+    u32 posYBottom = drawString(false, 10, 10, COLOR_WHITE, "Estrazione stack:") + SPACING_Y;
 
     for(u32 line = 0; line < 19 && stackDump < additionalData; line++)
     {
