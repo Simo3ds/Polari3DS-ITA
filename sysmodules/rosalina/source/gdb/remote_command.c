@@ -97,7 +97,7 @@ GDB_DECLARE_REMOTE_COMMAND_HANDLER(SyncRequestInfo)
 
     if(ctx->selectedThreadId == 0)
     {
-        n = sprintf(outbuf, "Impossibile eseguire quuesto comando senza un thread selezionato.\n");
+        n = sprintf(outbuf, "Impossibile eseguire questo comando senza un thread selezionato.\n");
         goto end;
     }
 

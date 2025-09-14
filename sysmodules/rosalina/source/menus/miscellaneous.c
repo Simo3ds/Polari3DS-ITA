@@ -139,7 +139,7 @@ void MiscellaneousMenu_SwitchBoot3dsxTargetTitle(void)
     if (compareTids(newTid, HBLDR_DEFAULT_3DSX_TID))
         miscellaneousMenu.items[0].title = "Cambia il titolo hb. con la seguente app.";
     else
-        miscellaneousMenu.items[0].title = "Cambia il titolo hb. a" HBLDR_DEFAULT_3DSX_TITLE_NAME;
+        miscellaneousMenu.items[0].title = "Cambia il titolo hb. a " HBLDR_DEFAULT_3DSX_TITLE_NAME;
 
     Draw_Lock();
     Draw_ClearFramebuffer();

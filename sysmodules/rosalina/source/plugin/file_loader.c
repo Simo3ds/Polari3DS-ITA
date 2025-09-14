@@ -243,7 +243,7 @@ bool     TryToLoadPlugin(Handle process, bool isHomebrew)
 
     // Parse rest of header
     if (!res && R_FAILED((res = Read_3gx_ParseHeader(&plugin, header))))
-        ctx->error.message = "impossibile leggere il file";
+        ctx->error.message = "Impossibile leggere il file";
 
     // Read embedded save/load functions
     if (!res && R_FAILED((res = Read_3gx_EmbeddedPayloads(&plugin, header))))
